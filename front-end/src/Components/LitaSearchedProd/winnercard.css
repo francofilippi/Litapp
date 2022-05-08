@@ -1,0 +1,62 @@
+/* From uiverse.io by @alexruix */
+.winnercard {
+    --background: linear-gradient(to left, #d853ea 0%, #612bf7 100%);
+    padding: 5px;
+    border-radius: .5rem;
+    overflow: visible;
+    background: #d853ea;
+    background: var(--background);
+    position: relative;
+    z-index: 1;
+}
+
+/* .winnercard::after {
+    position: absolute;
+    content: "";
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    transform: scale(0.8);
+    filter: blur(25px);
+    background: #d853ea;
+    background: var(--background);
+    transition: opacity .5s;
+} */
+
+.winnerstar{
+    position: absolute;
+    font-size: xx-large;
+    top: -17px;
+    left: -17px;
+}
+
+.winnercard-info {
+    --color: #181818;
+    background: var(--color);
+    color: var(--color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    border-radius: .7rem;
+}
+
+.winnercard .title {
+    font-weight: bold;
+    letter-spacing: .1em;
+}
+
+/*Hover*/
+.winnercard:hover::after {
+    opacity: 0;
+}
+
+.winnercard:hover .winnercard-info {
+    color: #d853ea;
+    transition: color 1s;
+}

@@ -34,7 +34,7 @@ import './winnercard.css';
 //     },
 
 // ]
-
+// dasjfklasdjkl
 // ordenar los precios de menor a mayor
 //const itemsOrderedByPrice = items.sort((a, b) => a.price - b.price);
 

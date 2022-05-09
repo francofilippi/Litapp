@@ -27,7 +27,7 @@ export default function LitaSearch() {
   return (
     <React.Fragment>
 
-      <Paper variant='borderBlackElevatedPaper'>
+      <Paper variant='borderBlackElevatedPaper' sx={{width: '100%', maxWidth: '650px'}}>
         <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
         <div>{`inputValue: '${inputValue}'`}</div>
         <Autocomplete

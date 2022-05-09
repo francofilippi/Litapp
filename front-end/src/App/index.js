@@ -1,6 +1,13 @@
 import React from 'react';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+
+// Provider para lógica
 import LitaProvider from '../Components/LitaContext';
-import { Container, Stack, ThemeProvider } from '@mui/material';
+
+// Provider para theme
+import ToggleColorMode from './litaTheme';
 
 // Containers
 import Navbar from '../Containers/Navbar';
@@ -8,16 +15,15 @@ import Body from '../Containers/Body';
 import Footer from '../Containers/Footer';
 
 // CSS
-import litaTheme from './litaTheme'
 import './App.css';
 
 function App() {
 
   return (
     <LitaProvider>
-      <ThemeProvider theme={litaTheme}>
-        <div className='backgroundLita'>
-          <div className='main-container'>
+      <ToggleColorMode>
+        <Container variant='backgroundContainer' maxWidth="xxl">
+          <Box className='main-container' sx={{backgroundColor: 'background.default'}}>
             <Container maxWidth="xl">
               <Stack
                 direction="column"
@@ -30,9 +36,9 @@ function App() {
                 <Footer />
               </Stack>
             </Container>
-          </div>
-        </div>
-      </ThemeProvider>
+          </Box>
+        </Container>
+      </ToggleColorMode>
     </LitaProvider>
   );
 }

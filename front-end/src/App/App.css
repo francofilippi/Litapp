@@ -7,3 +7,14 @@
     display: flex;
     min-height: 100vh;
 }
+
+.main-container-dark {
+    background:
+        url('../assets/imgs/Lita.png') no-repeat bottom right,
+        url('../assets/imgs/background-comic-effect.svg') no-repeat center;
+    background-blend-mode: none darken;
+    background-size: contain, cover;
+    background-attachment: fixed, fixed;
+    display: flex;
+    min-height: 100vh;
+}

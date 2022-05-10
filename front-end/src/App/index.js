@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import LitaProvider from '../Components/LitaContext';
 
 // Provider para theme
-import ToggleColorMode from './litaTheme';
+import ThemePaletteComponentsToggle from './litaTheme';
 
 // Containers
 import Navbar from '../Containers/Navbar';
@@ -21,24 +21,23 @@ function App() {
 
   return (
     <LitaProvider>
-      <ToggleColorMode>
-        <Container variant='backgroundContainer' maxWidth="xxl">
-          <Box className='main-container' sx={{backgroundColor: 'background.default'}}>
-            <Container maxWidth="xl">
-              <Stack
-                direction="column"
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={4}
-              >
-                <Navbar />
-                <Body />
-                <Footer />
-              </Stack>
-            </Container>
-          </Box>
-        </Container>
-      </ToggleColorMode>
+      <ThemePaletteComponentsToggle>
+        <Box className='main-container' sx={{ backgroundColor: 'background.default' }}>
+          <Container maxWidth="xl">
+            <Stack
+              direction="column"
+              justifyContent="space-between"
+              alignItems="center"
+              height={'100%'}
+              spacing={4}
+            >
+              <Navbar/>
+              <Body />
+              <Footer />
+            </Stack>
+          </Container>
+        </Box>
+      </ThemePaletteComponentsToggle>
     </LitaProvider>
   );
 }

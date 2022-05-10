@@ -15,6 +15,7 @@ import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 
+// IMPORTS CONTEXT
 import { LitaContext } from '../LitaContext';
 import './winnercard.css';
 
@@ -51,21 +52,22 @@ export default function LitaSearchedProd() {
                 <Grid container spacing={2}>
 
                     <Grid item xs={12} sm={12} lg={8}>
-                        <Paper variant="borderBlackElevatedPaper" padding={2} sx={{ height: '100%', backgroundColor: 'rgba(93, 16, 181, .75)' }}>
-                            <Stack direction="column" justifyContent="space-around" height="100%" spacing={2}>
-                                <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-around" alignItems="center">
+                        <Paper variant="borderBlackElevatedPaper" sx={{ height: '100%', padding: '30px' }}>
+                            <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
+                                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width="100%" justifyContent="space-around" alignItems="center">
 
                                     <Typography variant="h5">{value.name}</Typography>
-                                    <img
-                                        loading='lazy'
-                                        src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
-                                        alt=""
-                                        width='300px'
-                                        style={{ 'maxWidth': '100%' }}
-                                    />
 
+                                    <Paper variant='imgListPaper' sx={{ height: '100%' }}>
+                                        <img
+                                            loading='lazy'
+                                            src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
+                                            style={{ 'height': '100%' }}
+                                            alt=""
+                                        />
+                                    </Paper>
                                 </Stack>
-                                <Divider variant="litaDivider" />
+                                <Divider sx={{ width: '80%' }} />
                             </Stack>
                         </Paper>
                     </Grid>

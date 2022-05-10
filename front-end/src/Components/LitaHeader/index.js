@@ -11,7 +11,6 @@ export default function LitaHeader() {
     return (
         <Typography
             variant='h2'
-            sx={value && { textShadow: '8px 4px 0px #3a4654', }}
             component='h1'
         >
             {!value ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}

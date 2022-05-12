@@ -23,7 +23,8 @@ function App() {
     <LitaProvider>
       <ThemePaletteComponentsToggle>
         <Box className='main-container' sx={{ backgroundColor: 'background.default' }}>
-          <Container maxWidth="xl">
+          <Navbar />
+          <Container maxWidth="xl" sx={{ marginTop: "100px" }}>
             <Stack
               direction="column"
               justifyContent="space-between"
@@ -31,7 +32,6 @@ function App() {
               height={'100%'}
               spacing={4}
             >
-              <Navbar/>
               <Body />
               <Footer />
             </Stack>

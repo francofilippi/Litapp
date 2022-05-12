@@ -1,5 +1,5 @@
 // IMPORTS REACT
-import React, { useContext } from 'react';
+import React from 'react';
 
 // IMPORTS MUI
 import Box from '@mui/material/Box';
@@ -15,8 +15,6 @@ import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 
-// IMPORTS CONTEXT
-import { LitaContext } from '../LitaContext';
 import './winnercard.css';
 
 // const pricesOfSearchedProduct = [
@@ -42,9 +40,7 @@ import './winnercard.css';
 // ordenar los precios de menor a mayor
 //const itemsOrderedByPrice = items.sort((a, b) => a.price - b.price);
 
-export default function LitaSearchedProd() {
-
-    const { value, pricesOptions, loadingPricesOptions } = useContext(LitaContext);
+export default function LitaSearchedProd({ value, pricesOptions, loadingPricesOptions }) {
 
     return (
         <React.Fragment>

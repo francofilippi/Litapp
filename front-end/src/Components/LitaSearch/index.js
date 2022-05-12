@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
@@ -7,14 +7,12 @@ import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 import LitaError from '../LitaError';
-import { LitaContext } from '../LitaContext';
-import { Box } from '@mui/system';
 
-export default function LitaSearch() {
-
-  const {
+export default function LitaSearch(
+  {
     value,
     setValue,
     inputValue,
@@ -25,7 +23,8 @@ export default function LitaSearch() {
     errorSearchOptions,
     searchOptions,
     setLoadingPricesOptions,
-  } = useContext(LitaContext)
+  }
+) {
 
   return (
     <React.Fragment>

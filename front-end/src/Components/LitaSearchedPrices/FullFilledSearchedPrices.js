@@ -9,65 +9,41 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 
 import './winnercard.css';
 
-export default function FullFilledSearchedPrices({ pricesOptions }) {
+export default function FullFilledSearchedPrices({ item, index }) {
 
     return (
         <React.Fragment>
 
-            <Grid item xs={12} sm={12} lg={4}>
-                <Grid container spacing={2}>
-                    {(!pricesOptions ? Array.from(new Array(4)) : pricesOptions).map((item, index) => (
+            <Grid item xs={12} sm={6}>
+                <Box className={index === 0 && 'winnercard'}>
 
-                        <Grid key={index} item xs={12} sm={6}>
-                            <Box className={(pricesOptions?.indexOf(item) === 0) && 'winnercard'}>
+                    {index === 0 && (
+                        <Typography variant="h4" className="winnerstar">⭐</Typography>
+                    )}
 
-                                {(pricesOptions?.indexOf(item) === 0) && (
-                                    <Typography variant="h4" className="winnerstar">⭐</Typography>
-                                )}
+                    <Card variant='outlined'>
+                        <CardMedia
+                            component="img"
+                            height='100%'
+                            src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
+                            alt="logo super"
+                        />
 
-                                <Card variant={(pricesOptions?.indexOf(item) === 0) ? '' : 'outlined'}>
-                                    {item ?
-                                        <CardMedia
-                                            component="img"
-                                            height='100%'
-                                            src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
-                                            alt="logo super"
-                                        />
-                                        :
-                                        <Skeleton variant="rectangular" height='180px' />
-                                    }
+                        <CardContent>
+                            <Typography variant="h4">
+                                $ {item}
+                            </Typography>
+                        </CardContent>
 
-                                    <CardContent>
-                                        {item ?
-                                            <Typography variant="h4">
-                                                $ {item.name}
-                                            </Typography>
-                                            :
-                                            <Skeleton width={150} />
-                                        }
-
-                                    </CardContent>
-
-                                    <CardActions sx={{ justifyContent: "center" }}>
-
-                                        {item ?
-                                            <Button size="small" sx={{ color: 'white' }}>Ir a producto</Button>
-                                            :
-                                            <Skeleton width={80} />
-                                        }
-                                    </CardActions>
-
-                                </Card>
-                            </Box>
-                        </Grid>
-
-                    ))}
-                </Grid>
+                        <CardActions sx={{ justifyContent: "center" }}>
+                            <Button size="small" sx={{ color: 'white' }}>Ir a producto</Button>
+                        </CardActions>
+                    </Card>
+                </Box>
             </Grid>
 
         </React.Fragment >

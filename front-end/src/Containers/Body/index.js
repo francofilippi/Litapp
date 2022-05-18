@@ -5,6 +5,8 @@ import LitaSearch from '../../Components/LitaSearch';
 import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
 import LitaSearchedInfo from '../../Components/LitaSearchedInfo';
 import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
+import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
+import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
 import AdsenseBox from '../../Components/AdsenseBox';
 
 // Lógica
@@ -16,28 +18,47 @@ export default function Body() {
     const {
         error,
         loading,
+        loadingPricesOptions,
+        errorPricesOptions,
         value,
+        setValue,
         pricesOptions,
         errorSearchOptions,
-        setValue,
     } = useLitaStates();
 
     return (
         <React.Fragment>
-            <LitaHeader value={value} />
-            <LitaSearch value={value} setValue={setValue} />
-            {value &&
-                <LitaSearchedContainer>
-                    <LitaSearchedInfo
-                        value={value}
-                    />
 
-                    <LitaSearchedPrices
-                        pricesOptions={pricesOptions}
-                    />
-                </LitaSearchedContainer>
-            }
+            <LitaHeader value={value} />
+
+            <LitaSearch value={value} setValue={setValue} />
+
+            <LitaSearchedContainer
+                value={value}
+            >
+                <LitaSearchedInfo
+                    value={value} />
+
+
+                <LitaSearchedPrices
+                    loadingPricesOptions={loadingPricesOptions}
+                    errorPricesOptions={errorPricesOptions}
+                    pricesOptions={pricesOptions}
+                    onLoading={() => <LoadingSearchedPrices />}
+                    onError={() => <LitaError />}
+                >
+                    {(item, index) => (
+                        <FullFilledSearchedPrices
+                            index={index}
+                            item={item.name}
+                        />
+                    )}
+                </LitaSearchedPrices>
+
+            </LitaSearchedContainer>
+
             <AdsenseBox />
+
         </React.Fragment>
     )
 }

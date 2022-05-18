@@ -4,16 +4,18 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid';
 
-export default function LitaSearchedContainer({ children }) {
+export default function LitaSearchedContainer(props) {
 
     return (
 
         <React.Fragment>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    {children}
-                </Grid>
-            </Box >
+            {!!props.value &&
+                <Box sx={{ flexGrow: 1 }}>
+                    <Grid container spacing={2}>
+                        {props.children}
+                    </Grid>
+                </Box >
+            }
         </React.Fragment>
 
     );

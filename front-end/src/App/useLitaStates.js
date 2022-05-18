@@ -47,14 +47,14 @@ export default function useLitaStates() {
 
   // Estados del LitaSearchedProd (Precios del producto buscado)
   const [value, setValue] = React.useState(null);
-  const [pricesOptions, setPricesOptions] = React.useState(null);
+  const [pricesOptions, setPricesOptions] = React.useState([]);
   const [errorPricesOptions, setErrorPricesOptions] = React.useState(false);
-  // const [loadingPricesOptions, setLoadingPricesOptions] = React.useState(false);
+  const loadingPricesOptions = value && pricesOptions.length === 0;
 
   // Effect para loading de LitaSearchedProd
   React.useEffect(() => {
 
-    if (!value) {
+    if (!loadingPricesOptions) {
       return undefined;
     }
 
@@ -72,7 +72,7 @@ export default function useLitaStates() {
       }
     })();
 
-  }, [value]);
+  }, [loadingPricesOptions]);
 
   return (
     {
@@ -81,6 +81,7 @@ export default function useLitaStates() {
       open,
       setOpen,
       loadingSearchOptions,
+      loadingPricesOptions,
       errorSearchOptions,
       searchOptions,
       errorPricesOptions,

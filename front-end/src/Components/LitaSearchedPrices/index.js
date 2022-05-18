@@ -10,11 +10,11 @@ export default function LitaSearchedPrices(props) {
             <Grid item xs={12} sm={12} lg={4}>
                 <Grid container spacing={2}>
 
-                    {props.errorPricesOptions && props.onError()}
+                    {props.errorPricesOptions && Array.from(new Array(4)).map(props.onError)}
 
                     {props.loadingPricesOptions && Array.from(new Array(4)).map(props.onLoading)}
 
-                    {props.pricesOptions?.map(props.children)}
+                    {!props.loadingPricesOptions && !props.errorPricesOptions && props.pricesOptions?.map(props.children)}
 
                 </Grid>
             </Grid>

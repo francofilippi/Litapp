@@ -49,30 +49,38 @@ export default function useLitaStates() {
   const [value, setValue] = React.useState(null);
   const [pricesOptions, setPricesOptions] = React.useState([]);
   const [errorPricesOptions, setErrorPricesOptions] = React.useState(false);
-  const loadingPricesOptions = value && pricesOptions.length === 0;
+  const [loadingPricesOptions, setLoadingPricesOptions] = React.useState(false);
+  //const loadingPricesOptions = value && pricesOptions.length === 0;
 
   // Effect para loading de LitaSearchedProd
   React.useEffect(() => {
 
-    if (!loadingPricesOptions) {
+    if (!value) {
       return undefined;
     }
 
     // API -> precios de supers para searched product
+
     (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // delay prueba para que se vea el skeleton
+
+      setPricesOptions([])
+      setLoadingPricesOptions(true)
+      setErrorPricesOptions(false)
+
+      await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
       try {
-        const pricesProd = await fetch(API_LITA_BASE)
+        const pricesProd = await fetch(API_LITA_BASE + '/fdsa')
           .then(response => response.json())
           .then(data => data.results)
-        setPricesOptions([...pricesProd.slice(0, 4)]);
+
+        setPricesOptions([...pricesProd.slice(value.id - 1, value.id + 3)]);
       } catch (error) {
-        //setPricesOptions(Array.from(new Array(4).fill({ name: 'Error' })))
         setErrorPricesOptions(true)
       }
+      setLoadingPricesOptions(false)
     })();
 
-  }, [loadingPricesOptions]);
+  }, [value]);
 
   return (
     {
@@ -80,12 +88,12 @@ export default function useLitaStates() {
       setValue,
       open,
       setOpen,
-      loadingSearchOptions,
-      loadingPricesOptions,
-      errorSearchOptions,
       searchOptions,
-      errorPricesOptions,
+      errorSearchOptions,
+      loadingSearchOptions,
       pricesOptions,
+      errorPricesOptions,
+      loadingPricesOptions,
     }
   );
 }

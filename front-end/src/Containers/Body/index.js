@@ -6,24 +6,21 @@ import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
 import LitaSearchedInfo from '../../Components/LitaSearchedInfo';
 import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
+import ErrorSearchedPrices from '../../Components/LitaSearchedPrices/ErrorSearchedPrices'
 import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
 import AdsenseBox from '../../Components/AdsenseBox';
 
 // Lógica
 import useLitaStates from '../../App/useLitaStates';
-import LitaError from '../../Components/LitaError';
 
 export default function Body() {
 
     const {
-        error,
-        loading,
-        loadingPricesOptions,
-        errorPricesOptions,
         value,
         setValue,
+        errorPricesOptions,
+        loadingPricesOptions,
         pricesOptions,
-        errorSearchOptions,
     } = useLitaStates();
 
     return (
@@ -39,13 +36,12 @@ export default function Body() {
                 <LitaSearchedInfo
                     value={value} />
 
-
                 <LitaSearchedPrices
-                    loadingPricesOptions={loadingPricesOptions}
                     errorPricesOptions={errorPricesOptions}
+                    loadingPricesOptions={loadingPricesOptions}
                     pricesOptions={pricesOptions}
                     onLoading={() => <LoadingSearchedPrices />}
-                    onError={() => <LitaError />}
+                    onError={() => <ErrorSearchedPrices />}
                 >
                     {(item, index) => (
                         <FullFilledSearchedPrices

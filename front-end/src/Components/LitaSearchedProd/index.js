@@ -68,52 +68,7 @@ export default function LitaSearchedProd({ value, pricesOptions, loadingPricesOp
                         </Paper>
                     </Grid>
 
-                    <Grid item xs={12} sm={12} lg={4}>
-                        <Grid container spacing={2}>
-                            {(loadingPricesOptions ? Array.from(new Array(4)) : pricesOptions).map((item, index) => (
 
-                                <Grid key={index} item xs={12} sm={6}>
-                                    <Box className={item === pricesOptions[0] && 'winnercard'}>
-
-
-                                        {item === pricesOptions[0] && (
-                                            <Typography variant="h4" className="winnerstar">⭐</Typography>
-                                        )}
-
-                                        <Card variant={item === pricesOptions[0] ? '' : 'outlined'}>
-                                            {item ?
-                                                <CardMedia
-                                                    component="img"
-                                                    height='100%'
-                                                    src={`https://rickandmortyapi.com/api/character/avatar/${value.id + index}.jpeg`}//logo de super
-                                                    alt="logo super"
-                                                />
-                                                :
-                                                <Skeleton variant="rectangular" height='180px' />
-                                            }
-
-
-                                            <CardContent>
-                                                {item ?
-                                                    <Typography variant="h4">
-                                                        $ {item.name}
-                                                    </Typography>
-                                                    :
-                                                    <Skeleton width={150} />
-                                                }
-
-                                            </CardContent>
-                                            <CardActions>
-                                                <Button size="small" sx={{ color: 'white' }}>Ir a producto</Button>
-                                            </CardActions>
-
-                                        </Card>
-                                    </Box>
-                                </Grid>
-
-                            ))}
-                        </Grid>
-                    </Grid>
 
                 </Grid>
             </Box >

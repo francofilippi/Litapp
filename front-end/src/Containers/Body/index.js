@@ -29,13 +29,13 @@ export default function Body() {
             <LitaHeader value={value} />
             <LitaSearch
                 value={value}
-                setValue={setValue}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                open={open}
-                setOpen={setOpen}
-                loadingSearchOptions={loadingSearchOptions}
-                errorSearchOptions={errorSearchOptions}
+            >
+                <LitaSearchedInfo
+                    value={value}
+                />
+
+                <LitaSearchedPrices
+                    errorSearchOptions={errorSearchOptions}
                 searchOptions={searchOptions}
                 setLoadingPricesOptions={setLoadingPricesOptions}
             />

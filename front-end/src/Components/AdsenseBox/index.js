@@ -18,7 +18,6 @@ export default function AdsenseBox() {
             <Paper variant="outlined"
                 sx={{
                     textAlign: 'center',
-                    padding: 'auto',
                     backgroundColor: '#28BDD4',
                     height: 60,
                     lineHeight: '60px',

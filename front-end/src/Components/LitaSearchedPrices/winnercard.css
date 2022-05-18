@@ -10,23 +10,7 @@
     z-index: 1;
 }
 
-/* .winnercard::after {
-    position: absolute;
-    content: "";
-    top: 30px;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    transform: scale(0.8);
-    filter: blur(25px);
-    background: #d853ea;
-    background: var(--background);
-    transition: opacity .5s;
-} */
-
-.winnerstar{
+.winnerstar {
     position: absolute;
     font-size: xx-large;
     top: -17px;

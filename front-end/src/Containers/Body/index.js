@@ -1,50 +1,42 @@
 import React from 'react';
+
 import LitaHeader from '../../Components/LitaHeader';
 import LitaSearch from '../../Components/LitaSearch';
-import LitaSearchedProd from '../../Components/LitaSearchedProd';
+import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
+import LitaSearchedInfo from '../../Components/LitaSearchedInfo';
+import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import AdsenseBox from '../../Components/AdsenseBox';
 
 // Lógica
 import useLitaStates from '../../App/useLitaStates';
+import LitaError from '../../Components/LitaError';
 
 export default function Body() {
 
     const {
+        error,
+        loading,
         value,
-        setValue,
-        inputValue,
-        setInputValue,
-        open,
-        setOpen,
-        loadingSearchOptions,
-        errorSearchOptions,
-        searchOptions,
-        loadingPricesOptions,
-        setLoadingPricesOptions,
         pricesOptions,
+        errorSearchOptions,
+        setValue,
     } = useLitaStates();
 
     return (
         <React.Fragment>
             <LitaHeader value={value} />
-            <LitaSearch
-                value={value}
-            >
-                <LitaSearchedInfo
-                    value={value}
-                />
-
-                <LitaSearchedPrices
-                    errorSearchOptions={errorSearchOptions}
-                searchOptions={searchOptions}
-                setLoadingPricesOptions={setLoadingPricesOptions}
-            />
+            <LitaSearch value={value} setValue={setValue} />
             {value &&
-                <LitaSearchedProd
-                    value={value}
-                    pricesOptions={pricesOptions}
-                    loadingPricesOptions={loadingPricesOptions}
-                />}
+                <LitaSearchedContainer>
+                    <LitaSearchedInfo
+                        value={value}
+                    />
+
+                    <LitaSearchedPrices
+                        pricesOptions={pricesOptions}
+                    />
+                </LitaSearchedContainer>
+            }
             <AdsenseBox />
         </React.Fragment>
     )

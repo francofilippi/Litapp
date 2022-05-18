@@ -10,32 +10,29 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import LitaError from '../LitaError';
+import useLitaStates from '../../App/useLitaStates';
 
-export default function LitaSearch(
-  {
-    value,
-    setValue,
-    inputValue,
-    setInputValue,
+export default function LitaSearch({ value, setValue }) {
+
+  const {
     open,
     setOpen,
     loadingSearchOptions,
     errorSearchOptions,
     searchOptions,
-    setLoadingPricesOptions,
-  }
-) {
+  } = useLitaStates();
+
+  const [inputValue, setInputValue] = React.useState('');
 
   return (
     <React.Fragment>
 
       <Paper variant='borderBlackElevatedPaper' sx={{ width: '100%', maxWidth: '650px' }}>
-        <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
-        <div>{`inputValue: '${inputValue}'`}</div>
+        {/* <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
+        <div>{`inputValue: '${inputValue}'`}</div> */}
         <Autocomplete
           onChange={(event, newValue) => {
             setValue(newValue)
-            setLoadingPricesOptions(true)
           }}
           inputValue={inputValue}
           onInputChange={(event, newInputValue) => {
@@ -55,8 +52,8 @@ export default function LitaSearch(
           loading={loadingSearchOptions}
           loadingText='Cargando..'
           renderOption={
-            (errorSearchOptions) ?
-              () => { <LitaError>ERROR</LitaError> }
+            errorSearchOptions ?
+              (index) => (<ListItem key={index} variant='listItemError'><LitaError /></ListItem>)
               :
               (props, option) => (
                 <ListItem
@@ -82,7 +79,8 @@ export default function LitaSearch(
                     <Divider sx={{ width: '100%', height: '5px' }} />
                   </Box>
                 </ListItem>
-              )}
+              )
+          }
           renderInput={(params) => (
             <TextField
               {...params}
@@ -100,6 +98,6 @@ export default function LitaSearch(
           )}
         />
       </Paper>
-    </React.Fragment>
+    </React.Fragment >
   );
 }

@@ -1,56 +1,3 @@
-// import * as React from 'react';
-// import PropTypes from 'prop-types';
-// import AppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import useScrollTrigger from '@mui/material/useScrollTrigger';
-// import Box from '@mui/material/Box';
-// import Container from '@mui/material/Container';
-// import Slide from '@mui/material/Slide';
-
-// function HideOnScroll(props) {
-//   const { children } = props;
-//   const trigger = useScrollTrigger();
-
-//   return (
-//     <Slide appear={false} direction="down" in={!trigger}>
-//       {children}
-//     </Slide>
-//   );
-// }
-
-// HideOnScroll.propTypes = {
-//   children: PropTypes.element.isRequired,
-// };
-
-// export default function HideAppBar(props) {
-//   return (
-//     <React.Fragment>
-//       <HideOnScroll {...props}>
-//         <AppBar>
-//             <Typography variant="h6" component="div">
-//               Scroll to hide App bar
-//             </Typography>
-//         </AppBar>
-//       </HideOnScroll>
-//       <Container>
-//         <Box sx={{ my: 2 }}>
-//           {[...new Array(12)]
-//             .map(
-//               () => `Cras mattis consectetur purus sit amet fermentum.
-// Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-// Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-// Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-//             )
-//             .join('\n')}
-//         </Box>
-//       </Container>
-//     </React.Fragment>
-//   );
-// }
-
-
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -108,7 +55,7 @@ export default function Navbar() {
 
         <Slide appear={false} direction="down" in={!trigger}>
             <AppBar>
-                <Container maxWidth="xxl">
+                <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography

@@ -12,7 +12,6 @@ export default function AdsenseBox() {
                     width: '100%',
                     height: 60,
                 },
-                justifyContent: 'center',
             }}
         >
             <Paper variant="outlined"

@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 
 import LitaHeader from '../../Components/LitaHeader';
 import LitaSearch from '../../Components/LitaSearch';
@@ -8,10 +9,10 @@ import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
 import ErrorSearchedPrices from '../../Components/LitaSearchedPrices/ErrorSearchedPrices'
 import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
-import AdsenseBox from '../../Components/AdsenseBox';
 
 // Lógica
 import useLitaStates from '../../App/useLitaStates';
+import { Stack } from '@mui/material';
 
 export default function Body() {
 
@@ -24,7 +25,7 @@ export default function Body() {
     } = useLitaStates();
 
     return (
-        <React.Fragment>
+        <Stack spacing={2}>
 
             <LitaHeader value={value} />
 
@@ -53,8 +54,7 @@ export default function Body() {
 
             </LitaSearchedContainer>
 
-            <AdsenseBox />
 
-        </React.Fragment>
+        </Stack>
     )
 }

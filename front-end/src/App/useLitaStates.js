@@ -69,7 +69,7 @@ export default function useLitaStates() {
 
       await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
       try {
-        const pricesProd = await fetch(API_LITA_BASE + '/fdsa')
+        const pricesProd = await fetch(API_LITA_BASE)
           .then(response => response.json())
           .then(data => data.results)
 

@@ -1,18 +1,22 @@
-import React, { useContext, useState } from "react";
-import Box from "@mui/material/Box";
+// IMPORTS REACT
+import React, { useContext } from 'react';
+
+// IMPORTS MUI
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Divider from "@mui/material/Divider";
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Stack from "@mui/material/Stack";
-import Skeleton from "@mui/material/Skeleton";
+import Stack from '@mui/material/Stack';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 
-import { LitaContext } from "../LitaContext";
+// IMPORTS CONTEXT
+import { LitaContext } from '../LitaContext';
 import './winnercard.css';
 
 // const pricesOfSearchedProduct = [
@@ -41,50 +45,31 @@ import './winnercard.css';
 export default function LitaSearchedProd() {
 
     const { value, pricesOptions, loadingPricesOptions } = useContext(LitaContext);
-    // const [loading, setLoading] = useState(true);
-    // setTimeout(() => {
-    //     setLoading(false)
-    // }, 1000)
+
     return (
         <React.Fragment>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2}>
 
                     <Grid item xs={12} sm={12} lg={8}>
-                        <Box
-                            padding={2}
-                            sx={{
-                                background: 'rgba(93, 16, 181, 0.75)',
-                                border: '4px solid #000000',
-                                borderRadius: '20px',
-                                boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-                                height: '100%'
-                            }}
-                        >
-                            <Stack
-                                direction="column"
-                                justifyContent="space-around"
-                                height="100%"
-                                spacing={2}
-                            >
-                                <Stack
-                                    direction={{ xs: 'column', sm: 'row' }}
-                                    justifyContent="space-around"
-                                    alignItems="center"
-                                >
-                                    <Typography variant="h5" color="text.secondary">{value.name}</Typography>
+                        <Paper variant="borderBlackElevatedPaper" sx={{ height: '100%', padding: '30px' }}>
+                            <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
+                                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width="100%" justifyContent="space-around" alignItems="center">
 
+                                    <Typography variant="h5">{value.name}</Typography>
+
+                                    <Paper variant='imgListPaper' sx={{ height: '100%' }}>
                                         <img
                                             loading='lazy'
                                             src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
+                                            style={{ 'height': '100%' }}
                                             alt=""
-                                            width='300px'
-                                            style={{ 'maxWidth': '100%'}}
                                         />
+                                    </Paper>
                                 </Stack>
-                                <Divider variant="litaDivider" />
+                                <Divider sx={{ width: '80%' }} />
                             </Stack>
-                        </Box>
+                        </Paper>
                     </Grid>
 
                     <Grid item xs={12} sm={12} lg={4}>
@@ -104,7 +89,7 @@ export default function LitaSearchedProd() {
                                                 <CardMedia
                                                     component="img"
                                                     height='100%'
-                                                    src={`https://rickandmortyapi.com/api/character/avatar/${value.id+index}.jpeg`}//logo de super
+                                                    src={`https://rickandmortyapi.com/api/character/avatar/${value.id + index}.jpeg`}//logo de super
                                                     alt="logo super"
                                                 />
                                                 :
@@ -122,9 +107,9 @@ export default function LitaSearchedProd() {
                                                 }
 
                                             </CardContent>
-                                            {/* <CardActions>
-                                                <Button size="small">Learn More</Button>
-                                            </CardActions> */}
+                                            <CardActions>
+                                                <Button size="small" sx={{ color: 'white' }}>Ir a producto</Button>
+                                            </CardActions>
 
                                         </Card>
                                     </Box>

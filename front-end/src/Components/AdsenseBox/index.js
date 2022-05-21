@@ -12,13 +12,11 @@ export default function AdsenseBox() {
                     width: '100%',
                     height: 60,
                 },
-                justifyContent: 'center',
             }}
         >
             <Paper variant="outlined"
                 sx={{
                     textAlign: 'center',
-                    padding: 'auto',
                     backgroundColor: '#28BDD4',
                     height: 60,
                     lineHeight: '60px',

@@ -45,7 +45,7 @@ export default function ThemePaletteComponentsToggle(props) {
                                 main: '#000'
                             },
                             error: {
-                                main: '#d32f2f',
+                                main: '#ff7878',
                                 light: '#ef5350',
                                 dark: '#c62828',
                                 contrastText: '#fff',
@@ -252,14 +252,26 @@ export default function ThemePaletteComponentsToggle(props) {
                                 },
                                 '& > img': { flexShrink: 0 },
                             }
+                        },
+                        {
+                            props: { variant: 'listItemError' },
+                            style: {
+                                color: litaThemePalette.palette.error.contrastText,
+                                background: litaThemePalette.palette.error.main,
+                            }
                         }
                     ]
                 },
                 MuiOutlinedInput: {
                     styleOverrides: {
+                        root: {
+                            '.MuiOutlinedInput-input::placeholder': {
+                                opacity: 1
+                            }
+                        },
                         notchedOutline: {
                             border: 'none'
-                        }
+                        },
                     }
                 },
                 MuiAutocomplete: {
@@ -272,6 +284,7 @@ export default function ThemePaletteComponentsToggle(props) {
                         listbox: {
                             background: litaThemePalette.palette.secondary.main,
                         },
+
                     },
                 },
             }

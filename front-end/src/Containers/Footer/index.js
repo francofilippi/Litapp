@@ -1,7 +1,8 @@
 import React from "react"
+import Typography from "@mui/material/Typography"
 
 export default function Footer() {
     return (
-        <div>Footer</div>
+        <Typography>by LS TECHNOLOGIES</Typography>
     );
 }

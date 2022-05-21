@@ -1,17 +1,15 @@
 .main-container {
     background:
-        url('../assets/imgs/Lita.webp') no-repeat bottom right,
-        url('../assets/imgs/background-comic-effect.svg') no-repeat center;
-    background-size: contain, cover;
-    background-attachment: fixed, fixed;
+        url('../assets/imgs/Lita.webp') bottom right / contain no-repeat fixed,
+        url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
     display: flex;
     min-height: 100vh;
 }
 
 .main-container-dark {
     background:
-        url('../assets/imgs/Lita.webp') no-repeat bottom right,
-        url('../assets/imgs/background-comic-effect.svg') no-repeat center;
+        url('../assets/imgs/Lita.webp') bottom right / contain no-repeat fixed,
+        url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
     background-blend-mode: none darken;
     background-size: contain, cover;
     background-attachment: fixed, fixed;

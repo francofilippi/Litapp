@@ -1,6 +1,11 @@
 import React from "react";
 
 const API_LITA_BASE = 'https://rickandmortyapi.com/api/character/'
+// https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData
+
+// Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+// Access-Control-Allow-Methods: 'GET'
+// Access-Control-Allow-Origin: '*'
 
 export default function useLitaStates() {
 
@@ -19,7 +24,8 @@ export default function useLitaStates() {
 
     // API -> productos/imagenes para search Autocomplete
     (async () => {
-      if (active) {        //await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (active) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         try {
           const firstProds = await fetch(API_LITA_BASE)
             .then(response => response.json())
@@ -35,9 +41,6 @@ export default function useLitaStates() {
       }
     })();
 
-    // Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
-    // Access-Control-Allow-Methods: 'GET'
-    // Access-Control-Allow-Origin: '*'
     return () => {
       active = false;
     };
@@ -67,7 +70,7 @@ export default function useLitaStates() {
       setLoadingPricesOptions(true)
       setErrorPricesOptions(false)
 
-      await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // delay prueba para que se vea el skeleton
       try {
         const pricesProd = await fetch(API_LITA_BASE)
           .then(response => response.json())

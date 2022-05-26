@@ -9,12 +9,13 @@ import Menu from '@mui/material/Menu';
 // import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
@@ -26,16 +27,20 @@ import { ColorModeContext } from '../../App/litaTheme.js';
 // const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function Navbar() {
+export default function Navbar({ setChanguito }) {
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
-    // const [anchorElNav, setAnchorElNav] = React.useState(null);
+    // const [anchorElNav, setAnchorElNav] = React.useState(null); 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
     // const handleOpenNavMenu = (event) => {
     //     setAnchorElNav(event.currentTarget);
     // };
+
+    const toggleChanguito = () => {
+        setChanguito(prevState => !prevState)
+        console.log('modo changuito activado')
+    }
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -49,14 +54,14 @@ export default function Navbar() {
         setAnchorElUser(null);
     };
 
-
     const trigger = useScrollTrigger();
-    return (
 
+    return (
         <Slide appear={false} direction="down" in={!trigger}>
             <AppBar>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
+
                         {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
@@ -142,46 +147,53 @@ export default function Navbar() {
                             </Button>
                         ))}
                     </Box> */}
-
                         <Stack
                             direction="row"
-                            justifyContent="flex-end"
+                            justifyContent="space-around"
                             alignItems="center"
                             width={'100%'}
-                            spacing={2}
                         >
-                            <Box sx={{ color: 'text.primary', }}>
-                                <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-                                    {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                                </IconButton>
-                                <Tooltip title="Open settings">
-                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                                    </IconButton>
-                                </Tooltip>
-                            </Box>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
+                            <Button variant='ChanguitoButton' onClick={toggleChanguito}><ShoppingCartIcon />Changuito</Button>
+                            <Stack
+                                direction="row"
+                                justifyContent="flex-end"
+                                alignItems="center"
+                                width={'100%'}
+                                spacing={2}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
+                                <Box sx={{ color: 'text.primary', }}>
+                                    <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+                                    </IconButton>
+                                    <Tooltip title="Open settings">
+                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Box>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    {settings.map((setting) => (
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Stack>
                         </Stack>
                     </Toolbar>
                 </Container>

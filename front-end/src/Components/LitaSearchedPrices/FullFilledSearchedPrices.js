@@ -16,36 +16,32 @@ import './winnercard.css';
 export default function FullFilledSearchedPrices({ item, index }) {
 
     return (
-        <React.Fragment>
+        <Grid item xs={12} sm={6}>
+            <Box className={index === 0 && "winnercard"}>
 
-            <Grid item xs={12} sm={6}>
-                <Box className={index === 0 && 'winnercard'}>
+                {index === 0 && (
+                    <Typography variant="h4" className="winnerstar">⭐</Typography>
+                )}
 
-                    {index === 0 && (
-                        <Typography variant="h4" className="winnerstar">⭐</Typography>
-                    )}
+                <Card variant="outlined">
+                    <CardMedia
+                        component="img"
+                        style={{ 'height': 'auto', 'maxWidth': '100%', 'maxHeight': '150px', 'borderRadius': 'inherit' }}
+                        src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
+                        alt="logo super"
+                    />
 
-                    <Card variant='outlined'>
-                        <CardMedia
-                            component="img"
-                            height='100%'
-                            src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
-                            alt="logo super"
-                        />
+                    <CardContent>
+                        <Typography variant="h5">
+                            $ {item}
+                        </Typography>
+                    </CardContent>
 
-                        <CardContent>
-                            <Typography variant="h4">
-                                $ {item}
-                            </Typography>
-                        </CardContent>
-
-                        <CardActions sx={{ justifyContent: "center" }}>
-                            <Button size="small" sx={{ color: 'white' }}>Ir a producto</Button>
-                        </CardActions>
-                    </Card>
-                </Box>
-            </Grid>
-
-        </React.Fragment >
+                    <CardActions sx={{ justifyContent: "center" }}>
+                        <Button size="small" sx={{ backgroundColor: "button.main", color: "button.contrastText" }}>Ir a producto</Button>
+                    </CardActions>
+                </Card>
+            </Box>
+        </Grid>
     );
 }

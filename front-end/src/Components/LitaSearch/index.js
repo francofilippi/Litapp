@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import LitaError from '../LitaError';
 import useLitaStates from '../../App/useLitaStates';
 
-export default function LitaSearch({ value, setValue }) {
+export default function LitaSearch({ setValue }) {
 
   const {
     open,
@@ -25,7 +25,7 @@ export default function LitaSearch({ value, setValue }) {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <React.Fragment>
+    <>
 
       <Paper variant='borderBlackElevatedPaper' sx={{ width: '100%', maxWidth: '650px' }}>
         {/* <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
@@ -53,13 +53,13 @@ export default function LitaSearch({ value, setValue }) {
           loadingText='Cargando..'
           renderOption={
             errorSearchOptions ?
-              (index) => (<ListItem key={index} variant='listItemError'><LitaError /></ListItem>)
+              (option) => (<ListItem key={option.id} variant='listItemError'><LitaError /></ListItem>)
               :
               (props, option) => (
                 <ListItem
                   variant='listItemLitaSearch'
                   {...props}>
-                  <Box sx={{ width: '100%' }}>
+                  <Box maxHeight='150px' width='100%'>
                     <Stack
                       direction="row"
                       justifyContent="space-between"
@@ -67,11 +67,11 @@ export default function LitaSearch({ value, setValue }) {
                       alignItems="center"
                     >
                       <Typography variant='body1'>{option.name}</Typography>
-                      <Paper variant='imgListPaper' sx={{ height: '9rem' }}>
+                      <Paper variant='imgListPaper' sx={{ display: 'flex', width: '8rem' }}>
                         <img
                           loading='lazy'
                           src={`https://rickandmortyapi.com/api/character/avatar/${option.id}.jpeg`}
-                          style={{ 'height': '100%' }}
+                          style={{ 'height': 'auto', 'maxWidth': '100%', 'borderRadius': 'inherit' }}
                           alt=""
                         />
                       </Paper>
@@ -88,16 +88,16 @@ export default function LitaSearch({ value, setValue }) {
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
-                  <React.Fragment>
+                  <>
                     {loadingSearchOptions ? <CircularProgress color="inherit" size={20} /> : null}
                     {params.InputProps.endAdornment}
-                  </React.Fragment>
+                  </>
                 ),
               }}
             />
           )}
         />
       </Paper>
-    </React.Fragment >
+    </ >
   );
 }

@@ -11,11 +11,10 @@ import Skeleton from '@mui/material/Skeleton';
 import './winnercard.css';
 
 export default function LoadingSearchedPrices() {
-
+    const fourLoadingBoxes = ['1', '2', '3', '4']
     return (
-        <React.Fragment>
-
-            <Grid item xs={12} sm={6}>
+        fourLoadingBoxes.map((item) => (
+            <Grid key={item} item xs={12} sm={6}>
 
                 <Card variant='outlined'>
                     <Skeleton variant="rectangular" height='180px' />
@@ -30,7 +29,7 @@ export default function LoadingSearchedPrices() {
 
                 </Card>
             </Grid>
-
-        </React.Fragment >
+        )
+        )
     );
 }

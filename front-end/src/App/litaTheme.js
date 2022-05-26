@@ -90,6 +90,11 @@ export default function ThemePaletteComponentsToggle(props) {
                                 disabled: 'rgba(255, 255, 255, 0.5)',
                                 icon: 'rgba(255, 255, 255, 0.5)',
                             },
+                            button: {
+                                main: '#f3e5f5',
+                                hover: '#28BDD4',
+                                contrastText: '#000'
+                            },
                             divider: '#BDA33E',
                             background: {
                                 paper: '#5D10B5', // violeta Lita
@@ -176,6 +181,11 @@ export default function ThemePaletteComponentsToggle(props) {
                                 disabled: 'rgba(255, 255, 255, 0.5)',
                                 icon: 'rgba(255, 255, 255, 0.5)',
                             },
+                            button: {
+                                main: '#424242',
+                                hover: '#757575',
+                                contrastText: '#ffe687'
+                            },
                             divider: '#ffe687',
                             background: {
                                 paper: '#282828',
@@ -234,8 +244,8 @@ export default function ThemePaletteComponentsToggle(props) {
                             style: {
                                 padding: '.4rem',
                                 background: 'white',
-                                borderRadius: '10px',
-                                filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
+                                borderRadius: '20%',
+                                filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
                             },
                         },
                     ]
@@ -250,7 +260,6 @@ export default function ThemePaletteComponentsToggle(props) {
                                 '&:hover': {
                                     color: litaThemePalette.palette.secondary.contrastText,
                                 },
-                                '& > img': { flexShrink: 0 },
                             }
                         },
                         {
@@ -287,6 +296,39 @@ export default function ThemePaletteComponentsToggle(props) {
 
                     },
                 },
+                MuiButton: {
+                    variants: [
+                        {
+                            props: { variant: 'ChanguitoButton' },
+                            style: {
+                                borderRadius: '5%',
+                                color: litaThemePalette.palette.primary.contrastText,
+                                boxShadow: `inset 0 0 50px ${litaThemePalette.palette.primary.light}, 
+                                            inset 20px 0 80px ${litaThemePalette.palette.secondary.main}, 
+                                            inset -20px 0 80px ${litaThemePalette.palette.primary.light}, 
+                                            inset 20px 0 300px ${litaThemePalette.palette.secondary.main},
+                                            inset -20px 0 300px ${litaThemePalette.palette.primary.light},
+                                            0 0 20px ${litaThemePalette.palette.primary.light}`,
+                                '&:hover': {
+                                    boxShadow: `inset 0 0 50px ${litaThemePalette.palette.secondary.dark}, 
+                                            inset 20px 0 80px ${litaThemePalette.palette.secondary.light}, 
+                                            inset -20px 0 80px ${litaThemePalette.palette.secondary.main}, 
+                                            inset 20px 0 300px ${litaThemePalette.palette.secondary.light},
+                                            inset -20px 0 300px ${litaThemePalette.palette.secondary.main},
+                                            0 0 20px ${litaThemePalette.palette.primary.light}`,
+                                    color: litaThemePalette.palette.secondary.contrastText,
+                                },
+                            }
+                        },
+                    ],
+                    styleOverrides: {
+                        root: {
+                            '&:hover': {
+                                backgroundColor: litaThemePalette.palette.button.hover,
+                            }
+                        }
+                    },
+                }
             }
         }
     )

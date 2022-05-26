@@ -1,27 +1,18 @@
 import React from "react"
-import { Box, Paper } from "@mui/material"
+import Paper from "@mui/material/Paper"
 
 export default function AdsenseBox() {
 
     return (
-        <Box
+        <Paper variant="outlined"
             sx={{
-                display: 'flex',
-                '& > :not(style)': {
-                    m: 1,
-                    width: '100%',
-                    height: 60,
-                },
+                textAlign: 'center',
+                backgroundColor: '#28BDD4',
+                lineHeight: '60px',
+                maxWidth: 800
             }}
         >
-            <Paper variant="outlined"
-                sx={{
-                    textAlign: 'center',
-                    backgroundColor: '#28BDD4',
-                    height: 60,
-                    lineHeight: '60px',
-                    maxWidth: 800
-                }} >ESPACIO PARA ANUNCIO GOOGLE ADSENSE</Paper>
-        </Box>
+            ESPACIO PARA ANUNCIO GOOGLE ADSENSE
+        </Paper>
     )
 }

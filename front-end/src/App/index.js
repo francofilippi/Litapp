@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 // Provider para theme
 import ThemePaletteComponentsToggle from './litaTheme';
@@ -17,10 +18,13 @@ import './App.css';
 
 function App() {
 
+  // Estado de MODO CHANGUITO
+  const [changuito, setChanguito] = React.useState(false);
+
   return (
     <ThemePaletteComponentsToggle>
 
-      <Navbar />
+      <Navbar setChanguito={setChanguito} />
 
       <Box className='main-container' sx={{ backgroundColor: 'background.default' }}>
 
@@ -31,10 +35,13 @@ function App() {
           justifyContent='center'
           alignItems="center"
           minHeight='100vh'
+          spacing={5}
         >
           <Grid item xs={10}>
-            <Container maxWidth="xl" sx={{ paddingTop: '80px' }}>
-              <Body />
+            <Container maxWidth="xl" sx={{ paddingTop: '80px' }} >
+              <Stack spacing={4}>
+                <Body changuito={changuito} />
+              </Stack>
             </Container>
           </Grid>
 

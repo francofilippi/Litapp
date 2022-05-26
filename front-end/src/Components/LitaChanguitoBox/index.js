@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-export default function LitaSearchedInfo({ value }) {
+export default function LitaChanguitoBox() {
 
     return (
         <>
@@ -17,12 +17,12 @@ export default function LitaSearchedInfo({ value }) {
                     <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
                         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width="100%" justifyContent="space-around" alignItems="center">
 
-                            <Typography variant="h5">{value.name}</Typography>
+                            <Typography variant="h5">Changuito</Typography>
 
                             <Paper variant='imgListPaper' sx={{ display: 'flex' }}>
                                 <img
                                     loading='lazy'
-                                    src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
+                                    src={`https://rickandmortyapi.com/api/character/avatar/3.jpeg`}
                                     style={{ 'height': 'auto', 'maxWidth': '100%', 'borderRadius': 'inherit' }}
                                     alt=""
                                 />

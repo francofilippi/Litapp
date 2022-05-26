@@ -12,11 +12,10 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import './winnercard.css';
 
 export default function ErrorSearchedPrices() {
-
+    const fourErrorBoxes = ['1', '2', '3', '4']
     return (
-        <React.Fragment>
-
-            <Grid item xs={12} sm={6}>
+        fourErrorBoxes.map((item) => (
+            <Grid key={item} item xs={12} sm={6}>
 
                 <Card variant='outlined' sx={{ minHeight: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
                     <ErrorOutlineOutlinedIcon fontSize="large" />
@@ -27,7 +26,7 @@ export default function ErrorSearchedPrices() {
 
                 </Card>
             </Grid>
-
-        </React.Fragment >
+        )
+        )
     );
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 
 import LitaHeader from '../../Components/LitaHeader';
 import LitaSearch from '../../Components/LitaSearch';
@@ -9,12 +8,12 @@ import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
 import ErrorSearchedPrices from '../../Components/LitaSearchedPrices/ErrorSearchedPrices'
 import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
+import LitaChanguitoBox from '../../Components/LitaChanguitoBox';
 
 // Lógica
 import useLitaStates from '../../App/useLitaStates';
-import { Stack } from '@mui/material';
 
-export default function Body() {
+export default function Body({ changuito }) {
 
     const {
         value,
@@ -25,36 +24,65 @@ export default function Body() {
     } = useLitaStates();
 
     return (
-        <Stack spacing={2}>
-
+        <>
             <LitaHeader value={value} />
 
-            <LitaSearch value={value} setValue={setValue} />
+            {!changuito ? (
+                <>
+                    <LitaSearch value={value} setValue={setValue} />
+                    {!!value &&
+                        <LitaSearchedContainer                    >
 
-            <LitaSearchedContainer
-                value={value}
-            >
-                <LitaSearchedInfo
-                    value={value} />
+                            <LitaSearchedInfo
+                                value={value} />
 
-                <LitaSearchedPrices
-                    errorPricesOptions={errorPricesOptions}
-                    loadingPricesOptions={loadingPricesOptions}
-                    pricesOptions={pricesOptions}
-                    onLoading={() => <LoadingSearchedPrices />}
-                    onError={() => <ErrorSearchedPrices />}
-                >
-                    {(item, index) => (
-                        <FullFilledSearchedPrices
-                            index={index}
-                            item={item.name}
-                        />
-                    )}
-                </LitaSearchedPrices>
+                            <LitaSearchedPrices
+                                errorPricesOptions={errorPricesOptions}
+                                loadingPricesOptions={loadingPricesOptions}
+                                pricesOptions={pricesOptions}
+                                onLoading={() => (<LoadingSearchedPrices />)}
+                                onError={() => (<ErrorSearchedPrices />)}
+                            >
+                                {(item, index) => (
+                                    <FullFilledSearchedPrices
+                                        key={index}
+                                        index={index}
+                                        item={item.name}
+                                    />
+                                )}
+                            </LitaSearchedPrices>
 
-            </LitaSearchedContainer>
+                        </LitaSearchedContainer>
+                    }
+                </>
+            ) : (
+                <>
+                    <LitaSearchedContainer
+                        changuito={changuito}
+                    >
 
+                        <LitaChanguitoBox
+                            changuito={changuito} />
 
-        </Stack>
+                        <LitaSearchedPrices
+                            errorPricesOptions={errorPricesOptions}
+                            loadingPricesOptions={loadingPricesOptions}
+                            pricesOptions={pricesOptions}
+                            onLoading={() => (<LoadingSearchedPrices />)}
+                            onError={() => (<ErrorSearchedPrices />)}
+                        >
+                            {(item, index) => (
+                                <FullFilledSearchedPrices
+                                    key={index}
+                                    index={index}
+                                    item={item.name}
+                                />
+                            )}
+                        </LitaSearchedPrices>
+
+                    </LitaSearchedContainer>
+                </>
+            )}
+        </>
     )
 }

@@ -10,19 +10,19 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import LitaError from '../LitaError';
-import useLitaStates from '../../App/useLitaStates';
 
-export default function LitaSearch({ setValue }) {
-
-  const {
+export default function LitaSearch(
+  {
+    searchOptions,
+    setValue,
     open,
     setOpen,
     loadingSearchOptions,
     errorSearchOptions,
-    searchOptions,
-  } = useLitaStates();
+  }
+) {
 
-  const [inputValue, setInputValue] = React.useState('');
+  //const [inputValue, setInputValue] = React.useState('');
 
   return (
     <>
@@ -34,10 +34,10 @@ export default function LitaSearch({ setValue }) {
           onChange={(event, newValue) => {
             setValue(newValue)
           }}
-          inputValue={inputValue}
-          onInputChange={(event, newInputValue) => {
-            setInputValue(newInputValue);
-          }}
+          // inputValue={inputValue}
+          // onInputChange={(event, newInputValue) => {
+          //   setInputValue(newInputValue);
+          // }}
           id="asynchronous-demo"
           open={open}
           onOpen={() => {
@@ -67,7 +67,7 @@ export default function LitaSearch({ setValue }) {
                       alignItems="center"
                     >
                       <Typography variant='body1'>{option.name}</Typography>
-                      <Paper variant='imgListPaper' sx={{ display: 'flex', width: '8rem' }}>
+                      <Paper variant='imgListPaper' sx={{ display: 'flex', width: '7rem' }}>
                         <img
                           loading='lazy'
                           src={`https://rickandmortyapi.com/api/character/avatar/${option.id}.jpeg`}

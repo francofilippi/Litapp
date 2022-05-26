@@ -12,6 +12,8 @@ import Navbar from '../Containers/Navbar';
 import Body from '../Containers/Body';
 import Footer from '../Containers/Footer';
 import AdsenseBox from '../Components/AdsenseBox';
+import ChanguitoMode from '../Containers/Body/ChanguitoMode';
+import OneProductMode from '../Containers/Body/OneProductMode';
 
 // CSS
 import './App.css';
@@ -40,7 +42,12 @@ function App() {
           <Grid item xs={10}>
             <Container maxWidth="xl" sx={{ paddingTop: '80px' }} >
               <Stack spacing={4}>
-                <Body changuito={changuito} />
+                <Body
+                  changuito={changuito}
+                  changuitoMode={() => <ChanguitoMode />}
+                >
+                  <OneProductMode />
+                </Body>
               </Stack>
             </Container>
           </Grid>

@@ -38,7 +38,7 @@ export default function FullFilledSearchedPrices({ item, index }) {
                     </CardContent>
 
                     <CardActions sx={{ justifyContent: "center" }}>
-                        <Button size="small" sx={{ backgroundColor: "button.main", color: "button.contrastText" }}>Ir a producto</Button>
+                        <Button size="small">Ir a producto</Button>
                     </CardActions>
                 </Card>
             </Box>

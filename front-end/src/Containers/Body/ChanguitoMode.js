@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
+import LitaSearchChanguito from '../../Components/LitaSearch';
 import LitaChanguitoInfo from '../../Components/LitaChanguitoInfo';
 import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
@@ -13,6 +14,13 @@ import useLitaStates from './useLitaStates';
 export default function ChanguitoMode() {
 
     const {
+        value,
+        setValue,
+        open,
+        setOpen,
+        searchOptions,
+        loadingSearchOptions,
+        errorSearchOptions,
         errorPricesOptions,
         loadingPricesOptions,
         pricesOptions,
@@ -21,8 +29,17 @@ export default function ChanguitoMode() {
     return (
         <>
             <LitaSearchedContainer>
-
-                <LitaChanguitoInfo />
+                <LitaSearchChanguito
+                    searchOptions={searchOptions}
+                    value={value}
+                    setValue={setValue}
+                    open={open}
+                    setOpen={setOpen}
+                    loadingSearchOptions={loadingSearchOptions}
+                    errorSearchOptions={errorSearchOptions}
+                />
+                <LitaChanguitoInfo
+                />
                 {/* <LitaSearchedPrices
                     errorPricesOptions={errorPricesOptions}
                     loadingPricesOptions={loadingPricesOptions}

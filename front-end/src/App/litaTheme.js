@@ -322,6 +322,9 @@ export default function ThemePaletteComponentsToggle(props) {
                     ],
                     styleOverrides: {
                         root: {
+                            backgroundColor: litaThemePalette.palette.button.main,
+                            color: litaThemePalette.palette.button.contrastText,
+
                             '&:hover': {
                                 backgroundColor: litaThemePalette.palette.button.hover,
                             }

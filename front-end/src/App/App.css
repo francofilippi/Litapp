@@ -1,6 +1,10 @@
 .main-container {
     background:
+<<<<<<< HEAD
         url('../assets/imgs/lita-comic-2.png') bottom right / contain no-repeat fixed,
+=======
+        url('../assets/imgs/Lita.webp') bottom right / contain no-repeat fixed,
+>>>>>>> 51fa28d2a444a45d95f41d41edb60b26809a5c56
         url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
     display: flex;
     min-height: 100vh;
@@ -8,7 +12,11 @@
 
 .main-container-dark {
     background:
+<<<<<<< HEAD
         url('../assets/imgs/lita-comic-2.png') bottom right / contain no-repeat fixed,
+=======
+        url('../assets/imgs/Lita.webp') bottom right / contain no-repeat fixed,
+>>>>>>> 51fa28d2a444a45d95f41d41edb60b26809a5c56
         url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
     background-blend-mode: none darken;
     display: flex;

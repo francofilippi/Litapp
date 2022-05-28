@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
-import LitaSearchChanguito from '../../Components/LitaSearch';
+import LitaSearchChanguito from '../../Components/LitaSearch/LitaSearchChanguito';
 import LitaChanguitoInfo from '../../Components/LitaChanguitoInfo';
 import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
 import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
@@ -10,6 +10,9 @@ import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFi
 
 // Lógica
 import useLitaStates from './useLitaStates';
+
+import FullFillChanguito from '../../Components/LitaChanguitoInfo/FullFillChanguito';
+import EmptyChanguito from '../../Components/LitaChanguitoInfo/EmptyChanguito';
 
 export default function ChanguitoMode() {
 
@@ -26,20 +29,32 @@ export default function ChanguitoMode() {
         pricesOptions,
     } = useLitaStates();
 
+
+    const [chango, setChango] = React.useState([])
+
     return (
         <>
             <LitaSearchedContainer>
                 <LitaSearchChanguito
                     searchOptions={searchOptions}
-                    value={value}
-                    setValue={setValue}
+                    chango={chango}
+                    setChango={setChango}
                     open={open}
                     setOpen={setOpen}
                     loadingSearchOptions={loadingSearchOptions}
                     errorSearchOptions={errorSearchOptions}
                 />
                 <LitaChanguitoInfo
-                />
+                    chango={chango}
+                    emptyChango={() => <EmptyChanguito />}
+                    fullFilledChango={chango.map((item) => (
+                        <FullFillChanguito
+                            key={item.name}
+                            item={item}
+                        />
+                    ))}
+                >
+                </LitaChanguitoInfo>
                 {/* <LitaSearchedPrices
                     errorPricesOptions={errorPricesOptions}
                     loadingPricesOptions={loadingPricesOptions}

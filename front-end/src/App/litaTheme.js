@@ -97,8 +97,9 @@ export default function ThemePaletteComponentsToggle(props) {
                             },
                             divider: '#BDA33E',
                             background: {
-                                paper: '#5D10B5', // violeta Lita
-                                default: '#ffeda1',
+                                paper: '#5D10B5', // violeta Lita                                
+                                secondaryPaper: '#9050D9',
+                                default: '#f5ecc6',
                             },
                             action: {
                                 active: 'rgba(0, 0, 0, 0.54)',
@@ -189,6 +190,7 @@ export default function ThemePaletteComponentsToggle(props) {
                             divider: '#ffe687',
                             background: {
                                 paper: '#282828',
+                                secondaryPaper: '#282828',
                                 default: '#121212',
                             },
                             action: {
@@ -256,6 +258,8 @@ export default function ThemePaletteComponentsToggle(props) {
                             style: {
                                 color: litaThemePalette.palette.primary.contrastText,
                                 background: litaThemePalette.palette.primary.light,
+                                borderBottom: '1px solid',
+                                borderColor: litaThemePalette.palette.divider,
                                 '&:hover': {
                                     color: litaThemePalette.palette.secondary.contrastText,
                                 },
@@ -285,12 +289,18 @@ export default function ThemePaletteComponentsToggle(props) {
                 MuiAutocomplete: {
                     styleOverrides: {
                         root: {
+                            backgroundColor: litaThemePalette.palette.background.paper,
+                            border: '4px solid',
+                            borderColor: litaThemePalette.palette.border.main,
+                            boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+                            borderRadius: '20px',
                             '.MuiAutocomplete-clearIndicator, .MuiAutocomplete-popupIndicator': {
                                 color: 'white'
                             },
                         },
                         listbox: {
                             background: litaThemePalette.palette.secondary.main,
+                            padding: 0,
                         },
 
                     },
@@ -414,7 +424,7 @@ export { ColorModeContext };
 // divider: 'rgba(0, 0, 0, 0.12)',
 // background: {
 //     paper: '#5D10B5',
-//     default: '#ffeda1',
+//     default: '#f5ecc6',
 // },
 // action: {
 //     active: 'rgba(0, 0, 0, 0.54)',

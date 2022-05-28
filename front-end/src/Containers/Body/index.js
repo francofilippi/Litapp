@@ -7,7 +7,7 @@ export default function Body(props) {
     return (
         <>
             <LitaHeader />
-            {!!props.changuito ? props.changuitoMode() : props.children}
+            {props.productMode === 'OneProduct' ? props.oneProductMode() : props.changuitoMode()}
         </>
     )
 }

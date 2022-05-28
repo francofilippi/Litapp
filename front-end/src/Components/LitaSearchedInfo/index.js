@@ -15,7 +15,7 @@ export default function LitaSearchedInfo({ value }) {
             <Grid item xs={12} sm={12} lg={8}>
                 <Paper variant="borderBlackElevatedPaper" sx={{ height: '100%', padding: '30px' }}>
                     <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
-                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} width="100%" justifyContent="space-around" alignItems="center">
+                        <Stack spacing={2} width="100%" justifyContent="space-around" alignItems="center">
 
                             <Typography variant="h5">{value.name}</Typography>
 

@@ -15,61 +15,41 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-export default function LitaChanguitoInfo() {
+export default function LitaChanguitoInfo(props) {
 
-    function createData(name, calories, fat) {
-        return { name, calories, fat };
+    function createData(name, price) {
+        return { name, price };
     }
 
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0),
-        createData('Ice cream sandwich', 237, 9.0),
-        createData('Eclair', 262, 16.0),
-        createData('Cupcake', 305, 3.7),
-        createData('Gingerbread', 356, 16.0),
+    const tresProductosTontos = [
+        createData('Yerba Común Mañanita 1kg', 359),
+        createData('Chocolate Block Cofler 500mg', 250),
+        createData('Jugo de Mazana Baggio 1 lt', 120),
     ];
 
     return (
         <>
-            <Grid item xs={12} sm={12} lg={12}>
-                <Paper variant="borderBlackElevatedPaper" sx={{ height: '600px', padding: '10px' }}>
-                    <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
-                        <Stack spacing={6} width="100%" justifyContent="space-around" alignItems="center">
+            <Grid item xs={12} sm={12} lg={12} sx={{ justifyContent: 'center' }}>
+                <Paper variant="borderBlackElevatedPaper" sx={{ width: '500px', height: '500px', maxHeight: '500px', padding: '30px', justifyContent: 'center' }}>
+                    <Stack direction="column" justifyContent="space-between" alignItems="space-around" height='100%' >
 
-                            <div style={{ display: 'flex', width: "100%" }}>
-                                <div style={{ flexGrow: 1 }}>
-                                    <TableContainer component={Paper}>
-                                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell>Productos</TableCell>
-                                                    <TableCell align="right">Precio</TableCell>
-                                                    <TableCell align="right">Eliminar</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {rows.map((row) => (
-                                                    <TableRow
-                                                        key={row.name}
-                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                    >
-                                                        <TableCell component="th" scope="row">
-                                                            LALALALA
-                                                        </TableCell>
-                                                        <TableCell align="right">{row.calories}</TableCell>
-                                                        <TableCell align="right">{row.fat}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </div>
-                            </div>
+                        <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: '80%' }}>
+                            <Table aria-label="a dense table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Productos</TableCell>
+                                        <TableCell align="center">Precio</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {!props.chango.length ? props.emptyChango() : props.fullFilledChango}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
 
-                            <Button >Buscar Precios</Button>
-                            <Divider sx={{ width: '80%' }} />
+                        <Button >Buscar Precios</Button>
+                        <Divider />
 
-                        </Stack>
                     </Stack>
                 </Paper>
             </Grid>

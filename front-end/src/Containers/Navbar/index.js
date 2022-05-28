@@ -27,7 +27,7 @@ import { ColorModeContext } from '../../App/litaTheme.js';
 // const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export default function Navbar({ setChanguito }) {
+export default function Navbar({ setProductMode }) {
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
@@ -38,8 +38,8 @@ export default function Navbar({ setChanguito }) {
     // };
 
     const toggleChanguito = () => {
-        setChanguito(prevState => !prevState)
-        console.log('modo changuito activado')
+        setProductMode((prevMode) => (prevMode === 'OneProduct' ? 'Changuito' : 'OneProduct'))
+        console.log('Modo Changuito Activado')
     }
 
     const handleOpenUserMenu = (event) => {

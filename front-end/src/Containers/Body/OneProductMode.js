@@ -52,7 +52,7 @@ export default function OneProductMode() {
                     >
                         {(item, index) => (
                             <FullFilledSearchedPrices
-                                key={index}
+                                key={item.name}
                                 index={index}
                                 item={item.name}
                             />

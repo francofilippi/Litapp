@@ -8,7 +8,7 @@ export default function LitaSearchedContainer(props) {
 
     return (
         < Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} justifyContent="center">
                 {props.children}
             </Grid>
         </Box >

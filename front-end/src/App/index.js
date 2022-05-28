@@ -20,13 +20,13 @@ import './App.css';
 
 function App() {
 
-  // Estado de MODO CHANGUITO
-  const [changuito, setChanguito] = React.useState(false);
+  // Estado de MODO DE PRODUCTO
+  const [productMode, setProductMode] = React.useState('OneProduct');
 
   return (
     <ThemePaletteComponentsToggle>
 
-      <Navbar setChanguito={setChanguito} />
+      <Navbar setProductMode={setProductMode} />
 
       <Box className='main-container' sx={{ backgroundColor: 'background.default' }}>
 
@@ -43,11 +43,10 @@ function App() {
             <Container maxWidth="xl" sx={{ paddingTop: '80px' }} >
               <Stack spacing={4}>
                 <Body
-                  changuito={changuito}
+                  productMode={productMode}
+                  oneProductMode={() => <OneProductMode />}
                   changuitoMode={() => <ChanguitoMode />}
-                >
-                  <OneProductMode />
-                </Body>
+                />
               </Stack>
             </Container>
           </Grid>

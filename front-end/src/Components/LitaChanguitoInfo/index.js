@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import Typography from "@mui/material/Typography";
 
 // Table
 import Table from '@mui/material/Table';
@@ -14,6 +15,8 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+
+//Lógica
 
 export default function LitaChanguitoInfo(props) {
 
@@ -29,28 +32,40 @@ export default function LitaChanguitoInfo(props) {
 
     return (
         <>
-            <Grid item xs={12} sm={12} lg={12} sx={{ justifyContent: 'center' }}>
-                <Paper variant="borderBlackElevatedPaper" sx={{ width: '500px', height: '500px', maxHeight: '500px', padding: '30px', justifyContent: 'center' }}>
-                    <Stack direction="column" justifyContent="space-between" alignItems="space-around" height='100%' >
+            <Grid item xs={12} sx={{ justifyContent: 'center' }}>
+                <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
 
-                        <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: '80%' }}>
-                            <Table aria-label="a dense table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Productos</TableCell>
-                                        <TableCell align="center">Precio</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {!props.chango.length ? props.emptyChango() : props.fullFilledChango}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                    <Grid container direction="column" justifyContent="space-around" height="100%">
 
-                        <Button >Buscar Precios</Button>
-                        <Divider />
+                        <Grid item >
+                            <Typography variant="h7" >Tienes {props.chango.length} productos en tu chango</Typography>
+                        </Grid>
 
-                    </Stack>
+                        <Grid item xs={7} overflow="hidden" >
+                            <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%" }}>
+                                <Table aria-label="a dense table">
+                                    <TableHead >
+                                        <TableRow>
+                                            <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
+                                            <TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody >
+                                        {!props.chango.length ? props.emptyChango() : props.fullFilledChango}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+
+                        <Grid item >
+                            <Button sx={{ width: '100%' }} >Buscar Precios</Button>
+                        </Grid>
+
+                        <Grid item >
+                            <Divider width='100%' />
+                        </Grid>
+
+                    </Grid>
                 </Paper>
             </Grid>
         </ >

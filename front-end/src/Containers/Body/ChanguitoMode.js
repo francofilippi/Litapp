@@ -3,47 +3,40 @@ import React from 'react';
 import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
 import LitaSearchChanguito from '../../Components/LitaSearch/LitaSearchChanguito';
 import LitaChanguitoInfo from '../../Components/LitaChanguitoInfo';
-import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
-import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
-import ErrorSearchedPrices from '../../Components/LitaSearchedPrices/ErrorSearchedPrices'
-import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
+import FullFillChanguito from '../../Components/LitaChanguitoInfo/FullFillChanguito';
+import EmptyChanguito from '../../Components/LitaChanguitoInfo/EmptyChanguito';
 
 // Lógica
 import useLitaStates from './useLitaStates';
-
-import FullFillChanguito from '../../Components/LitaChanguitoInfo/FullFillChanguito';
-import EmptyChanguito from '../../Components/LitaChanguitoInfo/EmptyChanguito';
+import useChanguitoStates from './useChanguitoStates';
 
 export default function ChanguitoMode() {
 
     const {
-        value,
-        setValue,
         open,
         setOpen,
         searchOptions,
         loadingSearchOptions,
         errorSearchOptions,
-        errorPricesOptions,
-        loadingPricesOptions,
-        pricesOptions,
     } = useLitaStates();
 
-
-    const [chango, setChango] = React.useState([])
+    const {
+        chango,
+        setChango,
+    } = useChanguitoStates();
 
     return (
         <>
+            <LitaSearchChanguito
+                searchOptions={searchOptions}
+                setChango={setChango}
+                open={open}
+                setOpen={setOpen}
+                loadingSearchOptions={loadingSearchOptions}
+                errorSearchOptions={errorSearchOptions}
+            />
             <LitaSearchedContainer>
-                <LitaSearchChanguito
-                    searchOptions={searchOptions}
-                    chango={chango}
-                    setChango={setChango}
-                    open={open}
-                    setOpen={setOpen}
-                    loadingSearchOptions={loadingSearchOptions}
-                    errorSearchOptions={errorSearchOptions}
-                />
+
                 <LitaChanguitoInfo
                     chango={chango}
                     emptyChango={() => <EmptyChanguito />}

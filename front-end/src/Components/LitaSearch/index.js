@@ -14,6 +14,7 @@ export default function LitaSearch(
   {
     searchOptions,
     setValue,
+    value,
     open,
     setOpen,
     loadingSearchOptions,
@@ -25,8 +26,8 @@ export default function LitaSearch(
 
   return (
     <>
-      {/* <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
-        <div>{`inputValue: '${inputValue}'`}</div> */}
+      <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
+      {/* <div>{`inputValue: '${inputValue}'`}</div> */}
       <Autocomplete
         sx={{ width: '100%', maxWidth: '650px' }}
         onChange={(event, newValue) => {

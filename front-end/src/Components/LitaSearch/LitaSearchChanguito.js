@@ -14,22 +14,12 @@ export default function LitaSearchChanguito(
     {
         searchOptions,
         setChango,
-        chango,
         open,
         setOpen,
         loadingSearchOptions,
         errorSearchOptions,
     }
 ) {
-
-    const [newChango, setNewChango] = React.useState([])
-
-    const modificarChango = (newValue) => {
-        setNewChango(newChango.splice(0, Infinity, ...newValue));
-        setChango(newChango)
-        console.log(newChango)
-    }
-    //const [inputValue, setInputValue] = React.useState('');
 
     return (
         <>
@@ -41,7 +31,7 @@ export default function LitaSearchChanguito(
                 filterSelectedOptions
                 id="tags-standard"
                 onChange={(event, newValue) => {
-                    modificarChango(newValue)
+                    setChango(newValue)
                 }}
                 open={open}
                 onOpen={() => {

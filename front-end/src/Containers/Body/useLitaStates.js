@@ -1,7 +1,7 @@
 import React from "react";
 
-const API_LITA_BASE = 'https://rickandmortyapi.com/api/character/'
-// https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData
+const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
+const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
 
 // Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
 // Access-Control-Allow-Methods: 'GET'
@@ -13,7 +13,8 @@ export default function useLitaStates() {
   const [open, setOpen] = React.useState(false);
   const [searchOptions, setSearchOptions] = React.useState([]);
   const [errorSearchOptions, setErrorSearchOptions] = React.useState(undefined);
-  const loadingSearchOptions = open && searchOptions.length <= 1;
+  const loadingSearchOptions = open && searchOptions.length === 0;
+
   // Effect para loading de LitaSearch (Autocomplete)
   React.useEffect(() => {
     let active = true; // variable usada para solo fetchear 1 vez la data y no cada vez que se ejecuta el useEffect
@@ -22,7 +23,7 @@ export default function useLitaStates() {
       return undefined;
     }
 
-    // API -> productos/imagenes para search Autocomplete
+    /*API -> productos/imagenes para search Autocomplete
     (async () => {
       if (active) {
         //await new Promise((resolve) => setTimeout(resolve, 500));
@@ -39,7 +40,28 @@ export default function useLitaStates() {
           setErrorSearchOptions(error)
         }
       }
-    })();
+    })();*/
+
+
+    // Esto es lo mismo que lo de arriba.
+    async function fetchProductos() {
+      if (active) {
+        //await new Promise((resolve) => setTimeout(resolve, 500));
+        try {
+          const firstProds = await fetch(RICKYMORTY)
+            .then(response => response.json())
+            .then(data => data.results)
+
+          setSearchOptions([...firstProds])
+          //setSearchOptions([...JSON.parse(firstProds.body)])
+
+        } catch (error) {
+          setSearchOptions([{ name: 'Error' }])
+          setErrorSearchOptions(error)
+        }
+      }
+    };
+    fetchProductos()
 
     return () => {
       active = false;
@@ -72,7 +94,7 @@ export default function useLitaStates() {
 
       await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
       try {
-        const pricesProd = await fetch(API_LITA_BASE)
+        const pricesProd = await fetch(RICKYMORTY)
           .then(response => response.json())
           .then(data => data.results)
 

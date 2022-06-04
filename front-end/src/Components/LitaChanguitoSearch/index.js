@@ -8,19 +8,20 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import LitaError from '../LitaError';
+import OneProductSearchError from '../LitaOneProductSearch/OneProductSearchError';
 
-export default function LitaSearchChanguito(
+export default function LitaChanguitoSearch(
     {
-        searchOptions,
-        setChango,
+        oneProductOptions,
+        changuito,
+        setChanguito,
         open,
         setOpen,
-        loadingSearchOptions,
-        errorSearchOptions,
+        loadingOneProductOptions,
+        errorOneProductOptions,
     }
 ) {
-
+    console.log(changuito)
     return (
         <>
             {/* <div>{`inputValue: '${inputValue}'`}</div> */}
@@ -31,7 +32,7 @@ export default function LitaSearchChanguito(
                 filterSelectedOptions
                 id="tags-standard"
                 onChange={(event, newValue) => {
-                    setChango(newValue)
+                    setChanguito(newValue)
                 }}
                 open={open}
                 onOpen={() => {
@@ -42,16 +43,16 @@ export default function LitaSearchChanguito(
                 }}
                 isOptionEqualToValue={(option, value) => option.name === value.name}
                 getOptionLabel={(option) => option.name}
-                options={searchOptions}
-                loading={loadingSearchOptions}
+                options={oneProductOptions}
+                loading={loadingOneProductOptions}
                 loadingText='Cargando..'
                 renderOption={
-                    errorSearchOptions ?
-                        (option) => (<ListItem key={option.id} variant='listItemError'><LitaError /></ListItem>)
+                    errorOneProductOptions ?
+                        (option) => (<ListItem key={option.id} variant='listItemError'><OneProductSearchError /></ListItem>)
                         :
                         (props, option) => (
                             <ListItem
-                                variant='listItemLitaSearch'
+                                variant='listItemLitaOneProductSearch'
                                 {...props}>
                                 <Box width='100%' >
                                     <Stack
@@ -82,7 +83,7 @@ export default function LitaSearchChanguito(
                             ...params.InputProps,
                             endAdornment: (
                                 <>
-                                    {loadingSearchOptions ? <CircularProgress color="inherit" size={20} /> : null}
+                                    {loadingOneProductOptions ? <CircularProgress color="inherit" size={20} /> : null}
                                     {params.InputProps.endAdornment}
                                 </>
                             ),

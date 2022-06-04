@@ -5,7 +5,6 @@ import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import Typography from "@mui/material/Typography";
 
 // Table
@@ -32,13 +31,13 @@ export default function LitaChanguitoInfo(props) {
 
     return (
         <>
-            <Grid item xs={12} sx={{ justifyContent: 'center' }}>
+            <Grid item xs={12} sm={12} lg={props.changuitoPrices ? 8 : 12} sx={{ justifyContent: 'center' }}>
                 <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
 
                     <Grid container direction="column" justifyContent="space-around" height="100%">
 
                         <Grid item >
-                            <Typography variant="h7" >Tienes {props.chango.length} productos en tu chango</Typography>
+                            <Typography variant="h7" >Tienes {props.changuito.length} productos en tu changuito</Typography>
                         </Grid>
 
                         <Grid item xs={7} overflow="hidden" >
@@ -48,17 +47,18 @@ export default function LitaChanguitoInfo(props) {
                                         <TableRow>
                                             <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
                                             <TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>
+                                            <TableCell sx={{ fontSize: 'medium' }} align="center">Eliminar</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody >
-                                        {!props.chango.length ? props.emptyChango() : props.fullFilledChango}
+                                        {!props.changuito.length ? props.emptyChanguito() : props.fullFilledChanguito}
                                     </TableBody>
                                 </Table>
                             </TableContainer>
                         </Grid>
 
                         <Grid item >
-                            <Button sx={{ width: '100%' }} >Buscar Precios</Button>
+                            <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button>
                         </Grid>
 
                         <Grid item >

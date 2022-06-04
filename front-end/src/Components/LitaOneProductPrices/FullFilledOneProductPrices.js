@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 
 import './winnercard.css';
 
-export default function FullFilledSearchedPrices({ item, index }) {
+export default function FullFilledOneProductPrices({ item, index }) {
 
     return (
         <Grid item xs={12} sm={6}>

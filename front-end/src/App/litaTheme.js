@@ -254,7 +254,7 @@ export default function ThemePaletteComponentsToggle(props) {
                 MuiListItem: {
                     variants: [
                         {
-                            props: { variant: 'listItemLitaSearch' },
+                            props: { variant: 'listItemLitaOneProductSearch' },
                             style: {
                                 color: litaThemePalette.palette.primary.contrastText,
                                 background: litaThemePalette.palette.primary.light,

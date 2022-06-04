@@ -8,17 +8,16 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import LitaError from '../LitaError';
+import OneProductSearchError from './OneProductSearchError';
 
-export default function LitaSearch(
+export default function LitaOneProductSearch(
   {
-    searchOptions,
+    oneProductOptions,
     setValue,
-    value,
     open,
     setOpen,
-    loadingSearchOptions,
-    errorSearchOptions,
+    loadingOneProductOptions,
+    errorOneProductOptions,
   }
 ) {
 
@@ -26,7 +25,7 @@ export default function LitaSearch(
 
   return (
     <>
-      <div>{`value: ${value !== null ? value.id : 'null'}`}</div>
+      {/* <div>{`value: ${value !== null ? value.id : 'null'}`}</div> */}
       {/* <div>{`inputValue: '${inputValue}'`}</div> */}
       <Autocomplete
         sx={{ width: '100%', maxWidth: '650px' }}
@@ -47,16 +46,16 @@ export default function LitaSearch(
         }}
         isOptionEqualToValue={(option, value) => option.name === value.name}
         getOptionLabel={(option) => option.name}
-        options={searchOptions}
-        loading={loadingSearchOptions}
+        options={oneProductOptions}
+        loading={loadingOneProductOptions}
         loadingText='Cargando..'
         renderOption={
-          errorSearchOptions ?
-            (option) => (<ListItem key={option.id} variant='listItemError'><LitaError /></ListItem>)
+          errorOneProductOptions ?
+            (option) => (<ListItem key={option.id} variant='listItemError'><OneProductSearchError /></ListItem>)
             :
             (props, option) => (
               <ListItem
-                variant='listItemLitaSearch'
+                variant='listItemLitaOneProductSearch'
                 {...props}>
                 <Box maxHeight='150px' width='100%'>
                   <Stack
@@ -87,7 +86,7 @@ export default function LitaSearch(
               ...params.InputProps,
               endAdornment: (
                 <>
-                  {loadingSearchOptions ? <CircularProgress color="inherit" size={20} /> : null}
+                  {loadingOneProductOptions ? <CircularProgress color="inherit" size={20} /> : null}
                   {params.InputProps.endAdornment}
                 </>
               ),

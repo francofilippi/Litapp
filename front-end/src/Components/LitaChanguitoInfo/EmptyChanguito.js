@@ -12,7 +12,7 @@ export default function EmptyChanguito() {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
         >
-            <TableCell align="center" colSpan={2} height="100%" >
+            <TableCell align="center" colSpan={3} height="100%">
                 <img src={ouchSinProductos} style={{ width: "auto", height: "100px" }} />
                 <br />
                 <strong>AGREGA PRODUCTOS AL CHANGUITO!</strong>

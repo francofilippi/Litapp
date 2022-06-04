@@ -3,17 +3,17 @@ import React from 'react';
 
 import Grid from '@mui/material/Grid';
 
-export default function LitaSearchedPrices(props) {
+export default function LitaChanguitoPrices(props) {
 
     return (
-        <Grid item xs={12} sm={12} lg={4}>
+        <Grid item xs={12} sm={12} lg={props.changuitoPrices ? 4 : 12}>
             <Grid container spacing={2}>
 
-                {props.errorPricesOptions && props.onError()}
+                {props.errorChanguitoPrices && props.onError()}
 
-                {props.loadingPricesOptions && props.onLoading()}
+                {props.loadingChanguitoPrices && props.onLoading()}
 
-                {!props.loadingPricesOptions && !props.errorPricesOptions && props.pricesOptions?.map(props.children)}
+                {!props.loadingChanguitoPrices && !props.errorChanguitoPrices && props.changuitoPrices?.map(props.children)}
 
             </Grid>
         </Grid>

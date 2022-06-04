@@ -1,21 +1,21 @@
 import React from "react";
 
 const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
-const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
+// const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
 
 export default function useChanguitoStates() {
 
     // Estados del Changuito
-    const [chango, setChango] = React.useState([])
-    const [pricesChanguito, setPricesChanguito] = React.useState([]);
-    const [errorPricesChanguito, setErrorPricesChanguito] = React.useState(false);
-    const [loadingPricesChanguito, setLoadingPricesChanguito] = React.useState(false);
+    const [changuito, setChanguito] = React.useState([])
+    const [changuitoPrices, setChanguitoPrices] = React.useState(null);
+    const [errorChanguitoPrices, setErrorChanguitoPrices] = React.useState(false);
+    const [loadingChanguitoPrices, setLoadingChanguitoPrices] = React.useState(false);
 
 
     // Effect para loading de Changuito
     React.useEffect(() => {
 
-        if (!loadingPricesChanguito) {
+        if (!loadingChanguitoPrices) {
             return undefined;
         }
 
@@ -23,31 +23,32 @@ export default function useChanguitoStates() {
 
         (async () => {
 
-            setPricesChanguito([])
-            setErrorPricesChanguito(false)
+            setChanguitoPrices([])
+            setErrorChanguitoPrices(false)
 
             await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
             try {
-                const pricesChanguito = await fetch(RICKYMORTY)
+                const pricesChanguitoFetch = await fetch(RICKYMORTY)
                     .then(response => response.json())
                     .then(data => data.results)
 
-                setPricesChanguito(pricesChanguito);
+                setChanguitoPrices([...pricesChanguitoFetch.slice(1, 5)]);
             } catch (error) {
-                setErrorPricesChanguito(true)
+                setErrorChanguitoPrices(true)
             }
-            setLoadingPricesChanguito(false)
+            setLoadingChanguitoPrices(false)
         })();
 
-    }, [loadingPricesChanguito]);
+    }, [loadingChanguitoPrices]);
 
     return (
         {
-            chango,
-            setChango,
-            pricesChanguito,
-            errorPricesChanguito,
-            loadingPricesChanguito,
+            changuito,
+            setChanguito,
+            changuitoPrices,
+            errorChanguitoPrices,
+            loadingChanguitoPrices,
+            setLoadingChanguitoPrices,
         }
     );
 }

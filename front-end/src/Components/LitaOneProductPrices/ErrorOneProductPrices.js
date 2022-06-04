@@ -11,7 +11,7 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 import './winnercard.css';
 
-export default function ErrorSearchedPrices() {
+export default function ErrorOneProductPrices() {
     const fourErrorBoxes = ['1', '2', '3', '4']
     return (
         fourErrorBoxes.map((item) => (

@@ -10,7 +10,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 import './winnercard.css';
 
-export default function LoadingSearchedPrices() {
+export default function LoadingChanguitoPrices() {
     const fourLoadingBoxes = ['1', '2', '3', '4']
     return (
         fourLoadingBoxes.map((item) => (

@@ -4,7 +4,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid';
 
-export default function LitaSearchedContainer(props) {
+export default function LitaOneProductContainer(props) {
 
     return (
         < Box sx={{ flexGrow: 1 }}>

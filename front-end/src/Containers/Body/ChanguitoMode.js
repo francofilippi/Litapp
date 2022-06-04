@@ -1,13 +1,19 @@
 import React from 'react';
 
-import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
-import LitaSearchChanguito from '../../Components/LitaSearch/LitaSearchChanguito';
+// Componentes Changuito Search
+import LitaOneProductContainer from '../../Components/LitaOneProductContainer';
+import LitaChanguitoSearch from '../../Components/LitaChanguitoSearch';
 import LitaChanguitoInfo from '../../Components/LitaChanguitoInfo';
 import FullFillChanguito from '../../Components/LitaChanguitoInfo/FullFillChanguito';
 import EmptyChanguito from '../../Components/LitaChanguitoInfo/EmptyChanguito';
 
+// Componentes Changuito Prices
+import LitaChanguitoPrices from '../../Components/LitaChanguitoPrices';
+import ErrorChanguitoPrices from '../../Components/LitaChanguitoPrices/ErrorChanguitoPrices'
+import LoadingChanguitoPrices from '../../Components/LitaChanguitoPrices/LoadingChanguitoPrices'
+import FullFilledChanguitoPrices from '../../Components/LitaChanguitoPrices/FullFilledChanguitoPrices'
 // Lógica
-import useLitaStates from './useLitaStates';
+import useOneProductStates from './useOneProductStates';
 import useChanguitoStates from './useChanguitoStates';
 
 export default function ChanguitoMode() {
@@ -15,56 +21,67 @@ export default function ChanguitoMode() {
     const {
         open,
         setOpen,
-        searchOptions,
-        loadingSearchOptions,
-        errorSearchOptions,
-    } = useLitaStates();
+        oneProductOptions,
+        loadingOneProductOptions,
+        errorOneProductOptions,
+    } = useOneProductStates();
 
     const {
-        chango,
-        setChango,
+        changuito,
+        setChanguito,
+        changuitoPrices,
+        errorChanguitoPrices,
+        loadingChanguitoPrices,
+        setLoadingChanguitoPrices,
     } = useChanguitoStates();
 
     return (
         <>
-            <LitaSearchChanguito
-                searchOptions={searchOptions}
-                setChango={setChango}
+            <LitaChanguitoSearch
+                oneProductOptions={oneProductOptions}
+                changuito={changuito}
+                setChanguito={setChanguito}
                 open={open}
                 setOpen={setOpen}
-                loadingSearchOptions={loadingSearchOptions}
-                errorSearchOptions={errorSearchOptions}
+                loadingOneProductOptions={loadingOneProductOptions}
+                errorOneProductOptions={errorOneProductOptions}
             />
-            <LitaSearchedContainer>
+            <LitaOneProductContainer>
 
                 <LitaChanguitoInfo
-                    chango={chango}
-                    emptyChango={() => <EmptyChanguito />}
-                    fullFilledChango={chango.map((item) => (
+                    changuito={changuito}
+                    changuitoPrices={changuitoPrices}
+                    setLoadingChanguitoPrices={setLoadingChanguitoPrices}
+                    emptyChanguito={() => <EmptyChanguito />}
+                    fullFilledChanguito={changuito.map((item) => (
                         <FullFillChanguito
+                            changuito={changuito}
+                            setChanguito={setChanguito}
                             key={item.name}
                             item={item}
                         />
                     ))}
                 >
                 </LitaChanguitoInfo>
-                {/* <LitaSearchedPrices
-                    errorPricesOptions={errorPricesOptions}
-                    loadingPricesOptions={loadingPricesOptions}
-                    pricesOptions={pricesOptions}
-                    onLoading={() => (<LoadingSearchedPrices />)}
-                    onError={() => (<ErrorSearchedPrices />)}
+
+
+                <LitaChanguitoPrices
+                    changuitoPrices={changuitoPrices}
+                    errorChanguitoPrices={errorChanguitoPrices}
+                    loadingChanguitoPrices={loadingChanguitoPrices}
+                    onLoading={() => (<LoadingChanguitoPrices />)}
+                    onError={() => (<ErrorChanguitoPrices />)}
                 >
                     {(item, index) => (
-                        <FullFilledSearchedPrices
+                        <FullFilledChanguitoPrices
                             key={index}
                             index={index}
                             item={item.name}
                         />
                     )}
-                </LitaSearchedPrices> */}
+                </LitaChanguitoPrices>
 
-            </LitaSearchedContainer>
+            </LitaOneProductContainer>
         </>
     )
 }

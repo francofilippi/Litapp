@@ -1,15 +1,18 @@
 import React from 'react';
 
-import LitaSearch from '../../Components/LitaSearch';
-import LitaSearchedContainer from '../../Components/LitaSearchedContainer';
-import LitaSearchedInfo from '../../Components/LitaSearchedInfo';
-import LitaSearchedPrices from '../../Components/LitaSearchedPrices';
-import LoadingSearchedPrices from '../../Components/LitaSearchedPrices/LoadingSearchedPrices'
-import ErrorSearchedPrices from '../../Components/LitaSearchedPrices/ErrorSearchedPrices'
-import FullFilledSearchedPrices from '../../Components/LitaSearchedPrices/FullFilledSearchedPrices';
+// Componentes OneProductSearch
+import LitaOneProductSearch from '../../Components/LitaOneProductSearch';
+import LitaOneProductContainer from '../../Components/LitaOneProductContainer';
+import LitaOneProductInfo from '../../Components/LitaOneProductInfo';
+
+// Componentes OneProduct Prices
+import LitaOneProductPrices from '../../Components/LitaOneProductPrices';
+import LoadingOneProductPrices from '../../Components/LitaOneProductPrices/LoadingOneProductPrices'
+import ErrorOneProductPrices from '../../Components/LitaOneProductPrices/ErrorOneProductPrices'
+import FullFilledOneProductPrices from '../../Components/LitaOneProductPrices/FullFilledOneProductPrices';
 
 // Lógica
-import useLitaStates from './useLitaStates';
+import useOneProductStates from './useOneProductStates';
 
 export default function OneProductMode() {
 
@@ -18,48 +21,48 @@ export default function OneProductMode() {
         setValue,
         open,
         setOpen,
-        searchOptions,
-        loadingSearchOptions,
-        errorSearchOptions,
-        errorPricesOptions,
-        loadingPricesOptions,
-        pricesOptions,
-    } = useLitaStates();
+        oneProductOptions,
+        loadingOneProductOptions,
+        errorOneProductOptions,
+        oneProductPrices,
+        errorOneProductPrices,
+        loadingOneProductPrices,
+    } = useOneProductStates();
 
     return (
         <>
-            <LitaSearch
-                searchOptions={searchOptions}
+            <LitaOneProductSearch
+                oneProductOptions={oneProductOptions}
                 value={value}
                 setValue={setValue}
                 open={open}
                 setOpen={setOpen}
-                loadingSearchOptions={loadingSearchOptions}
-                errorSearchOptions={errorSearchOptions}
+                loadingOneProductOptions={loadingOneProductOptions}
+                errorOneProductOptions={errorOneProductOptions}
             />
             {!!value &&
-                <LitaSearchedContainer>
+                <LitaOneProductContainer>
 
-                    <LitaSearchedInfo
+                    <LitaOneProductInfo
                         value={value} />
 
-                    <LitaSearchedPrices
-                        errorPricesOptions={errorPricesOptions}
-                        loadingPricesOptions={loadingPricesOptions}
-                        pricesOptions={pricesOptions}
-                        onLoading={() => (<LoadingSearchedPrices />)}
-                        onError={() => (<ErrorSearchedPrices />)}
+                    <LitaOneProductPrices
+                        errorOneProductPrices={errorOneProductPrices}
+                        loadingOneProductPrices={loadingOneProductPrices}
+                        oneProductPrices={oneProductPrices}
+                        onLoading={() => (<LoadingOneProductPrices />)}
+                        onError={() => (<ErrorOneProductPrices />)}
                     >
                         {(item, index) => (
-                            <FullFilledSearchedPrices
+                            <FullFilledOneProductPrices
                                 key={item.name}
                                 index={index}
                                 item={item.name}
                             />
                         )}
-                    </LitaSearchedPrices>
+                    </LitaOneProductPrices>
 
-                </LitaSearchedContainer>
+                </LitaOneProductContainer>
             }
         </>
     )

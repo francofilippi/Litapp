@@ -1,25 +1,25 @@
 import React from "react";
 
 const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
-const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
+// const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
 
 // Access-Control-Allow-Headers: 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
 // Access-Control-Allow-Methods: 'GET'
 // Access-Control-Allow-Origin: '*'
 
-export default function useLitaStates() {
+export default function useOneProductStates() {
 
-  // Estados de LitaSearch (Autocomplete)
+  // Estados de LitaOneProductSearch (Autocomplete)
   const [open, setOpen] = React.useState(false);
-  const [searchOptions, setSearchOptions] = React.useState([]);
-  const [errorSearchOptions, setErrorSearchOptions] = React.useState(undefined);
-  const loadingSearchOptions = open && searchOptions.length === 0;
+  const [oneProductOptions, setOneProductOptions] = React.useState([]);
+  const [errorOneProductOptions, setErrorOneProductOptions] = React.useState(undefined);
+  const loadingOneProductOptions = open && oneProductOptions.length === 0;
 
-  // Effect para loading de LitaSearch (Autocomplete)
+  // Effect para loading de LitaOneProductSearch (Autocomplete)
   React.useEffect(() => {
     let active = true; // variable usada para solo fetchear 1 vez la data y no cada vez que se ejecuta el useEffect
 
-    if (!loadingSearchOptions) {
+    if (!loadingOneProductOptions) {
       return undefined;
     }
 
@@ -32,12 +32,12 @@ export default function useLitaStates() {
             .then(response => response.json())
             .then(data => data.results)
 
-          setSearchOptions([...firstProds])
-          //setSearchOptions([...JSON.parse(firstProds.body)])
+          setOneProductOptions([...firstProds])
+          //setOneProductOptions([...JSON.parse(firstProds.body)])
 
         } catch (error) {
-          setSearchOptions([{ name: 'Error' }])
-          setErrorSearchOptions(error)
+          setOneProductOptions([{ name: 'Error' }])
+          setErrorOneProductOptions(error)
         }
       }
     })();*/
@@ -52,12 +52,12 @@ export default function useLitaStates() {
             .then(response => response.json())
             .then(data => data.results)
 
-          setSearchOptions([...firstProds])
-          //setSearchOptions([...JSON.parse(firstProds.body)])
+          setOneProductOptions([...firstProds])
+          //setOneProductOptions([...JSON.parse(firstProds.body)])
 
         } catch (error) {
-          setSearchOptions([{ name: 'Error' }])
-          setErrorSearchOptions(error)
+          setOneProductOptions([{ name: 'Error' }])
+          setErrorOneProductOptions(error)
         }
       }
     };
@@ -68,16 +68,16 @@ export default function useLitaStates() {
     };
 
 
-  }, [loadingSearchOptions]);
+  }, [loadingOneProductOptions]);
 
-  // Estados del LitaSearchedProd (Precios del producto buscado)
+  // Estados del LitaOneProductSearchedProd (Precios del producto buscado)
   const [value, setValue] = React.useState(null);
-  const [pricesOptions, setPricesOptions] = React.useState([]);
-  const [errorPricesOptions, setErrorPricesOptions] = React.useState(false);
-  const [loadingPricesOptions, setLoadingPricesOptions] = React.useState(false);
-  //const loadingPricesOptions = value && pricesOptions.length === 0;
+  const [oneProductPrices, setOneProductPrices] = React.useState([]);
+  const [errorOneProductPrices, setErrorOneProductPrices] = React.useState(false);
+  const [loadingOneProductPrices, setLoadingOneProductPrices] = React.useState(false);
+  //const loadingOneProductPrices = value && oneProductOptions.length === 0;
 
-  // Effect para loading de LitaSearchedProd
+  // Effect para loading de LitaOneProductSearchedProd
   React.useEffect(() => {
 
     if (!value) {
@@ -88,9 +88,9 @@ export default function useLitaStates() {
 
     (async () => {
 
-      setPricesOptions([])
-      setLoadingPricesOptions(true)
-      setErrorPricesOptions(false)
+      setOneProductPrices([])
+      setLoadingOneProductPrices(true)
+      setErrorOneProductPrices(false)
 
       await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
       try {
@@ -98,11 +98,11 @@ export default function useLitaStates() {
           .then(response => response.json())
           .then(data => data.results)
 
-        setPricesOptions([...pricesProd.slice(value.id - 1, value.id + 3)]);
+        setOneProductPrices([...pricesProd.slice(value.id - 1, value.id + 3)]);
       } catch (error) {
-        setErrorPricesOptions(true)
+        setErrorOneProductPrices(true)
       }
-      setLoadingPricesOptions(false)
+      setLoadingOneProductPrices(false)
     })();
 
   }, [value]);
@@ -113,14 +113,14 @@ export default function useLitaStates() {
       setValue,
       open,
       setOpen,
-      searchOptions,
-      errorSearchOptions,
-      loadingSearchOptions,
-      pricesOptions,
-      errorPricesOptions,
-      loadingPricesOptions,
+      oneProductOptions,
+      errorOneProductOptions,
+      loadingOneProductOptions,
+      oneProductPrices,
+      errorOneProductPrices,
+      loadingOneProductPrices,
     }
   );
 }
 
-export { useLitaStates };
+export { useOneProductStates };

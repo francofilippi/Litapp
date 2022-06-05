@@ -4,17 +4,18 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 //variables
 //filter by specific product
-var specificProduct = {
+var specificByProductAndDate = {
   TableName: "products",
-  FilterExpression: "contains(#product, :product)",
-  ExpressionAttributeNames: { "#product": "product" },
+  FilterExpression: "contains(#product, :product) AND contains(#date, :date)",
+  ExpressionAttributeNames: { "#product": "product", "#date" : "date" },
   ExpressionAttributeValues: {
     ":product": "Pepsi Black 2.25lts",
+    ":date": "2022-05-28"
   },
 };
 
 //specific date Range
-var specificDateRange = {
+var specificByDateRange = {
   TableName: "products",
   FilterExpression: "#date BETWEEN :date1 and :date2",
   ExpressionAttributeNames: {
@@ -32,7 +33,17 @@ var specificDate = {
   FilterExpression: "contains(#date, :date)",
   ExpressionAttributeNames: { "#date": "date" },
   ExpressionAttributeValues: {
-    ":date": "2022-05-26",
+    ":date": "2022-05-28",
+  },
+};
+
+//specific prod
+var specificProduct = {
+  TableName: "products",
+  FilterExpression: "contains(#product, :product)",
+  ExpressionAttributeNames: { "#product": "product" },
+  ExpressionAttributeValues: {
+    ":product": "Pepsi Black 2.25lts",
   },
 };
 //-------------------------------------------------------------------------
@@ -40,7 +51,7 @@ var specificDate = {
 //functions
 
 const obj = (market, product, price, date) => {
-  let prod = { market: market, product: product, price: price };
+  let prod = { market: market, product: product, price: price, date: date };
   return prod;
 };
 
@@ -56,7 +67,7 @@ const specificProductF = (data) => {
 const productAndMarket = (data) => {
   let arr = [];
   data.map((item) => {
-    arr.push(obj(item.store, item.product, item.price));
+    arr.push(obj(item.store, item.product, item.price, item.date));
   });
   lowestPrice(arr);
 };
@@ -67,7 +78,7 @@ const lowestPrice = (data) => {
   market = "";
   let min = 10000;
   for (let i = 0; i < data.length; i++) {
-    //console.log(data[i].price);
+    console.log(data[i]);
     if (data[i].price < min) {
       min = data[i].price;
       prod = data[i].product;
@@ -79,7 +90,7 @@ const lowestPrice = (data) => {
 
 //
 dynamodb
-  .scan(specificProduct, specificDate)
+  .scan(specificByDateRange)
   .promise()
   .then((data) => productAndMarket(data.Items))
   .catch((error) => console.log(error));

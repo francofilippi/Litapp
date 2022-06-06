@@ -30,45 +30,41 @@ export default function LitaChanguitoInfo(props) {
     ];
 
     return (
-        <>
-            <Grid item xs={12} sm={12} lg={props.changuitoPrices ? 8 : 12} sx={{ justifyContent: 'center' }}>
-                <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
+        <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
 
-                    <Grid container direction="column" justifyContent="space-around" height="100%">
+            <Grid container direction="column" justifyContent="space-around" height="100%">
 
-                        <Grid item >
-                            <Typography variant="h7" >Tienes {props.changuito.length} productos en tu changuito</Typography>
-                        </Grid>
+                <Grid item >
+                    <Typography variant="h7" >Tienes {props.changuito.length} productos en tu changuito</Typography>
+                </Grid>
 
-                        <Grid item xs={7} overflow="hidden" >
-                            <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%" }}>
-                                <Table aria-label="a dense table">
-                                    <TableHead >
-                                        <TableRow>
-                                            <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
-                                            <TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>
-                                            <TableCell sx={{ fontSize: 'medium' }} align="center">Eliminar</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody >
-                                        {!props.changuito.length ? props.emptyChanguito() : props.fullFilledChanguito}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Grid>
+                <Grid item xs={7} overflow="hidden" >
+                    <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%" }}>
+                        <Table aria-label="a dense table">
+                            <TableHead >
+                                <TableRow>
+                                    <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
+                                    <TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>
+                                    <TableCell sx={{ fontSize: 'medium' }} align="center">Eliminar</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody >
+                                {!props.changuito.length ? props.emptyChanguito() : props.fullFilledChanguito}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
 
-                        <Grid item >
-                            <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button>
-                        </Grid>
+                <Grid item >
+                    <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button>
+                </Grid>
 
-                        <Grid item >
-                            <Divider width='100%' />
-                        </Grid>
+                <Grid item >
+                    <Divider width='100%' />
+                </Grid>
 
-                    </Grid>
-                </Paper>
             </Grid>
-        </ >
+        </Paper>
     )
 }
 

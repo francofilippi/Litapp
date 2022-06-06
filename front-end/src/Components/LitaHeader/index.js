@@ -5,7 +5,7 @@ export default function LitaHeader({ value }) {
 
     return (
         <Typography
-            variant='h2'
+            variant='h3'
             component='h1'
         >
             {!value ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}

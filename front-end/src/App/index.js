@@ -26,43 +26,37 @@ function App() {
   return (
     <ThemePaletteComponentsToggle>
 
-      <Navbar setProductMode={setProductMode} />
-
-      <Box className='main-container' sx={{ backgroundColor: 'background.default' }}>
-
-        <Grid
-          container
-          direction='column'
-          flexWrap='nowrap'
-          justifyContent='center'
-          alignItems="center"
-          minHeight='100vh'
-          spacing={5}
-        >
-          <Grid item xs={10}>
-            <Container maxWidth="xl" sx={{ paddingTop: '80px' }} >
-              <Stack spacing={4}>
+      <Box className='main-container' height='100%' minHeight='100vh' paddingTop='70px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
+        <Container maxWidth='xl'>
+          <Navbar setProductMode={setProductMode} />
+          <Grid
+            container
+            direction='column'
+            flexWrap='nowrap'
+            alignItems="center"
+            height='100%'
+            spacing={3}
+          >
+            <Grid item xs={10.5}>
+              <Stack alignItems='center' spacing={2}>
                 <Body
                   productMode={productMode}
                   oneProductMode={() => <OneProductMode />}
                   changuitoMode={() => <ChanguitoMode />}
                 />
               </Stack>
-            </Container>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={1.5}>
-            <Container maxWidth="xl">
+            <Grid item xs={1}>
               <AdsenseBox />
-            </Container>
+            </Grid>
+
+            <Grid item xs={.5} alignSelf='flex-end'>
+              <Footer />
+            </Grid>
+
           </Grid>
-
-          <Grid item xs={.5} alignSelf='flex-end'>
-            <Footer />
-          </Grid>
-
-        </Grid>
-
+        </Container>
       </Box>
 
     </ThemePaletteComponentsToggle >

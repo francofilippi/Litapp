@@ -19,14 +19,12 @@ export default function LitaOneProductInfo({ value }) {
 
                             <Typography variant="h5">{value.name}</Typography>
 
-                            <Paper variant='imgListPaper' sx={{ display: 'flex' }}>
-                                <img
-                                    loading='lazy'
-                                    src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
-                                    style={{ 'height': 'auto', 'maxWidth': '100%', 'borderRadius': 'inherit' }}
-                                    alt=""
-                                />
-                            </Paper>
+                            <img
+                                loading='lazy'
+                                src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
+                                style={{ 'height': 'auto', 'width': '100%', 'maxWidth': '250px', 'borderRadius': 'inherit' }}
+                                alt=""
+                            />
 
                         </Stack>
                         <Divider sx={{ width: '80%' }} />

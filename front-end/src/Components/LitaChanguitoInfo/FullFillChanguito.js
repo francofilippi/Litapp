@@ -9,7 +9,6 @@ import Delete from "@mui/icons-material/Delete";
 export default function FullFillChanguito({ item, changuito, setChanguito }) {
 
     const quitarDelChanguito = (prod) => {
-        console.log(prod)
         setChanguito(changuito.filter(producto => producto.id !== prod))
     }
 

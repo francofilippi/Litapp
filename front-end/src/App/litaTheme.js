@@ -222,11 +222,10 @@ export default function ThemePaletteComponentsToggle(props) {
                         'sans-serif'
                     ].join(","),
                 },
-                h2: {
+                h3: {
                     fontFamily: 'Faster One',
                     color: '#fff',
-                    textShadow: `8px 4px 0px ${litaThemePalette.palette.secondary.main}`,
-                    textAlign: 'center'
+                    textShadow: `4px 2px 0px ${litaThemePalette.palette.secondary.main}`
                 },
             },
             components: {

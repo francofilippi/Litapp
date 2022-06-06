@@ -7,10 +7,9 @@ export default function useChanguitoStates() {
 
     // Estados del Changuito
     const [changuito, setChanguito] = React.useState([])
-    const [changuitoPrices, setChanguitoPrices] = React.useState(null);
+    const [changuitoPrices, setChanguitoPrices] = React.useState([]);
     const [errorChanguitoPrices, setErrorChanguitoPrices] = React.useState(false);
     const [loadingChanguitoPrices, setLoadingChanguitoPrices] = React.useState(false);
-
 
     // Effect para loading de Changuito
     React.useEffect(() => {
@@ -22,8 +21,6 @@ export default function useChanguitoStates() {
         // API -> precios de supers para changuito
 
         (async () => {
-
-            setChanguitoPrices([])
             setErrorChanguitoPrices(false)
 
             await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton

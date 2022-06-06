@@ -3,7 +3,6 @@
                 url('../assets/imgs/lita-comic-2.png') bottom right / contain no-repeat fixed,
                 url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
         display: flex;
-        min-height: 100vh;
 }
 
 .main-container-dark {
@@ -12,5 +11,4 @@
                 url('../assets/imgs/background-comic-effect.svg') center / cover no-repeat fixed;
         background-blend-mode: none darken;
         display: flex;
-        min-height: 100vh;
 }

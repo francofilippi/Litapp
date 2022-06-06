@@ -23,23 +23,27 @@ export default function FullFilledChanguitoPrices({ item, index }) {
                     <Typography variant="h4" className="winnerstar">⭐</Typography>
                 )}
 
-                <Card variant="outlined">
+                <Card variant="outlined" sx={{ borderRadius: '0px' }}>
                     <CardMedia
                         component="img"
-                        style={{ 'height': 'auto', 'maxWidth': '100%', 'maxHeight': '150px', 'borderRadius': 'inherit' }}
+                        style={{ 'maxHeight': '150px', 'width': '100%' }}
                         src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
                         alt="logo super"
                     />
 
                     <CardContent>
-                        <Typography variant="h5">
+                        <Typography variant="body">
                             $ {item}
                         </Typography>
                     </CardContent>
 
-                    <CardActions sx={{ justifyContent: "center" }}>
-                        <Button size="small">Ir a producto</Button>
-                    </CardActions>
+                    {/* <CardActions sx={{ justifyContent: "center" }}>
+                        <Button size="small">
+                            <Typography variant='body'>
+                                Ir a producto
+                            </Typography>
+                        </Button>
+                    </CardActions> */}
                 </Card>
             </Box>
         </Grid>

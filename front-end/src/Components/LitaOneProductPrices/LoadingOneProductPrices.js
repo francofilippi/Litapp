@@ -17,7 +17,7 @@ export default function LoadingOneProductPrices() {
             <Grid key={item} item xs={12} sm={6}>
 
                 <Card variant='outlined'>
-                    <Skeleton variant="rectangular" height='180px' />
+                    <Skeleton variant="rectangular" height='150px' />
 
                     <CardContent>
                         <Skeleton width={150} />

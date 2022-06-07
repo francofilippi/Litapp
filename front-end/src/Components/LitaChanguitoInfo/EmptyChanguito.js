@@ -8,15 +8,17 @@ import TableRow from '@mui/material/TableRow';
 
 export default function EmptyChanguito() {
     return (
-        <TableRow
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+        <>
+            <TableRow
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-        >
-            <TableCell align="center" colSpan={3} height="100%">
-                <img src={ouchSinProductos} style={{ width: "auto", height: "100px" }} />
-                <br />
-                <strong>AGREGA PRODUCTOS AL CHANGUITO!</strong>
-            </TableCell>
-        </TableRow>
+            >
+                <TableCell align="center" colSpan={3} height="100%">
+                    <img src={ouchSinProductos} style={{ width: "auto", height: "100px" }} />
+                    <br />
+                    <strong>AGREGA PRODUCTOS AL CHANGUITO!</strong>
+                </TableCell>
+            </TableRow>
+        </>
     )
 }

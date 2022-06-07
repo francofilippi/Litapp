@@ -5,20 +5,19 @@ const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
 
 export default function useChanguitoStates() {
 
-    // Estados del Changuito
-    const [changuito, setChanguito] = React.useState([])
+    // Estados del ChanguitoPrices
     const [changuitoPrices, setChanguitoPrices] = React.useState([]);
     const [errorChanguitoPrices, setErrorChanguitoPrices] = React.useState(false);
     const [loadingChanguitoPrices, setLoadingChanguitoPrices] = React.useState(false);
 
-    // Effect para loading de Changuito
+    // Effect para loading de ChanguitoPrices
     React.useEffect(() => {
 
         if (!loadingChanguitoPrices) {
             return undefined;
         }
 
-        // API -> precios de supers para changuito
+        // API -> precios de supers para ChanguitoPrices
 
         (async () => {
             setErrorChanguitoPrices(false)
@@ -40,8 +39,6 @@ export default function useChanguitoStates() {
 
     return (
         {
-            changuito,
-            setChanguito,
             changuitoPrices,
             errorChanguitoPrices,
             loadingChanguitoPrices,

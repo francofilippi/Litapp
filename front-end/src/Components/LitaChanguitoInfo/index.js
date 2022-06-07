@@ -19,23 +19,13 @@ import TableRow from '@mui/material/TableRow';
 
 export default function LitaChanguitoInfo(props) {
 
-    function createData(name, price) {
-        return { name, price };
-    }
-
-    const tresProductosTontos = [
-        createData('Yerba Común Mañanita 1kg', 359),
-        createData('Chocolate Block Cofler 500mg', 250),
-        createData('Jugo de Mazana Baggio 1 lt', 120),
-    ];
-
     return (
         <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
 
             <Grid container direction="column" justifyContent="space-around" height="100%">
 
                 <Grid item >
-                    <Typography variant="h7" >Tienes {props.changuito.length} productos en tu changuito</Typography>
+                    <Typography variant="h7" >Tienes {props.changuito?.length} productos en tu changuito</Typography>
                 </Grid>
 
                 <Grid item xs={7} overflow="hidden" >
@@ -49,14 +39,14 @@ export default function LitaChanguitoInfo(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody >
-                                {!props.changuito.length ? props.emptyChanguito() : props.fullFilledChanguito}
+                                {props.changuito.length === 0 ? props.emptyChanguito() : props.changuito.map(props.children)}
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Grid>
 
                 <Grid item >
-                    <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button>
+                    {/* <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button> */}
                 </Grid>
 
                 <Grid item >

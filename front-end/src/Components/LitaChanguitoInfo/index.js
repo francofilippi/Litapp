@@ -46,7 +46,7 @@ export default function LitaChanguitoInfo(props) {
                 </Grid>
 
                 <Grid item >
-                    {/* <Button onClick={() => (props.setLoadingChanguitoPrices(true))} sx={{ width: '100%' }} >Armar Changuito</Button> */}
+                    <Button onClick={() => { props.setLoadingChanguitoPrices(true) }} sx={{ width: '100%' }} >Armar Changuito</Button>
                 </Grid>
 
                 <Grid item >

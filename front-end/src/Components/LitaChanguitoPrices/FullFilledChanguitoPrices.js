@@ -27,13 +27,13 @@ export default function FullFilledChanguitoPrices({ item, index }) {
                     <CardMedia
                         component="img"
                         style={{ 'maxHeight': '150px', 'width': '100%' }}
-                        src={`https://rickandmortyapi.com/api/character/avatar/${index + 1}.jpeg`}//logo de super
+                        src={item.image}//logo de super
                         alt="logo super"
                     />
 
                     <CardContent>
                         <Typography variant="body">
-                            $ {item}
+                            $ {item.name}
                         </Typography>
                     </CardContent>
 

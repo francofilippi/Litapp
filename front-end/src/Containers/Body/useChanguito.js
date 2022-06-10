@@ -1,28 +1,21 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-function useChanguito() {
+export default function useChanguito() {
 
-    // const {
-    //     item: changuito,
-    //     saveItem: saveChanguito,
-    //     sincronizeItem: sincronizeChanguito,
-    //     loading: loadingChanguito,
-    //     error: errorChanguito,
-    // } = useLocalStorage('CHANGUITO_V1', []);
-
-    const [changuito, setChanguito] = React.useState([])
-
-    const addProducto = (newValue) => {
-        const newChanguito = changuito.splice(0, Infinity, ...newValue)
-        setChanguito(newChanguito);
-    };
+    const {
+        item: changuito,
+        saveItem: saveChanguito,
+        sincronizeItem: sincronizeChanguito,
+        loading: loadingChanguito,
+        error: errorChanguito,
+    } = useLocalStorage('CHANGUITO_V1', []);
 
     const deleteProducto = (name) => {
         const productoIndex = changuito.findIndex(producto => producto.name === name);
         const newChanguito = [...changuito];
         newChanguito.splice(productoIndex, 1);
-        setChanguito(newChanguito);
+        saveChanguito(newChanguito);
     };
 
     // const completeTodo = (text) => {
@@ -35,10 +28,9 @@ function useChanguito() {
     return (
         {
             changuito,
-            addProducto,
+            saveChanguito,
             deleteProducto,
+            sincronizeChanguito,
         }
     );
 }
-
-export { useChanguito };

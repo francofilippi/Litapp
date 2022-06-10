@@ -10,13 +10,13 @@ export default function FullFillChanguito({ producto, deleteProducto }) {
 
     return (
         <TableRow
-            key={producto}
+            key={producto.name}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell component="th" scope="row">
-                {producto}
+                {producto.name}
             </TableCell>
-            <TableCell align="center">{producto}</TableCell>
+            <TableCell align="center">{producto.id}</TableCell>
             <TableCell align="center"><Button onClick={deleteProducto}><Delete /></Button></TableCell>
         </TableRow>
     )

@@ -6,8 +6,8 @@ import LitaChanguitoSearch from '../../Components/LitaChanguitoSearch';
 
 // Lógica
 import useOneProductStates from './useOneProductStates';
-import { useChanguito } from './useChanguito';
-import useChanguitoStates from '../../Containers/Body/useChanguitoStates';
+import useChanguitoPrices from './useChanguitoPrices';
+import useChanguito from './useChanguito';
 
 
 // Componentes Changuito Search
@@ -21,7 +21,7 @@ import ErrorChanguitoPrices from '../../Components/LitaChanguitoPrices/ErrorChan
 import LoadingChanguitoPrices from '../../Components/LitaChanguitoPrices/LoadingChanguitoPrices'
 import FullFilledChanguitoPrices from '../../Components/LitaChanguitoPrices/FullFilledChanguitoPrices'
 
-
+import { ChangeAlertWithStorageListener } from '../../Components/ChangeAlert';
 
 export default function ChanguitoMode() {
 
@@ -34,22 +34,24 @@ export default function ChanguitoMode() {
     } = useOneProductStates();
 
     const {
+        changuito,
+        deleteProducto,
+        saveChanguito,
+        sincronizeChanguito,
+    } = useChanguito();
+
+    const {
         changuitoPrices,
         errorChanguitoPrices,
         loadingChanguitoPrices,
         setLoadingChanguitoPrices,
-    } = useChanguitoStates();
-
-    const {
-        changuito,
-        addProducto,
-        deleteProducto,
-    } = useChanguito();
+    } = useChanguitoPrices();
 
     return (
         <>
             <LitaChanguitoSearch
-                addProducto={addProducto}
+                changuito={changuito}
+                saveChanguito={saveChanguito}
                 oneProductOptions={oneProductOptions}
                 open={open}
                 setOpen={setOpen}
@@ -67,11 +69,11 @@ export default function ChanguitoMode() {
                         setLoadingChanguitoPrices={setLoadingChanguitoPrices}
                         emptyChanguito={() => <EmptyChanguito />}
                     >
-                        {(prod) => (
+                        {(producto) => (
                             <FullFillChanguito
-                                key={prod.id}
-                                producto={prod.name}
-                                deleteProducto={() => deleteProducto(prod.name)}
+                                key={producto.name}
+                                producto={producto}
+                                deleteProducto={() => deleteProducto(producto.name)}
                             />
                         )}
                     </LitaChanguitoInfo>
@@ -91,9 +93,9 @@ export default function ChanguitoMode() {
                         >
                             {(item, index) => (
                                 <FullFilledChanguitoPrices
-                                    key={index}
+                                    key={item.name}
                                     index={index}
-                                    item={item.name}
+                                    item={item}
                                 />
                             )}
                         </LitaChanguitoPrices>
@@ -103,6 +105,8 @@ export default function ChanguitoMode() {
                 </Grid>
 
             </Grid>
+
+            <ChangeAlertWithStorageListener sincronize={sincronizeChanguito} />
         </>
     )
 }

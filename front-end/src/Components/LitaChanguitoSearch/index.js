@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import ListItem from '@mui/material/ListItem';
@@ -12,7 +12,8 @@ import OneProductSearchError from '../LitaOneProductSearch/OneProductSearchError
 
 export default function LitaChanguitoSearch(
     {
-        addProducto,
+        changuito,
+        saveChanguito,
         oneProductOptions,
         open,
         setOpen,
@@ -21,6 +22,10 @@ export default function LitaChanguitoSearch(
     }
 ) {
 
+    const handleChange = (event, newValue) => {
+        saveChanguito(newValue)
+    }
+
     return (
         <Autocomplete
             sx={{ width: '100%', maxWidth: '650px' }}
@@ -28,9 +33,8 @@ export default function LitaChanguitoSearch(
             limitTags={2}
             filterSelectedOptions
             id="tags-standard"
-            onChange={(event, newValue) => {
-                addProducto(newValue)
-            }}
+            value={changuito}
+            onChange={handleChange}
             open={open}
             onOpen={() => {
                 setOpen(true);

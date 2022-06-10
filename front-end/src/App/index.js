@@ -27,7 +27,7 @@ function App() {
     <ThemePaletteComponentsToggle>
 
       <Box className='main-container' height='100%' minHeight='100vh' paddingTop='70px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
-        <Container maxWidth='xl'>
+        <Container sx={{ display: 'flex', justifyContent: 'center', width: '95%', paddingLeft: '0px' }}>
           <Navbar setProductMode={setProductMode} />
           <Grid
             container

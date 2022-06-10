@@ -1,25 +1,25 @@
 import React from 'react';
 // MUI
 import Grid from '@mui/material/Grid';
-// Componentes
-import LitaChanguitoSearch from '../../Components/LitaChanguitoSearch';
 
 // Lógica
-import useOneProductStates from './useOneProductStates';
-import useChanguitoPrices from './useChanguitoPrices';
+import useOneProduct from './useOneProduct';
 import useChanguito from './useChanguito';
 
+// Componente Search
+import SearchProduct from '../../Components/SearchProduct';
 
-// Componentes Changuito Search
-import LitaChanguitoInfo from '../../Components/LitaChanguitoInfo';
-import FullFillChanguito from '../../Components/LitaChanguitoInfo/FullFillChanguito';
-import EmptyChanguito from '../../Components/LitaChanguitoInfo/EmptyChanguito';
+// Componentes Changuito Info
+import ChanguitoInfo from '../../Components/ChanguitoInfo';
+import FullFillChanguito from '../../Components/ChanguitoInfo/FullFillChanguito';
+import EmptyChanguito from '../../Components/ChanguitoInfo/EmptyChanguito';
+import LoadingChanguito from '../../Components/ChanguitoInfo/LoadingChanguito';
 
 // Componentes Changuito Prices
-import LitaChanguitoPrices from '../../Components/LitaChanguitoPrices';
-import ErrorChanguitoPrices from '../../Components/LitaChanguitoPrices/ErrorChanguitoPrices'
-import LoadingChanguitoPrices from '../../Components/LitaChanguitoPrices/LoadingChanguitoPrices'
-import FullFilledChanguitoPrices from '../../Components/LitaChanguitoPrices/FullFilledChanguitoPrices'
+import ChanguitoPrices from '../../Components/ChanguitoPrices';
+import ErrorChanguitoPrices from '../../Components/ChanguitoPrices/ErrorChanguitoPrices'
+import LoadingChanguitoPrices from '../../Components/ChanguitoPrices/LoadingChanguitoPrices'
+import FullFilledChanguitoPrices from '../../Components/ChanguitoPrices/FullFilledChanguitoPrices'
 
 import { ChangeAlertWithStorageListener } from '../../Components/ChangeAlert';
 
@@ -28,45 +28,48 @@ export default function ChanguitoMode() {
     const {
         open,
         setOpen,
-        oneProductOptions,
-        loadingOneProductOptions,
-        errorOneProductOptions,
-    } = useOneProductStates();
+        searchOptions,
+        loadingSearchOptions,
+        errorSearchOptions,
+    } = useOneProduct();
 
     const {
         changuito,
+        loadingChanguito,
+        chPrices,
+        errorChPrices,
+        loadingChPrices,
+        setLoadingChPrices,
         deleteProducto,
         saveChanguito,
         sincronizeChanguito,
     } = useChanguito();
 
-    const {
-        changuitoPrices,
-        errorChanguitoPrices,
-        loadingChanguitoPrices,
-        setLoadingChanguitoPrices,
-    } = useChanguitoPrices();
-
     return (
         <>
-            <LitaChanguitoSearch
-                changuito={changuito}
-                saveChanguito={saveChanguito}
-                oneProductOptions={oneProductOptions}
+            <SearchProduct
+                multiple={true}
+                limitTags={2}
+                filterSelectedOptions={true}
+                value={changuito}
+                setValue={saveChanguito}
+                searchOptions={searchOptions}
                 open={open}
                 setOpen={setOpen}
-                loadingOneProductOptions={loadingOneProductOptions}
-                errorOneProductOptions={errorOneProductOptions}
+                loadingSearchOptions={loadingSearchOptions}
+                errorSearchOptions={errorSearchOptions}
             />
 
-            <Grid container spacing={2} justifyContent="center" sx={{ flexGrow: 1, height: '50vh' }}>
+            <Grid container spacing={2} justifyContent="center" sx={{ flexGrow: 1 }}>
 
-                <Grid item xs={12} sm={12} lg={(changuitoPrices.length || !!loadingChanguitoPrices) ? 8 : 12} sx={{ justifyContent: 'center' }}>
+                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12} sx={{ justifyContent: 'center' }}>
 
-                    <LitaChanguitoInfo
+                    <ChanguitoInfo
                         changuito={changuito}
-                        changuitoPrices={changuitoPrices}
-                        setLoadingChanguitoPrices={setLoadingChanguitoPrices}
+                        loadingChanguito={loadingChanguito}
+                        chPrices={chPrices}
+                        setLoadingChPrices={setLoadingChPrices}
+                        onLoading={() => <LoadingChanguito />}
                         emptyChanguito={() => <EmptyChanguito />}
                     >
                         {(producto) => (
@@ -76,18 +79,18 @@ export default function ChanguitoMode() {
                                 deleteProducto={() => deleteProducto(producto.name)}
                             />
                         )}
-                    </LitaChanguitoInfo>
+                    </ChanguitoInfo>
 
                 </Grid>
 
-                <Grid item xs={12} sm={12} lg={(changuitoPrices.length || !!loadingChanguitoPrices) ? 4 : 12}>
+                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 4 : 12}>
 
                     <Grid container spacing={2}>
 
-                        <LitaChanguitoPrices
-                            changuitoPrices={changuitoPrices}
-                            errorChanguitoPrices={errorChanguitoPrices}
-                            loadingChanguitoPrices={loadingChanguitoPrices}
+                        <ChanguitoPrices
+                            chPrices={chPrices}
+                            errorChPrices={errorChPrices}
+                            loadingChPrices={loadingChPrices}
                             onLoading={() => (<LoadingChanguitoPrices />)}
                             onError={() => (<ErrorChanguitoPrices />)}
                         >
@@ -98,7 +101,7 @@ export default function ChanguitoMode() {
                                     item={item}
                                 />
                             )}
-                        </LitaChanguitoPrices>
+                        </ChanguitoPrices>
 
                     </Grid>
 

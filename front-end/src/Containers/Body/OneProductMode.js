@@ -1,52 +1,57 @@
 import React from 'react';
 
-// Componentes OneProductSearch
-import LitaOneProductSearch from '../../Components/LitaOneProductSearch';
-import LitaOneProductContainer from '../../Components/LitaOneProductContainer';
-import LitaOneProductInfo from '../../Components/LitaOneProductInfo';
+// IMPORTS MUI
+import Grid from '@mui/material/Grid';
+
+// Componente Search
+import SearchProduct from '../../Components/SearchProduct';
+
+// Componente OneProductInfo
+import OneProductInfo from '../../Components/OneProductInfo';
 
 // Componentes OneProduct Prices
-import LitaOneProductPrices from '../../Components/LitaOneProductPrices';
-import LoadingOneProductPrices from '../../Components/LitaOneProductPrices/LoadingOneProductPrices'
-import ErrorOneProductPrices from '../../Components/LitaOneProductPrices/ErrorOneProductPrices'
-import FullFilledOneProductPrices from '../../Components/LitaOneProductPrices/FullFilledOneProductPrices';
+import OneProductPrices from '../../Components/OneProductPrices';
+import LoadingOneProductPrices from '../../Components/OneProductPrices/LoadingOneProductPrices'
+import ErrorOneProductPrices from '../../Components/OneProductPrices/ErrorOneProductPrices'
+import FullFilledOneProductPrices from '../../Components/OneProductPrices/FullFilledOneProductPrices';
 
 // Lógica
-import useOneProductStates from './useOneProductStates';
+import useOneProduct from './useOneProduct';
 
 export default function OneProductMode() {
 
     const {
-        value,
-        setValue,
+        searchValue,
+        setSearchValue,
         open,
         setOpen,
-        oneProductOptions,
-        loadingOneProductOptions,
-        errorOneProductOptions,
+        searchOptions,
+        loadingSearchOptions,
+        errorSearchOptions,
         oneProductPrices,
         errorOneProductPrices,
         loadingOneProductPrices,
-    } = useOneProductStates();
+    } = useOneProduct();
 
     return (
         <>
-            <LitaOneProductSearch
-                oneProductOptions={oneProductOptions}
-                value={value}
-                setValue={setValue}
+            <SearchProduct
+                productMode='OneProduct'
+                value={searchValue}
+                setValue={setSearchValue}
+                searchOptions={searchOptions}
                 open={open}
                 setOpen={setOpen}
-                loadingOneProductOptions={loadingOneProductOptions}
-                errorOneProductOptions={errorOneProductOptions}
+                loadingSearchOptions={loadingSearchOptions}
+                errorSearchOptions={errorSearchOptions}
             />
-            {!!value &&
-                <LitaOneProductContainer>
+            {!!searchValue &&
 
-                    <LitaOneProductInfo
-                        value={value} />
+                <Grid container spacing={2} justifyContent="center" sx={{ flexGrow: 1 }}>
+                    <OneProductInfo
+                        searchValue={searchValue} />
 
-                    <LitaOneProductPrices
+                    <OneProductPrices
                         errorOneProductPrices={errorOneProductPrices}
                         loadingOneProductPrices={loadingOneProductPrices}
                         oneProductPrices={oneProductPrices}
@@ -60,9 +65,9 @@ export default function OneProductMode() {
                                 item={item.name}
                             />
                         )}
-                    </LitaOneProductPrices>
+                    </OneProductPrices>
 
-                </LitaOneProductContainer>
+                </Grid>
             }
         </>
     )

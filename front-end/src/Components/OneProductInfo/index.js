@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-export default function LitaOneProductInfo({ value }) {
+export default function OneProductInfo({ searchValue }) {
 
     return (
         <>
@@ -17,11 +17,11 @@ export default function LitaOneProductInfo({ value }) {
                     <Stack direction="column" spacing={2} height="100%" width="100%" justifyContent="space-around" alignItems="center">
                         <Stack spacing={2} width="100%" justifyContent="space-around" alignItems="center">
 
-                            <Typography variant="h5">{value.name}</Typography>
+                            <Typography variant="h5">{searchValue.name}</Typography>
 
                             <img
                                 loading='lazy'
-                                src={`https://rickandmortyapi.com/api/character/avatar/${value.id}.jpeg`}
+                                src={`https://rickandmortyapi.com/api/character/avatar/${searchValue.id}.jpeg`}
                                 style={{ 'height': 'auto', 'width': '100%', 'maxWidth': '250px', 'borderRadius': 'inherit' }}
                                 alt=""
                             />

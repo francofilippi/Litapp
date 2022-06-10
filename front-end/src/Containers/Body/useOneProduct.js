@@ -7,19 +7,20 @@ const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
 // Access-Control-Allow-Methods: 'GET'
 // Access-Control-Allow-Origin: '*'
 
-export default function useOneProductStates() {
+export default function useOneProduct() {
 
-  // Estados de LitaOneProductSearch (Autocomplete)
+  // Estados de OneProductSearch (Autocomplete)  
+  const [searchValue, setSearchValue] = React.useState(null);
   const [open, setOpen] = React.useState(false);
-  const [oneProductOptions, setOneProductOptions] = React.useState([]);
-  const [errorOneProductOptions, setErrorOneProductOptions] = React.useState(undefined);
-  const loadingOneProductOptions = open && oneProductOptions.length === 0;
+  const [searchOptions, setSearchOptions] = React.useState([]);
+  const [errorSearchOptions, setErrorSearchOptions] = React.useState(undefined);
+  const loadingSearchOptions = open && searchOptions.length === 0;
 
-  // Effect para loading de LitaOneProductSearch (Autocomplete)
+  // Effect para loading de OneProductSearch (Autocomplete)
   React.useEffect(() => {
     let active = true; // variable usada para solo fetchear 1 vez la data y no cada vez que se ejecuta el useEffect
 
-    if (!loadingOneProductOptions) {
+    if (!loadingSearchOptions) {
       return undefined;
     }
 
@@ -42,7 +43,6 @@ export default function useOneProductStates() {
       }
     })();*/
 
-
     // Esto es lo mismo que lo de arriba.
     async function fetchProductos() {
       if (active) {
@@ -52,12 +52,12 @@ export default function useOneProductStates() {
             .then(response => response.json())
             .then(data => data.results)
 
-          setOneProductOptions([...firstProds])
-          //setOneProductOptions([...JSON.parse(firstProds.body)])
+          setSearchOptions([...firstProds])
+          //setSearchOptions([...JSON.parse(firstProds.body)])
 
         } catch (error) {
-          setOneProductOptions([{ name: 'Error' }])
-          setErrorOneProductOptions(error)
+          setSearchOptions([{ name: 'Error' }])
+          setErrorSearchOptions(error)
         }
       }
     };
@@ -68,28 +68,26 @@ export default function useOneProductStates() {
     };
 
 
-  }, [loadingOneProductOptions]);
+  }, [loadingSearchOptions]);
 
-  // Estados del LitaOneProductSearchedProd (Precios del producto buscado)
-  const [value, setValue] = React.useState(null);
+  // Estados del OneProductSearchedProd (Precios del producto buscado)
   const [oneProductPrices, setOneProductPrices] = React.useState([]);
   const [errorOneProductPrices, setErrorOneProductPrices] = React.useState(false);
+  //const loadingOneProductPrices = searchValue || oneProductPrices.length === 0;
   const [loadingOneProductPrices, setLoadingOneProductPrices] = React.useState(false);
-  //const loadingOneProductPrices = value && oneProductOptions.length === 0;
 
-  // Effect para loading de LitaOneProductSearchedProd
+  // Effect para loading de OneProductSearchedProd
   React.useEffect(() => {
 
-    if (!value) {
+    if (!searchValue) {
       return undefined;
     }
 
     // API -> precios de supers para searched product
 
     (async () => {
-
-      setOneProductPrices([])
       setLoadingOneProductPrices(true)
+      setOneProductPrices([])
       setErrorOneProductPrices(false)
 
       await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
@@ -98,24 +96,25 @@ export default function useOneProductStates() {
           .then(response => response.json())
           .then(data => data.results)
 
-        setOneProductPrices([...pricesProd.slice(value.id - 1, value.id + 3)]);
+        setOneProductPrices([...pricesProd.slice(searchValue.id - 1, searchValue.id + 3)]);
       } catch (error) {
         setErrorOneProductPrices(true)
       }
       setLoadingOneProductPrices(false)
     })();
 
-  }, [value]);
+
+  }, [searchValue]);
 
   return (
     {
-      value,
-      setValue,
+      searchValue,
       open,
       setOpen,
-      oneProductOptions,
-      errorOneProductOptions,
-      loadingOneProductOptions,
+      setSearchValue,
+      searchOptions,
+      errorSearchOptions,
+      loadingSearchOptions,
       oneProductPrices,
       errorOneProductPrices,
       loadingOneProductPrices,
@@ -123,4 +122,4 @@ export default function useOneProductStates() {
   );
 }
 
-export { useOneProductStates };
+export { useOneProduct };

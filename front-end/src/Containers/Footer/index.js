@@ -5,7 +5,7 @@ import LsLogo from "../../assets/imgs/LS-logo-fondo-blanco.png"
 import CardMedia from '@mui/material/CardMedia';
 export default function Footer() {
     return (
-        <Button sx={{ width: '120px', heigth: '100px', padding: 0, background: 'none' }}>
+        <Button sx={{ width: '120px', heigth: '100px', padding: 0, background: 'white' }}>
 
             <CardMedia
                 component="img"

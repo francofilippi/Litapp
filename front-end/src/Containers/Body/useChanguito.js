@@ -34,6 +34,10 @@ export default function useChanguito() {
     const [errorChPrices, setErrorChPrices] = React.useState(false);
     const [loadingChPrices, setLoadingChPrices] = React.useState(false);
 
+    React.useEffect(() => {
+        setChPrices([])
+    }, [changuito])
+
     // Effect para loading de ChanguitoPrices
     React.useEffect(() => {
 
@@ -75,6 +79,7 @@ export default function useChanguito() {
             chPrices,
             errorChPrices,
             loadingChPrices,
+            setChPrices,
             saveChanguito,
             deleteProducto,
             sincronizeChanguito,

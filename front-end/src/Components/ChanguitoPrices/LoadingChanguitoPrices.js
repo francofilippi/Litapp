@@ -20,7 +20,7 @@ export default function LoadingChanguitoPrices() {
                     <Skeleton variant="rectangular" height='100px' />
 
                     <CardContent>
-                        <Skeleton width={150} />
+                        <Skeleton width={120} />
                     </CardContent>
 
                     <CardActions sx={{ justifyContent: "center" }}>

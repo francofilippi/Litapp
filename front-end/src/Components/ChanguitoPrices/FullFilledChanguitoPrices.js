@@ -33,7 +33,7 @@ export default function FullFilledChanguitoPrices({ item, index }) {
 
                     <CardContent>
                         <Typography variant="body">
-                            $ {item.name}
+                            $ {item.id}
                         </Typography>
                     </CardContent>
 

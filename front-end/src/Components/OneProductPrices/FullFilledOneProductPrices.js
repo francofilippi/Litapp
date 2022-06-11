@@ -34,7 +34,7 @@ export default function FullFilledOneProductPrices({ item, index }) {
 
                     <CardContent>
                         <Typography variant="body">
-                            $ {item}
+                            $ {item.id}
                         </Typography>
                     </CardContent>
 

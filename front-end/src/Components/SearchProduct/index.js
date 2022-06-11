@@ -19,6 +19,7 @@ export default function SearchProduct({
   open,
   setOpen,
   searchOptions,
+  setChPrices,
   loadingSearchOptions,
   errorSearchOptions,
 }) {

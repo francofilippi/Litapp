@@ -62,7 +62,7 @@ export default function OneProductMode() {
                             <FullFilledOneProductPrices
                                 key={item.name}
                                 index={index}
-                                item={item.name}
+                                item={item}
                             />
                         )}
                     </OneProductPrices>

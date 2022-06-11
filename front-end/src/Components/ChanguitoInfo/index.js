@@ -34,7 +34,7 @@ export default function ChanguitoInfo(props) {
                             <TableHead >
                                 <TableRow>
                                     <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
-                                    <TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>
+                                    {!!props.chPrices.length && (<TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>)}
                                     <TableCell sx={{ fontSize: 'medium' }} align="center">Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>

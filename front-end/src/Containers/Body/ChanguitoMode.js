@@ -39,6 +39,7 @@ export default function ChanguitoMode() {
         chPrices,
         errorChPrices,
         loadingChPrices,
+        setChPrices,
         setLoadingChPrices,
         deleteProducto,
         saveChanguito,
@@ -54,6 +55,7 @@ export default function ChanguitoMode() {
                 value={changuito}
                 setValue={saveChanguito}
                 searchOptions={searchOptions}
+                setChPrices={setChPrices}
                 open={open}
                 setOpen={setOpen}
                 loadingSearchOptions={loadingSearchOptions}
@@ -76,6 +78,7 @@ export default function ChanguitoMode() {
                             <FullFillChanguito
                                 key={producto.name}
                                 producto={producto}
+                                chPrices={chPrices}
                                 deleteProducto={() => deleteProducto(producto.name)}
                             />
                         )}

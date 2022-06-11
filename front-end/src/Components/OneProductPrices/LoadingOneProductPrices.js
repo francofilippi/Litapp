@@ -17,10 +17,10 @@ export default function LoadingOneProductPrices() {
             <Grid key={item} item xs={12} sm={6}>
 
                 <Card variant='outlined'>
-                    <Skeleton variant="rectangular" height='150px' />
+                    <Skeleton variant="rectangular" height='100px' />
 
                     <CardContent>
-                        <Skeleton width={150} />
+                        <Skeleton width={120} />
                     </CardContent>
 
                     <CardActions sx={{ justifyContent: "center" }}>

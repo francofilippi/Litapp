@@ -19,15 +19,14 @@ export default function SearchProduct({
   open,
   setOpen,
   searchOptions,
-  setChPrices,
   loadingSearchOptions,
   errorSearchOptions,
 }) {
 
-  //const [inputValue, setInputValue] = React.useState('');
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
   return (
     <Autocomplete
       sx={{ width: '100%', maxWidth: '650px' }}
@@ -36,10 +35,6 @@ export default function SearchProduct({
       filterSelectedOptions={filterSelectedOptions}
       value={value}
       onChange={handleChange}
-      // inputValue={inputValue}
-      // onInputChange={(event, newInputValue) => {
-      //   setInputValue(newInputValue);
-      // }}
       open={open}
       onOpen={() => {
         setOpen(true);

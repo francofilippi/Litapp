@@ -16,9 +16,12 @@ export default function FullFillChanguito({ producto, deleteProducto, chPrices }
             <TableCell component="th" scope="row">
                 {producto.name}
             </TableCell>
-            {!!chPrices.length && (
-                <TableCell align="center">{producto.id}</TableCell>
-            )}
+            {!!chPrices.length &&
+                <>
+                    <TableCell align="center">{producto.id}</TableCell>
+                    <TableCell align="center">{producto.id} Dia Hc{/*{store.mejorprecio}*/}</TableCell>
+                </>
+            }
             <TableCell align="center"><Button onClick={deleteProducto}><Delete /></Button></TableCell>
         </TableRow>
     )

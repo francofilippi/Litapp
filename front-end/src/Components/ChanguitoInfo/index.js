@@ -24,8 +24,14 @@ export default function ChanguitoInfo(props) {
 
             <Grid container direction="column" justifyContent="space-around" height="100%">
 
+                {!!props.chPrices.length &&
+                    <Grid item textAlign="center">
+                        <Typography variant="h7" >CHANGUITO: DIA Hardc{/*{store mostrado} {store mostrado==='ganador' && 'GANADOR!'}*/}</Typography>
+                    </Grid>
+                }
+
                 <Grid item >
-                    <Typography variant="h7" >Tienes {props.changuito.length} productos en tu changuito</Typography>
+                    <Typography variant="body1" >Tienes {props.changuito.length} productos en tu changuito</Typography>
                 </Grid>
 
                 <Grid item xs={7} overflow="hidden" >
@@ -33,9 +39,14 @@ export default function ChanguitoInfo(props) {
                         <Table aria-label="a dense table">
                             <TableHead >
                                 <TableRow>
-                                    <TableCell sx={{ fontSize: 'medium' }}>Productos</TableCell>
-                                    {!!props.chPrices.length && (<TableCell sx={{ fontSize: 'medium' }} align="center">Precio</TableCell>)}
-                                    <TableCell sx={{ fontSize: 'medium' }} align="center">Eliminar</TableCell>
+                                    <TableCell>Productos</TableCell>
+                                    {!!props.chPrices.length &&
+                                        <>
+                                            <TableCell align="center">Precio DIA Hardc</TableCell>
+                                            <TableCell align="center">Mejor Precio</TableCell>
+                                        </>
+                                    }
+                                    <TableCell align="center">Eliminar</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody >

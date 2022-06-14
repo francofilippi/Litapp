@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
-// const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/responseDummyData'
+const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/'
 
 export default function useChanguito() {
 
@@ -29,6 +29,7 @@ export default function useChanguito() {
     // };
 
     // Estados del ChanguitoPrices
+    console.log(changuito)
 
     const [chPrices, setChPrices] = React.useState([]);
     const [errorChPrices, setErrorChPrices] = React.useState(false);
@@ -38,14 +39,14 @@ export default function useChanguito() {
         setChPrices([])
     }, [changuito])
 
-    // Effect para loading de ChanguitoPrices
+    // Effect para loading de ChanguitoPrices (RICK Y MORTY)
     React.useEffect(() => {
 
         if (!loadingChPrices) {
             return undefined;
         }
 
-        // API -> precios de supers para ChanguitoPrices
+        // API -> precios de supers para ChanguitoPrices 
         let preciosABuscar = []
         changuito.forEach(element => {
             (async () => {
@@ -65,12 +66,57 @@ export default function useChanguito() {
                 } catch (error) {
                     setErrorChPrices(true)
                 }
-
                 setLoadingChPrices(false)
             })();
         });
 
     }, [loadingChPrices]);
+
+    // Effect para loading de ChanguitoPrices (LitApp)
+    // React.useEffect(() => {
+
+    //     if (!loadingChPrices) {
+    //         return undefined;
+    //     }
+
+    //     // API -> precios de supers para ChanguitoPrices
+    //     let preciosABuscar = [
+    //         "Pepsi Black 2.25lts",
+    //         "Arroz parboil Gallo Oro caja 1 kg",
+    //         "Té Negro Green Hills 50 Un.",
+    //         "Leche Entera Clasica LA SERENISIMA Larga Vida 1l"]
+
+    //     // Armo un array con cada propiedad name del changuito
+    //     // changuito.forEach(producto => {
+    //     //     preciosABuscar.push(producto.name)
+    //     // });
+
+    //     let preciosABuscarObj = { products: preciosABuscar }  // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
+
+    //     async function fetchPreciosChanguito() {
+    //         setErrorChPrices(false)
+    //         try {
+    //             var requestOptions = {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'text/plain'
+    //                 },
+    //                 body: JSON.stringify(preciosABuscarObj),
+    //                 redirect: 'follow'
+    //             };
+    //             fetch(API_LITA_BASE + 'getChar', requestOptions)
+    //                 .then(response => response.json())
+    //                 .then(result => console.log(result))
+    //                 .catch(error => console.log('error', error));
+
+    //         } catch (error) {
+    //             setErrorChPrices(true)
+    //         }
+    //         setLoadingChPrices(false)
+    //     }
+    //     fetchPreciosChanguito()
+
+    // }, [loadingChPrices]);
 
     return (
         {

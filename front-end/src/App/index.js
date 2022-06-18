@@ -15,7 +15,7 @@ import AdsenseBox from '../Components/AdsenseBox';
 import ChanguitoMode from '../Containers/Body/ChanguitoMode';
 import OneProductMode from '../Containers/Body/OneProductMode';
 
-import useGetInitialInfo from '../Containers/Body/useGetInitialInfo';
+import useGetInitialInfo from '../CustomHooks//useGetInitialInfo';
 
 // CSS
 import './App.css';

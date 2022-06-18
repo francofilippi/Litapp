@@ -1,46 +1,14 @@
 import React from "react";
 
-const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
 const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/'
 
 export default function useOneProduct({ searchValue }) {
 
-  // Estados del OneProductPrices (Precios del producto buscado)
+  // Estados de OneProductPrices (Precios del producto buscado)
   const [oneProductPrices, setOneProductPrices] = React.useState([]);
   const [errorOneProductPrices, setErrorOneProductPrices] = React.useState(false);
   const [loadingOneProductPrices, setLoadingOneProductPrices] = React.useState(false);
   //const loadingOneProductPrices = searchValue || oneProductPrices.length === 0;
-
-  /* Effect para loading de OneProductPrices(RICK Y MORTY)
-  
-  // React.useEffect(() => {
-
-  //   if (!searchValue) {
-  //     return undefined;
-  //   }
-
-  //   // API -> precios de supers para searched product
-  //   (async () => {
-  //     setLoadingOneProductPrices(true)
-  //     setOneProductPrices([])
-  //     setErrorOneProductPrices(false)
-
-  //     await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
-  //     try {
-  //       const pricesProd = await fetch(RICKYMORTY)
-  //         .then(response => response.json())
-  //         .then(data => data)
-
-  //       setOneProductPrices([...pricesProd.slice(searchValue.id - 1, searchValue.id + 3)]);
-  //     } catch (error) {
-  //       setErrorOneProductPrices(true)
-  //     }
-  //     setLoadingOneProductPrices(false)
-  //   })();
-
-  // }, [searchValue]);
-
-*/
 
   // Effect para loading de OneProductPrices(LitApp)
   React.useEffect(() => {
@@ -55,9 +23,8 @@ export default function useOneProduct({ searchValue }) {
       setOneProductPrices([])
       setErrorOneProductPrices(false)
 
-      let precioABuscar = [searchValue.productName]
       // let precioABuscar = Array.from([searchValue.name]) // Armo un array con la propiedad name del objeto de searchValue
-      let preciosABuscarObj = { products: precioABuscar } // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
+      let preciosABuscarObj = { products: [searchValue.productName] } // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
 
       try {
         var requestOptions = {
@@ -75,6 +42,7 @@ export default function useOneProduct({ searchValue }) {
           .catch(error => console.log('error: ', error));
 
         let filteredFetchPrices = fetchPrices.sort((a, b) => a.price - b.price).filter(a => a.price > 0) // Si viene precio 0 en un super, no lo toma en cuenta. Debería corregirse desde el back esto
+        filteredFetchPrices.map(e => e.price = e.price.toFixed(2)) // Agrega 2 decimales a todos los precios
         setOneProductPrices([...filteredFetchPrices])
       } catch (error) {
         setErrorOneProductPrices(true)

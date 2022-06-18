@@ -8,8 +8,6 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 
-import './winnercard.css';
-
 export default function LoadingChanguitoPrices() {
     const fourLoadingBoxes = ['1', '2', '3', '4']
     return (

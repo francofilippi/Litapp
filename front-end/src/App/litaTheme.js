@@ -99,6 +99,7 @@ export default function ThemePaletteComponentsToggle(props) {
                             background: {
                                 paper: '#5D10B5', // violeta Lita                                
                                 secondaryPaper: '#9050D9',
+                                storeCard: '#E6D0FF',
                                 default: '#f5ecc6',
                             },
                             action: {
@@ -191,6 +192,7 @@ export default function ThemePaletteComponentsToggle(props) {
                             background: {
                                 paper: '#282828',
                                 secondaryPaper: '#282828',
+                                storeCard: '#424242',
                                 default: '#121212',
                             },
                             action: {
@@ -327,13 +329,12 @@ export default function ThemePaletteComponentsToggle(props) {
                                     color: litaThemePalette.palette.secondary.contrastText,
                                 },
                             }
-                        },
+                        }
                     ],
                     styleOverrides: {
                         root: {
                             backgroundColor: litaThemePalette.palette.button.main,
                             color: litaThemePalette.palette.button.contrastText,
-
                             '&:hover': {
                                 backgroundColor: litaThemePalette.palette.button.hover,
                             }
@@ -359,7 +360,7 @@ export default function ThemePaletteComponentsToggle(props) {
                                 objectFit: 'contain',
                                 padding: '10px',
                                 height: '90px',
-                                background: litaThemePalette.palette.background.default
+                                background: litaThemePalette.palette.background.storeCard
                             }
                         }
                     ]

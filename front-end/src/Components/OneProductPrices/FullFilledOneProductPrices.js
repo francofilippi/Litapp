@@ -8,9 +8,6 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-//import Button from '@mui/material/Button';
-//import CardActions from '@mui/material/CardActions';
-
 
 import './winnercard.css';
 
@@ -36,18 +33,11 @@ export default function FullFilledOneProductPrices({ item, index, storeOptions }
                     />
 
                     <CardContent>
-                        <Typography variant="body">
+                        <Typography variant="body" className='storecard-info '>
                             $ {item.price}
                         </Typography>
                     </CardContent>
 
-                    {/* <CardActions sx={{ justifyContent: "center" }}>
-                        <Button size="small">
-                            <Typography variant='body'>
-                                Ir a producto
-                            </Typography>
-                        </Button>
-                    </CardActions> */}
                 </Card>
 
             </Box>

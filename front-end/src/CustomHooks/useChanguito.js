@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
 const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/'
 
 export default function useChanguito() {
@@ -11,7 +10,7 @@ export default function useChanguito() {
         saveItem: saveChanguito,
         sincronizeItem: sincronizeChanguito,
         loading: loadingChanguito,
-        error: errorChanguito,
+        //error: errorChanguito,
     } = useLocalStorage('CHANGUITO_V1', []);
 
     const deleteProducto = (name) => {
@@ -24,23 +23,22 @@ export default function useChanguito() {
     // Estados del ChanguitoPrices
 
     const [chPrices, setChPrices] = React.useState([]);
-    const [lowestPrices, setLowestPrices] = React.useState([]);
-    const [totalPrices, setTotalPrices] = React.useState([]);
     const [errorChPrices, setErrorChPrices] = React.useState(false);
     const [loadingChPrices, setLoadingChPrices] = React.useState(false);
+    const [storeTotals, setStoreTotals] = React.useState([]);
+    const [selectedCh, setSelectedCh] = React.useState('');
 
-    // Effect para cleanUp si actualiza changuito (borra o agrega un producto)
-    React.useEffect(() => {
-        setChPrices([])
-        setLowestPrices([])
-        setTotalPrices([])
-    }, [changuito])
+    console.log(chPrices)
+    console.log(storeTotals)
 
     // Effect para loading de ChanguitoPrices (LitApp)
     React.useEffect(() => {
 
         if (!loadingChPrices) {
-            return undefined;
+            return () => {
+                setChPrices([])
+                setStoreTotals([])
+            }; // cleanup chPrices
         }
 
         let preciosABuscar = [];
@@ -67,44 +65,46 @@ export default function useChanguito() {
                     .then(result => result)
                     .catch(error => console.log('error', error));
 
-                // Formatear y extraer total de changuitos del JSON
-                let totalChPrices = []
-                let arr = Object.entries(fetchChPrices)
-                let sumaValoresObjeto = (objeto) => Object.values(objeto).reduce((a, b) => a + b);
-                arr.forEach(e => {
-                    // console.log(e[0])    
-                    // console.log(e[1])
-                    let miObjetoCreado = {}
-                    miObjetoCreado.store = e[0]
-                    miObjetoCreado.suma = sumaValoresObjeto(e[1])
-                    totalChPrices.push(miObjetoCreado)
-                })
-                setChPrices([...totalChPrices])
-
-                // Formatear y extraer total productos y precios más baratos del JSON
+                // Formatear total productos del JSON
                 let productoYPrecio = []
+                let arr = Object.entries(fetchChPrices)
                 changuito.forEach(producto => {
                     arr.forEach(store => {
                         let productosEnArray = Object.entries(store[1])
                         productosEnArray.forEach(element => {
                             if (producto.productName === element[0]) {
-                                let item = {}
-                                item.producto = producto.productName
-                                item.store = store[0]
-                                item.precio = element[1]
+                                let item = {
+                                    producto: producto.productName,
+                                    store: store[0],
+                                    precio: element[1]
+                                }
                                 productoYPrecio.push(item)
                             }
                         });
                     })
                 })
-                setTotalPrices([...productoYPrecio])
-                let preciosBajos = []
-                changuito.forEach(producto => {
-                    let mismosProductos = productoYPrecio.filter(elem => elem.producto === producto.productName)
-                    let precioBajo = mismosProductos.sort((a, b) => a.precio - b.precio)[0]
-                    preciosBajos.push(precioBajo)
-                })
-                setLowestPrices([...preciosBajos])
+
+                setChPrices([...productoYPrecio])
+
+                // Formatear y extraer total de los changuitos del JSON
+                let storeTotals = []
+                if (!!productoYPrecio.length) {
+                    let stores = [...new Set(productoYPrecio.map(x => x.store))] // Stores sin repetir
+                    stores.forEach(store => {  // Separa los precios de productos por store 
+                        let productos = []
+                        productoYPrecio.forEach(x => {
+                            if (x.store === store) {
+                                productos.push(x.precio)
+                            }
+                        })
+                        let total = parseFloat(productos.reduce((x, y) => x + y)).toFixed(2) // Suma los precios de los productos del store, y los guarda con 2 decimales
+                        storeTotals.push({ store, total }) // Crea objecto con el store y su total
+                    })
+                    storeTotals.sort((a, b) => a.total - b.total) // Ordena de menor a mayor precio los stores con sus totales. El primero va a ser el ganador
+                }
+
+                setStoreTotals([...storeTotals])
+                setSelectedCh(storeTotals[0].store)
 
             } catch (error) {
                 setErrorChPrices(true)
@@ -113,7 +113,7 @@ export default function useChanguito() {
         }
         fetchPreciosChanguito()
 
-    }, [loadingChPrices]);
+    }, [loadingChPrices, changuito]);
 
 
 
@@ -122,11 +122,12 @@ export default function useChanguito() {
             changuito,
             loadingChanguito,
             chPrices,
-            lowestPrices,
-            totalPrices,
+            storeTotals,
+            selectedCh,
             errorChPrices,
             loadingChPrices,
             setChPrices,
+            setSelectedCh,
             saveChanguito,
             deleteProducto,
             sincronizeChanguito,

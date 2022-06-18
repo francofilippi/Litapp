@@ -17,10 +17,7 @@
     left: -17px;
 }
 
-.winnercard-info {
-    --color: #181818;
-    background: var(--color);
-    color: var(--color);
+.storecard-info {
     display: flex;
     justify-content: center;
     align-items: center;

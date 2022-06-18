@@ -10,6 +10,17 @@
     z-index: 1;
 }
 
+.storecard {
+    --background: white;
+    padding: 5px;
+    border-radius: .5rem;
+    overflow: visible;
+    background: #d853ea;
+    background: var(--background);
+    position: relative;
+    z-index: 1;
+}
+
 .winnerstar {
     position: absolute;
     font-size: xx-large;

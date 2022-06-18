@@ -8,9 +8,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
-
-import './winnercard.css';
-
 export default function ErrorChanguitoPrices() {
     const fourErrorBoxes = ['1', '2', '3', '4']
     return (

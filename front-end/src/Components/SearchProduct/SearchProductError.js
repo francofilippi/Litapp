@@ -1,12 +1,11 @@
 import React from "react";
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 export default function SearchProductError(error) {
     return (
-        <Box sx={{ width: '100%', height: '100%', textAlign: 'center' }}>
-            <ErrorOutlineOutlinedIcon fontSize="large" /><Typography variant='body'>  Ups! Ha ocurrido un error😥</Typography>
-        </Box>
+        <Stack sx={{ minHeight: '50px', placeItems: 'center', justifyContent: 'center' }}>
+            <Typography variant='body'>  Ups! Ha ocurrido un error😥</Typography>
+        </Stack>
     );
 }

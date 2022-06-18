@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Lógica
-import useOneProduct from './useOneProduct';
+import useOneProduct from '../../CustomHooks/useOneProduct';
 
 // IMPORTS MUI
 import Grid from '@mui/material/Grid';

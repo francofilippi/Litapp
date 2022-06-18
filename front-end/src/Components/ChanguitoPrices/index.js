@@ -9,7 +9,7 @@ export default function ChanguitoPrices(props) {
 
             {props.loadingChPrices && props.onLoading()}
 
-            {(!props.loadingChPrices && !props.errorChPrices) && props.chPrices?.map(props.children)}
+            {(!props.loadingChPrices && !props.errorChPrices) && props.storeTotals.map(props.children)}
         </>
     );
 }

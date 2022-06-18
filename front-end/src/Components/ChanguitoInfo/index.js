@@ -26,7 +26,7 @@ export default function ChanguitoInfo(props) {
 
                 {!!props.chPrices.length &&
                     <Grid item textAlign="center">
-                        <Typography variant="h7" >CHANGUITO MÁS ECONÓMICO: {props.chPrices[0].store.toUpperCase()}</Typography>
+                        <Typography variant="h7" >CHANGUITO MÁS ECONÓMICO: {props.storeTotals[0].store.toUpperCase()} 🏆</Typography>
                     </Grid>
                 }
 
@@ -42,8 +42,8 @@ export default function ChanguitoInfo(props) {
                                     <TableCell>Productos</TableCell>
                                     {!!props.chPrices.length &&
                                         <>
-                                            {/* <TableCell align="center">Precio </TableCell> */}
-                                            <TableCell align="center">Mejor Precio 🏆</TableCell>
+                                            <TableCell align="center">Precios {props.selectedCh.toUpperCase()} </TableCell>
+                                            <TableCell align="center">💲 Menor Precio</TableCell>
                                         </>
                                     }
                                     <TableCell align="center">Eliminar</TableCell>

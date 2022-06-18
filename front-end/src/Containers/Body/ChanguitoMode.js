@@ -4,7 +4,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 
 // Lógica
-import useChanguito from './useChanguito';
+import useChanguito from '../../CustomHooks/useChanguito';
 
 // Componente Search
 import SearchProduct from '../../Components/SearchProduct';
@@ -29,18 +29,16 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
         changuito,
         loadingChanguito,
         chPrices,
-        lowestPrices,
-        totalPrices,
+        storeTotals,
         errorChPrices,
         loadingChPrices,
+        selectedCh,
+        setSelectedCh,
         setLoadingChPrices,
         deleteProducto,
         saveChanguito,
         sincronizeChanguito,
     } = useChanguito();
-
-    const [selectedCh, setSelectedCh] = React.useState(null);
-    console.log(selectedCh)
 
     return (
         <>
@@ -61,6 +59,8 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                         changuito={changuito}
                         loadingChanguito={loadingChanguito}
                         chPrices={chPrices}
+                        storeTotals={storeTotals}
+                        selectedCh={selectedCh}
                         setLoadingChPrices={setLoadingChPrices}
                         onLoading={() => <LoadingChanguito />}
                         emptyChanguito={() => <EmptyChanguito />}
@@ -71,8 +71,6 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                                 producto={producto}
                                 chPrices={chPrices}
                                 selectedCh={selectedCh}
-                                totalPrices={totalPrices}
-                                lowestPrices={lowestPrices}
                                 deleteProducto={() => deleteProducto(producto.name)}
                             />
                         )}
@@ -86,6 +84,7 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
 
                         <ChanguitoPrices
                             chPrices={chPrices}
+                            storeTotals={storeTotals}
                             errorChPrices={errorChPrices}
                             loadingChPrices={loadingChPrices}
                             onLoading={() => (<LoadingChanguitoPrices />)}

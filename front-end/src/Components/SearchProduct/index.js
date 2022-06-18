@@ -45,31 +45,31 @@ export default function SearchProduct({
       options={searchOptions}
       loadingText='Cargando..'
       renderOption={
-        (props, option) => (
-          <ListItem
-            variant='listItemSearchProduct'
-            key={option.productName}
-            {...props}>
-            <Box maxHeight='150px' width='100%'>
-              <Stack
-                direction="row"
-                width="100%"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Typography variant='body2' sx={{ 'maxWidth': '280px' }}>{option.productName}</Typography>
-                <Paper variant='imgListPaper' sx={{ display: 'flex', width: '6rem', height: '6rem' }}>
-                  <img
-                    loading='lazy'
-                    src={option.image}
-                    style={{ 'aspectRatio': '1/1', 'borderRadius': '10%' }}
-                    alt=""
-                  />
-                </Paper>
-              </Stack>
-            </Box>
-          </ ListItem>
-        )
+        searchOptions.length === 1 ? () => <SearchProductError /> :
+          (props, option) => (
+            <ListItem
+              variant='listItemSearchProduct'
+              key={option.productName}
+              {...props}>
+              <Box maxHeight='150px' width='100%'>
+                <Stack
+                  direction="row"
+                  width="100%"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography variant='body2' sx={{ 'maxWidth': '280px' }}>{option.productName}</Typography>
+                  <Paper variant='imgListPaper' sx={{ display: 'flex', width: '6rem', height: '6rem' }}>
+                    <img
+                      src={option.image}
+                      style={{ 'aspectRatio': '1/1', 'borderRadius': '10%' }}
+                      alt=""
+                    />
+                  </Paper>
+                </Stack>
+              </Box>
+            </ ListItem>
+          )
       }
       renderInput={(params) => (
         <TextField

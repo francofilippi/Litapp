@@ -1,6 +1,5 @@
 import React from "react";
 
-const RICKYMORTY = 'https://rickandmortyapi.com/api/character/'
 const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/'
 
 export default function useGetInitialInfo() {
@@ -21,7 +20,7 @@ export default function useGetInitialInfo() {
                 setSearchOptions([...initialInfo[0].product])
                 setStoreOptions([...initialInfo[1].stores])
             } catch (error) {
-                setSearchOptions([{ name: 'Error' }])
+                setSearchOptions([{ productName: 'Error' }])
             }
         };
         fetchInitialInfo()

@@ -28,9 +28,6 @@ export default function useChanguito() {
     const [storeTotals, setStoreTotals] = React.useState([]);
     const [selectedCh, setSelectedCh] = React.useState('');
 
-    console.log(chPrices)
-    console.log(storeTotals)
-
     // Effect para loading de ChanguitoPrices (LitApp)
     React.useEffect(() => {
 

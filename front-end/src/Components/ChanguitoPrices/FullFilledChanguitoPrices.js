@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import './winnercard.css';
+import './winnercard2.css';
 
 export default function FullFilledChanguitoPrices({ item, index, storeOptions, setSelectedCh }) {
 

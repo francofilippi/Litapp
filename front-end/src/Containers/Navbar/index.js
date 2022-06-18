@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 // import AdbIcon from '@mui/icons-material/Adb';
-import Brightness3Icon from '@mui/icons-material/Brightness3';
+import ModeNightIcon from '@mui/icons-material/ModeNight';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -78,7 +78,7 @@ export default function Navbar({ setProductMode }) {
                             >
                                 <Box sx={{ color: 'text.primary', }}>
                                     <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-                                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness3Icon />}
+                                        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <ModeNightIcon />}
                                     </IconButton>
                                     <Tooltip title="Open settings">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

@@ -19,10 +19,6 @@ export default function LoadingOneProductPrices() {
                 <Card variant='outlined'>
                     <Skeleton variant="rectangular" height='100px' />
 
-                    <CardContent>
-                        <Skeleton width={120} />
-                    </CardContent>
-
                     <CardActions sx={{ justifyContent: "center" }}>
                         <Skeleton width={80} />
                     </CardActions>

@@ -24,7 +24,7 @@ export default function FullFilledOneProductPrices({ item, index, storeOptions }
                     <Typography variant="h4" className="winnerstar">🏆</Typography>
                 )}
 
-                <Card variant="outlined" sx={{ borderRadius: '0px' }}>
+                <Card variant="outlined" sx={{ borderRadius: '0px' }} className='contenido'>
                     <CardMedia
                         component="img"
                         variant="marketCard"

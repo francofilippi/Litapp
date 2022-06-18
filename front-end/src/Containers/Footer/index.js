@@ -1,15 +1,27 @@
 import React from "react"
+
+// MUI
 import Button from "@mui/material/Button"
-import LsLogo from "../../assets/imgs/LS-logo-fondo-blanco.png"
+import { useTheme } from '@mui/material/styles';
 
-import CardMedia from '@mui/material/CardMedia';
+// Logos
+import LsLogoLight from "../../assets/imgs/LsLogo-light.png"
+import LsLogoDark from "../../assets/imgs/LsLogo-dark.png"
+
 export default function Footer() {
-    return (
-        <Button sx={{ width: '120px', heigth: '100px', padding: 0, background: 'white' }}>
 
-            <CardMedia
-                component="img"
-                style={{ 'maxHeight': '100%', 'width': '100%', 'height': '100%' }}
+    const theme = useTheme()
+    let LsLogo = LsLogoLight
+
+    theme.palette.mode === 'dark' && (
+        LsLogo = LsLogoDark
+    )
+
+    return (
+        <Button sx={{ display: 'flex', padding: 0, border: 'none', background: 'none' }}>
+
+            <img
+                style={{ 'width': '100%', 'height': '100%' }}
                 src={LsLogo}
             />
         </Button>

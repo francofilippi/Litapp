@@ -26,7 +26,7 @@ export default function FullFillChanguito({ producto, deleteProducto, totalPrice
             </TableCell>
             {!!totalPrices.length &&
                 <>
-                    <TableCell align="center"> Precios: </TableCell>
+                    {/* <TableCell align="center"> Precios: </TableCell> */}
                     <TableCell align="center"> $ {mejorPrecio.precio} - {mejorPrecio.store.toUpperCase()}</TableCell>
                 </>
             }

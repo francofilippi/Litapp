@@ -20,7 +20,7 @@ import TableRow from '@mui/material/TableRow';
 export default function ChanguitoInfo(props) {
 
     return (
-        <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px' }}>
+        <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px', width: '100%', maxWidth: '750px' }}>
 
             <Grid container direction="column" justifyContent="space-around" height="100%">
 
@@ -42,7 +42,7 @@ export default function ChanguitoInfo(props) {
                                     <TableCell>Productos</TableCell>
                                     {!!props.chPrices.length &&
                                         <>
-                                            <TableCell align="center">Precio </TableCell>
+                                            {/* <TableCell align="center">Precio </TableCell> */}
                                             <TableCell align="center">Mejor Precio 🏆</TableCell>
                                         </>
                                     }

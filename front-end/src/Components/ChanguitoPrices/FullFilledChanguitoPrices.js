@@ -21,33 +21,31 @@ export default function FullFilledChanguitoPrices({ item, index, storeOptions, s
         <Grid item xs={12} sm={6}>
             <Box className={index === 0 && "winnercard"}>
 
-                <Button onClick={() => setSelectedCh(item.store)}>
-                    {index === 0 && (
-                        <Typography variant="h4" className="winnerstar">🏆</Typography>
-                    )}
-                    <Card variant="outlined" sx={{ borderRadius: '0px' }}>
-                        <CardMedia
-                            component="img"
-                            variant="marketCard"
-                            src={store[0].image}//logo de super
-                            alt="logo super"
-                        />
+                {index === 0 && (
+                    <Typography variant="h4" className="winnerstar">🏆</Typography>
+                )}
+                <Card variant="outlined" sx={{ borderRadius: '0px' }}>
+                    <CardMedia
+                        component="img"
+                        variant="marketCard"
+                        src={store[0].image}//logo de super
+                        alt="logo super"
+                    />
 
-                        <CardContent>
-                            <Typography variant="body">
-                                $ {item.suma}
-                            </Typography>
-                        </CardContent>
+                    <CardContent>
+                        <Typography variant="body">
+                            $ {parseFloat(item.suma).toFixed(2)}
+                        </Typography>
+                    </CardContent>
 
-                        {/* <CardActions sx={{ justifyContent: "center" }}>
+                    {/* <CardActions sx={{ justifyContent: "center" }}>
                         <Button size="small">
                             <Typography variant='body'>
                                 Ir a producto
                             </Typography>
                         </Button>
                     </CardActions> */}
-                    </Card>
-                </Button>
+                </Card>
             </Box>
         </Grid>
     );

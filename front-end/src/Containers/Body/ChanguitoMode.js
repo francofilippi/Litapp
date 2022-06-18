@@ -53,9 +53,9 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                 searchOptions={searchOptions}
             />
 
-            <Grid container spacing={2}>
+            <Grid container spacing={2} sx={{ minHeight: '80%', minWidth: '80%' }}>
 
-                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12}>
+                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12} sx={{ justifyContent: 'center', display: 'flex' }}>
 
                     <ChanguitoInfo
                         changuito={changuito}

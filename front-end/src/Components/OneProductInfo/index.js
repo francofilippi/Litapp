@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 export default function OneProductInfo({ searchValue, oneProductPrices }) {
 
     return (
-        <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px' }}>
+        <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px', height: '100%', maxWidth: '750px' }}>
             <Stack spacing={2} height='100%' width='100%' justifyContent='space-around' alignItems='center'>
 
                 <Typography variant='h7'>{searchValue.productName}</Typography>

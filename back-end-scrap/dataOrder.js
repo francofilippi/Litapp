@@ -1,16 +1,25 @@
 const AWS = require("aws-sdk");
 AWS.config.update({ region: "us-east-1" });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-
+const date = require('date-and-time')
+  
+const now = new Date();
+  
+// Formatting the date and time
+// by using date.format() method
+const date_now = date.format(now,'YYYY-MM-DD');
+console.log(date_now)
 //variables
 //filter by specific product
+
 var specificByProductAndDate = {
   TableName: "products",
   FilterExpression: "contains(#product, :product) AND contains(#date, :date)",
   ExpressionAttributeNames: { "#product": "product", "#date" : "date" },
   ExpressionAttributeValues: {
     ":product": "Pepsi Black 2.25lts",
-    ":date": "2022-05-28"
+    ":date": "2022-06-11"
+        //":date": date_now
   },
 };
 
@@ -90,7 +99,7 @@ const lowestPrice = (data) => {
 
 //
 dynamodb
-  .scan(specificByDateRange)
+  .scan(specificByProductAndDate)
   .promise()
   .then((data) => productAndMarket(data.Items))
   .catch((error) => console.log(error));

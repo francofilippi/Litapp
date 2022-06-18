@@ -6,20 +6,28 @@ import TableRow from '@mui/material/TableRow';
 import Button from "@mui/material/Button";
 import Delete from "@mui/icons-material/Delete";
 
-export default function FullFillChanguito({ producto, deleteProducto, chPrices }) {
+export default function FullFillChanguito({ producto, deleteProducto, totalPrices, lowestPrices, selectedCh }) {
+
+    let mejorPrecio = {}
+    lowestPrices.forEach((e) => {
+        if (e.producto === producto.productName) {
+            mejorPrecio.precio = e.precio
+            mejorPrecio.store = e.store
+        }
+    })
+
 
     return (
         <TableRow
-            key={producto.name}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
             <TableCell component="th" scope="row">
-                {producto.name}
+                {producto.productName}
             </TableCell>
-            {!!chPrices.length &&
+            {!!totalPrices.length &&
                 <>
-                    <TableCell align="center">{producto.id}</TableCell>
-                    <TableCell align="center">{producto.id} Dia Hc{/*{store.mejorprecio}*/}</TableCell>
+                    <TableCell align="center"> Precios: </TableCell>
+                    <TableCell align="center"> $ {mejorPrecio.precio} - {mejorPrecio.store.toUpperCase()}</TableCell>
                 </>
             }
             <TableCell align="center"><Button onClick={deleteProducto}><Delete /></Button></TableCell>

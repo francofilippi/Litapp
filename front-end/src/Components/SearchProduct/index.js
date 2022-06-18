@@ -1,4 +1,6 @@
 import React from 'react';
+
+// IMPORTS MUI
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import ListItem from '@mui/material/ListItem';
@@ -8,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+// Componentes
 import SearchProductError from './SearchProductError';
 
 export default function SearchProduct({
@@ -16,16 +19,11 @@ export default function SearchProduct({
   filterSelectedOptions,
   value,
   setValue,
-  open,
-  setOpen,
   searchOptions,
-  loadingSearchOptions,
-  errorSearchOptions,
 }) {
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue)
-  }
+  const [open, setOpen] = React.useState(false)
+  const loadingSearchOptions = open && searchOptions.length === 0;
 
   return (
     <Autocomplete
@@ -34,7 +32,7 @@ export default function SearchProduct({
       limitTags={limitTags}
       filterSelectedOptions={filterSelectedOptions}
       value={value}
-      onChange={handleChange}
+      onChange={(event, newValue) => setValue(newValue)}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -42,39 +40,36 @@ export default function SearchProduct({
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.name === value.name}
-      getOptionLabel={(option) => option.name}
+      isOptionEqualToValue={(option, value) => option.productName === value.productName}
+      getOptionLabel={(option) => option.productName}
       options={searchOptions}
-      loading={loadingSearchOptions}
       loadingText='Cargando..'
       renderOption={
-        errorSearchOptions ?
-          (option) => (<ListItem key={option.id} variant='listItemError'><SearchProductError /></ListItem>)
-          :
-          (props, option) => (
-            <ListItem
-              variant='listItemSearchProduct'
-              {...props}>
-              <Box maxHeight='150px' width='100%'>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  width="100%"
-                  alignItems="center"
-                >
-                  <Typography variant='body1'>{option.name}</Typography>
-                  <Paper variant='imgListPaper' sx={{ display: 'flex', width: '6rem' }}>
-                    <img
-                      loading='lazy'
-                      src={`https://rickandmortyapi.com/api/character/avatar/${option.id}.jpeg`}
-                      style={{ 'height': 'auto', 'maxWidth': '100%', 'borderRadius': 'inherit' }}
-                      alt=""
-                    />
-                  </Paper>
-                </Stack>
-              </Box>
-            </ListItem>
-          )
+        (props, option) => (
+          <ListItem
+            variant='listItemSearchProduct'
+            key={option.productName}
+            {...props}>
+            <Box maxHeight='150px' width='100%'>
+              <Stack
+                direction="row"
+                width="100%"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Typography variant='body2' sx={{ 'maxWidth': '280px' }}>{option.productName}</Typography>
+                <Paper variant='imgListPaper' sx={{ display: 'flex', width: '6rem', height: '6rem' }}>
+                  <img
+                    loading='lazy'
+                    src={option.image}
+                    style={{ 'aspectRatio': '1/1', 'borderRadius': '10%' }}
+                    alt=""
+                  />
+                </Paper>
+              </Stack>
+            </Box>
+          </ ListItem>
+        )
       }
       renderInput={(params) => (
         <TextField

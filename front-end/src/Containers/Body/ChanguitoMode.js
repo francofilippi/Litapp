@@ -1,9 +1,9 @@
 import React from 'react';
-// MUI
+
+// IMPORTS MUI
 import Grid from '@mui/material/Grid';
 
 // Lógica
-import useOneProduct from './useOneProduct';
 import useChanguito from './useChanguito';
 
 // Componente Search
@@ -23,28 +23,24 @@ import FullFilledChanguitoPrices from '../../Components/ChanguitoPrices/FullFill
 
 import { ChangeAlertWithStorageListener } from '../../Components/ChangeAlert';
 
-export default function ChanguitoMode() {
-
-    const {
-        open,
-        setOpen,
-        searchOptions,
-        loadingSearchOptions,
-        errorSearchOptions,
-    } = useOneProduct();
+export default function ChanguitoMode({ searchOptions, storeOptions }) {
 
     const {
         changuito,
         loadingChanguito,
         chPrices,
+        lowestPrices,
+        totalPrices,
         errorChPrices,
         loadingChPrices,
-        setChPrices,
         setLoadingChPrices,
         deleteProducto,
         saveChanguito,
         sincronizeChanguito,
     } = useChanguito();
+
+    const [selectedCh, setSelectedCh] = React.useState(null);
+    console.log(selectedCh)
 
     return (
         <>
@@ -55,16 +51,11 @@ export default function ChanguitoMode() {
                 value={changuito}
                 setValue={saveChanguito}
                 searchOptions={searchOptions}
-                setChPrices={setChPrices}
-                open={open}
-                setOpen={setOpen}
-                loadingSearchOptions={loadingSearchOptions}
-                errorSearchOptions={errorSearchOptions}
             />
 
-            <Grid container spacing={2} justifyContent="center" sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
 
-                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12} sx={{ justifyContent: 'center' }}>
+                <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12}>
 
                     <ChanguitoInfo
                         changuito={changuito}
@@ -76,9 +67,12 @@ export default function ChanguitoMode() {
                     >
                         {(producto) => (
                             <FullFillChanguito
-                                key={producto.name}
+                                key={producto.productName}
                                 producto={producto}
                                 chPrices={chPrices}
+                                selectedCh={selectedCh}
+                                totalPrices={totalPrices}
+                                lowestPrices={lowestPrices}
                                 deleteProducto={() => deleteProducto(producto.name)}
                             />
                         )}
@@ -99,9 +93,11 @@ export default function ChanguitoMode() {
                         >
                             {(item, index) => (
                                 <FullFilledChanguitoPrices
-                                    key={item.name}
+                                    key={item.store}
                                     index={index}
                                     item={item}
+                                    setSelectedCh={setSelectedCh}
+                                    storeOptions={storeOptions}
                                 />
                             )}
                         </ChanguitoPrices>

@@ -6,7 +6,7 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 export default function SearchProductError(error) {
     return (
         <Box sx={{ width: '100%', height: '100%', textAlign: 'center' }}>
-            <ErrorOutlineOutlinedIcon fontSize="large" /><Typography variant='h5'>  Ups! Ha ocurrido un error😥</Typography>
+            <ErrorOutlineOutlinedIcon fontSize="large" /><Typography variant='body'>  Ups! Ha ocurrido un error😥</Typography>
         </Box>
     );
 }

@@ -45,7 +45,7 @@ export default function ThemePaletteComponentsToggle(props) {
                                 main: '#000'
                             },
                             error: {
-                                main: '#ff7878',
+                                main: '#8d3636',
                                 light: '#ef5350',
                                 dark: '#c62828',
                                 contrastText: '#fff',
@@ -137,7 +137,7 @@ export default function ThemePaletteComponentsToggle(props) {
                                 main: '#fff'
                             },
                             error: {
-                                main: '#f44336',
+                                main: '#860c02',
                                 light: '#e57373',
                                 dark: '#d32f2f',
                                 contrastText: '#fff',
@@ -339,6 +339,30 @@ export default function ThemePaletteComponentsToggle(props) {
                             }
                         }
                     },
+                },
+                MuiCard: {
+                    variants: [
+                        {
+                            props: { variant: 'errorCard' },
+                            style: {
+                                color: litaThemePalette.palette.error.contrastText,
+                                background: litaThemePalette.palette.error.main,
+                            }
+                        },
+                    ]
+                },
+                MuiCardMedia: {
+                    variants: [
+                        {
+                            props: { variant: 'marketCard' },
+                            style: {
+                                objectFit: 'contain',
+                                padding: '10px',
+                                height: '90px',
+                                background: litaThemePalette.palette.background.default
+                            }
+                        }
+                    ]
                 }
             }
         }

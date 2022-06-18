@@ -17,11 +17,12 @@ export default function ErrorChanguitoPrices() {
         fourErrorBoxes.map((item) => (
             <Grid key={item} item xs={12} sm={6}>
 
-                <Card variant='outlined' sx={{ minHeight: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
-                    <ErrorOutlineOutlinedIcon fontSize="large" />
+                <Card variant='errorCard' sx={{ minHeight: '250px', display: 'flex', placeItems: 'center', justifyContent: 'center' }}>
 
-                    <CardContent>
-                        <Typography variant='h5'>  Ups! Ha ocurrido un error😥</Typography>
+
+                    <CardContent sx={{ textAlign: 'center' }}>
+                        <ErrorOutlineOutlinedIcon fontSize="large" /><br />
+                        <Typography variant='body'>  Ups! Ha ocurrido un error😥</Typography>
                     </CardContent>
 
                 </Card>

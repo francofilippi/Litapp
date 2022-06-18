@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Lógica
+import useOneProduct from './useOneProduct';
+
 // IMPORTS MUI
 import Grid from '@mui/material/Grid';
 
@@ -15,23 +18,15 @@ import LoadingOneProductPrices from '../../Components/OneProductPrices/LoadingOn
 import ErrorOneProductPrices from '../../Components/OneProductPrices/ErrorOneProductPrices'
 import FullFilledOneProductPrices from '../../Components/OneProductPrices/FullFilledOneProductPrices';
 
-// Lógica
-import useOneProduct from './useOneProduct';
+export default function OneProductMode({ searchOptions, storeOptions }) {
 
-export default function OneProductMode() {
+    const [searchValue, setSearchValue] = React.useState(null);
 
     const {
-        searchValue,
-        setSearchValue,
-        open,
-        setOpen,
-        searchOptions,
-        loadingSearchOptions,
-        errorSearchOptions,
         oneProductPrices,
         errorOneProductPrices,
         loadingOneProductPrices,
-    } = useOneProduct();
+    } = useOneProduct({ searchValue });
 
     return (
         <>
@@ -40,35 +35,42 @@ export default function OneProductMode() {
                 value={searchValue}
                 setValue={setSearchValue}
                 searchOptions={searchOptions}
-                open={open}
-                setOpen={setOpen}
-                loadingSearchOptions={loadingSearchOptions}
-                errorSearchOptions={errorSearchOptions}
             />
+
             {!!searchValue &&
 
-                <Grid container spacing={2} justifyContent="center" sx={{ flexGrow: 1 }}>
-                    <OneProductInfo
-                        searchValue={searchValue} />
+                <Grid container spacing={2}>
 
-                    <OneProductPrices
-                        errorOneProductPrices={errorOneProductPrices}
-                        loadingOneProductPrices={loadingOneProductPrices}
-                        oneProductPrices={oneProductPrices}
-                        onLoading={() => (<LoadingOneProductPrices />)}
-                        onError={() => (<ErrorOneProductPrices />)}
-                    >
-                        {(item, index) => (
-                            <FullFilledOneProductPrices
-                                key={item.name}
-                                index={index}
-                                item={item}
-                            />
-                        )}
-                    </OneProductPrices>
+                    <Grid item xs={12} sm={12} lg={8}>
+                        <OneProductInfo
+                            searchValue={searchValue}
+                            oneProductPrices={oneProductPrices}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={12} lg={4}>
+                        <OneProductPrices
+                            errorOneProductPrices={errorOneProductPrices}
+                            loadingOneProductPrices={loadingOneProductPrices}
+                            oneProductPrices={oneProductPrices}
+                            onLoading={() => (<LoadingOneProductPrices />)}
+                            onError={() => (<ErrorOneProductPrices />)}
+                        >
+                            {(item, index) => (
+                                <FullFilledOneProductPrices
+                                    key={item.market}
+                                    item={item}
+                                    index={index}
+                                    storeOptions={storeOptions}
+                                />
+                            )}
+                        </OneProductPrices>
+                    </Grid>
 
                 </Grid>
+
             }
+
         </>
     )
 }

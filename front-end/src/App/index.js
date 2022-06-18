@@ -15,6 +15,8 @@ import AdsenseBox from '../Components/AdsenseBox';
 import ChanguitoMode from '../Containers/Body/ChanguitoMode';
 import OneProductMode from '../Containers/Body/OneProductMode';
 
+import useGetInitialInfo from '../Containers/Body/useGetInitialInfo';
+
 // CSS
 import './App.css';
 
@@ -23,26 +25,33 @@ function App() {
   // Estado de MODO DE PRODUCTO
   const [productMode, setProductMode] = React.useState('OneProduct');
 
+  const {
+    searchOptions,
+    storeOptions
+  } = useGetInitialInfo();
+
   return (
     <ThemePaletteComponentsToggle>
 
-      <Box className='main-container' height='100%' minHeight='100vh' paddingTop='70px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', width: '95%', paddingLeft: '0px' }}>
+      <Box className='main-container' height='100%' minHeight='100vh' paddingTop='100px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', paddingLeft: '0px' }}>
           <Navbar setProductMode={setProductMode} />
           <Grid
             container
             direction='column'
             flexWrap='nowrap'
             alignItems="center"
+            justifyContent='center'
             height='100%'
+            width='100%'
             spacing={3}
           >
-            <Grid item xs={10.5}>
-              <Stack alignItems='center' spacing={2}>
+            <Grid item xs={10.5} sx={{ width: '100%', placeItems: 'center', height: '100%' }}>
+              <Stack height='100%' alignItems='center' spacing={2}>
                 <Body
                   productMode={productMode}
-                  oneProductMode={() => <OneProductMode />}
-                  changuitoMode={() => <ChanguitoMode />}
+                  oneProductMode={() => <OneProductMode searchOptions={searchOptions} storeOptions={storeOptions} />}
+                  changuitoMode={() => <ChanguitoMode searchOptions={searchOptions} storeOptions={storeOptions} />}
                 />
               </Stack>
             </Grid>
@@ -52,7 +61,7 @@ function App() {
               <AdsenseBox />
             </Grid>
 
-            <Grid item xs={.5} alignSelf='flex-end'>
+            <Grid item xs alignSelf='flex-end'>
               <Footer />
             </Grid>
 

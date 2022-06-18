@@ -20,13 +20,13 @@ import TableRow from '@mui/material/TableRow';
 export default function ChanguitoInfo(props) {
 
     return (
-        <Paper variant="borderBlackElevatedPaper" sx={{ width: 'auto', height: '50vh', padding: '30px' }}>
+        <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px' }}>
 
             <Grid container direction="column" justifyContent="space-around" height="100%">
 
                 {!!props.chPrices.length &&
                     <Grid item textAlign="center">
-                        <Typography variant="h7" >CHANGUITO: DIA Hardc{/*{store mostrado} {store mostrado==='ganador' && 'GANADOR!'}*/}</Typography>
+                        <Typography variant="h7" >CHANGUITO MÁS ECONÓMICO: {props.chPrices[0].store.toUpperCase()}</Typography>
                     </Grid>
                 }
 
@@ -42,8 +42,8 @@ export default function ChanguitoInfo(props) {
                                     <TableCell>Productos</TableCell>
                                     {!!props.chPrices.length &&
                                         <>
-                                            <TableCell align="center">Precio DIA Hardc</TableCell>
-                                            <TableCell align="center">Mejor Precio</TableCell>
+                                            <TableCell align="center">Precio </TableCell>
+                                            <TableCell align="center">Mejor Precio 🏆</TableCell>
                                         </>
                                     }
                                     <TableCell align="center">Eliminar</TableCell>

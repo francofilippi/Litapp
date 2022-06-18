@@ -21,108 +21,109 @@ export default function useChanguito() {
         saveChanguito(newChanguito);
     };
 
-    // const completeTodo = (text) => {
-    //     const todoIndex = todos.findIndex(todo => todo.text === text);
-    //     const newTodos = [...todos];
-    //     newTodos[todoIndex].completed = true;
-    //     saveTodos(newTodos);
-    // };
-
     // Estados del ChanguitoPrices
-    console.log(changuito)
 
     const [chPrices, setChPrices] = React.useState([]);
+    const [lowestPrices, setLowestPrices] = React.useState([]);
+    const [totalPrices, setTotalPrices] = React.useState([]);
     const [errorChPrices, setErrorChPrices] = React.useState(false);
     const [loadingChPrices, setLoadingChPrices] = React.useState(false);
 
+    // Effect para cleanUp si actualiza changuito (borra o agrega un producto)
     React.useEffect(() => {
         setChPrices([])
+        setLowestPrices([])
+        setTotalPrices([])
     }, [changuito])
 
-    // Effect para loading de ChanguitoPrices (RICK Y MORTY)
+    // Effect para loading de ChanguitoPrices (LitApp)
     React.useEffect(() => {
 
         if (!loadingChPrices) {
             return undefined;
         }
 
-        // API -> precios de supers para ChanguitoPrices 
-        let preciosABuscar = []
-        changuito.forEach(element => {
-            (async () => {
-                setErrorChPrices(false)
-
-                await new Promise((resolve) => setTimeout(resolve, 500)); // delay prueba para que se vea el skeleton
-
-                try {
-                    const pricesChanguitoFetch = await fetch(RICKYMORTY + element.id)
-                        .then(response => response.json())
-                        .then(data => data)
-
-                    preciosABuscar.push(pricesChanguitoFetch)
-
-                    setChPrices([...preciosABuscar]);
-
-                } catch (error) {
-                    setErrorChPrices(true)
-                }
-                setLoadingChPrices(false)
-            })();
+        let preciosABuscar = [];
+        // Armo un array con cada propiedad name del changuito
+        changuito.forEach(producto => {
+            preciosABuscar.push(producto.productName)
         });
+
+        let preciosABuscarObj = { products: preciosABuscar }  // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
+
+        async function fetchPreciosChanguito() {
+            setErrorChPrices(false)
+            try {
+                var requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify(preciosABuscarObj),
+                    redirect: 'follow'
+                };
+                const fetchChPrices = await fetch(API_LITA_BASE + 'getChar', requestOptions)
+                    .then(response => response.json())
+                    .then(result => result)
+                    .catch(error => console.log('error', error));
+
+                // Formatear y extraer total de changuitos del JSON
+                let totalChPrices = []
+                let arr = Object.entries(fetchChPrices)
+                let sumaValoresObjeto = (objeto) => Object.values(objeto).reduce((a, b) => a + b);
+                arr.forEach(e => {
+                    // console.log(e[0])    
+                    // console.log(e[1])
+                    let miObjetoCreado = {}
+                    miObjetoCreado.store = e[0]
+                    miObjetoCreado.suma = sumaValoresObjeto(e[1])
+                    totalChPrices.push(miObjetoCreado)
+                })
+                setChPrices([...totalChPrices])
+
+                // Formatear y extraer total productos y precios más baratos del JSON
+                let productoYPrecio = []
+                changuito.forEach(producto => {
+                    arr.forEach(store => {
+                        let productosEnArray = Object.entries(store[1])
+                        productosEnArray.forEach(element => {
+                            if (producto.productName === element[0]) {
+                                let item = {}
+                                item.producto = producto.productName
+                                item.store = store[0]
+                                item.precio = element[1]
+                                productoYPrecio.push(item)
+                            }
+                        });
+                    })
+                })
+                setTotalPrices([...productoYPrecio])
+                let preciosBajos = []
+                changuito.forEach(producto => {
+                    let mismosProductos = productoYPrecio.filter(elem => elem.producto === producto.productName)
+                    let precioBajo = mismosProductos.sort((a, b) => a.precio - b.precio)[0]
+                    preciosBajos.push(precioBajo)
+                })
+                setLowestPrices([...preciosBajos])
+
+            } catch (error) {
+                setErrorChPrices(true)
+            }
+            setLoadingChPrices(false)
+        }
+        fetchPreciosChanguito()
 
     }, [loadingChPrices]);
 
-    // Effect para loading de ChanguitoPrices (LitApp)
-    // React.useEffect(() => {
 
-    //     if (!loadingChPrices) {
-    //         return undefined;
-    //     }
-
-    //     // API -> precios de supers para ChanguitoPrices
-    //     let preciosABuscar = [
-    //         "Pepsi Black 2.25lts",
-    //         "Arroz parboil Gallo Oro caja 1 kg",
-    //         "Té Negro Green Hills 50 Un.",
-    //         "Leche Entera Clasica LA SERENISIMA Larga Vida 1l"]
-
-    //     // Armo un array con cada propiedad name del changuito
-    //     // changuito.forEach(producto => {
-    //     //     preciosABuscar.push(producto.name)
-    //     // });
-
-    //     let preciosABuscarObj = { products: preciosABuscar }  // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
-
-    //     async function fetchPreciosChanguito() {
-    //         setErrorChPrices(false)
-    //         try {
-    //             var requestOptions = {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type': 'text/plain'
-    //                 },
-    //                 body: JSON.stringify(preciosABuscarObj),
-    //                 redirect: 'follow'
-    //             };
-    //             fetch(API_LITA_BASE + 'getChar', requestOptions)
-    //                 .then(response => response.json())
-    //                 .then(result => console.log(result))
-    //                 .catch(error => console.log('error', error));
-
-    //         } catch (error) {
-    //             setErrorChPrices(true)
-    //         }
-    //         setLoadingChPrices(false)
-    //     }
-    //     fetchPreciosChanguito()
-
-    // }, [loadingChPrices]);
 
     return (
         {
             changuito,
             loadingChanguito,
             chPrices,
+            lowestPrices,
+            totalPrices,
             errorChPrices,
             loadingChPrices,
             setChPrices,

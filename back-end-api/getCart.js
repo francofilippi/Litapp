@@ -1,6 +1,4 @@
 const AWS = require('aws-sdk');
-AWS.config.update({ region: "us-east-1" });
-
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const today = new Date();
@@ -17,8 +15,9 @@ const obj = (market, product, price, date) => {
 const productAndMarket = (data) => {
     let arr = [];
     data.map((item) => {
-    arr.push(obj(item.store, item.product, item.price, item.date));
+        arr.push(obj(item.store, item.product, item.price, item.date));
     });
+    
     return arr;
 };
 
@@ -34,7 +33,7 @@ async function getProducts(product){
             },
         };
         const data = await docClient.scan(specificByProductAndDate).promise()
-        products_data = productAndMarket(data.Items)
+        let products_data = productAndMarket(data.Items)
         return products_data  
     }
     catch (err) {
@@ -44,8 +43,7 @@ async function getProducts(product){
 
 exports.handler = async (event) => {
     if (event.body !== null && event.body !== undefined) {
-        
-        let products_data = JSON.parse(event.body); 
+        let products_data = JSON.parse(event.body);
         let products = products_data.products
         let products_info = []
 
@@ -77,6 +75,11 @@ exports.handler = async (event) => {
         
         const response = {
             statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Methods": "POST,GET, OPTIONS"
+            },
             body: JSON.stringify(obj_product),
         };
 
@@ -91,45 +94,45 @@ exports.handler = async (event) => {
 
 
 // IMPORTANTE: Esto debe ir dentro del handler
-const getChart = async (products) => {
-    let products_info = []
-    console.log(products)
+// const getChart = async (products) => {
+//     let products_info = []
+//     console.log(products)
 
-    for (let i = 0; i < products.length; i++)
-    {
-        try {
-            let info_prod = await getProducts(products[i])
-            products_info.push(info_prod)
-        } catch (err) {
-            return { error: err }
-        }
-    }
+//     for (let i = 0; i < products.length; i++)
+//     {
+//         try {
+//             let info_prod = await getProducts(products[i])
+//             products_info.push(info_prod)
+//         } catch (err) {
+//             return { error: err }
+//         }
+//     }
 
-    let response_data = []
-    let obj_product = {}
-    let count_markets = products_info[0].length
+//     let response_data = []
+//     let obj_product = {}
+//     let count_markets = products_info[0].length
 
-    for (let s = 0; s < count_markets; s++){
-        obj_product[products_info[0][s].market] = {}
-    }
+//     for (let s = 0; s < count_markets; s++){
+//         obj_product[products_info[0][s].market] = {}
+//     }
     
-    for (let i = 0; i < products_info.length; i++)
-    {
-        product_info_all_markets = products_info[i]
-        for (let n = 0; n < count_markets; n++)
-        {
-            console.log(n)
-            console.log(product_info_all_markets[n])
-            obj_product[product_info_all_markets[n].market][product_info_all_markets[n].product] = product_info_all_markets[n].price
-        }
-    }
+//     for (let i = 0; i < products_info.length; i++)
+//     {
+//         product_info_all_markets = products_info[i]
+//         for (let n = 0; n < count_markets; n++)
+//         {
+//             console.log(n)
+//             console.log(product_info_all_markets[n])
+//             obj_product[product_info_all_markets[n].market][product_info_all_markets[n].product] = product_info_all_markets[n].price
+//         }
+//     }
     
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify(obj_product),
-    };
+//     const response = {
+//         statusCode: 200,
+//         body: JSON.stringify(obj_product),
+//     };
 
-    return response 
-}
+//     return response 
+// }
 
 // getChart(["Azúcar Superior Ledesma 1 Kg", "Pepsi Black 2.25lts", "Té Negro Green Hills 50 Un."]);

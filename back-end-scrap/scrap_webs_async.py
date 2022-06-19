@@ -35,19 +35,14 @@ async def scrap(session, url, store, product):
         page = await response.text()
         soup = BeautifulSoup(page, "html.parser")
         if store == 'coto':
-            #title = soup.find(class_="product_page")
             price = soup.find(class_="atg_store_newPrice")
         if store == 'carrefour':
-            #title = soup.find(class_="vtex-store-components-3-x-productBrand vtex-store-components-3-x-productBrand--quickview")
             price = soup.find(class_="lyracons-carrefourarg-product-price-1-x-currencyContainer")
         if store == 'dia':
-            #title = soup.find(class_="productName")
             price = soup.find(class_="skuBestPrice")
         if store == 'jumbo':
-            #title = soup.find(class_="productName")
             price = soup.find(class_="skuBestPrice")
         if store == 'mass':
-            #title = soup.find(class_="vtex-store-components-3-x-productBrand")
             price = soup.find(class_="vtex-store-components-3-x-currencyContainer")
         price = cleanPrice(price)
         reg_product = {

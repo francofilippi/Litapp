@@ -15,9 +15,8 @@ const obj = (market, product, price, date) => {
 const productAndMarket = (data) => {
     let arr = [];
     data.map((item) => {
-    arr.push(obj(item.store, item.product, item.price, item.date));
-    });
-    console.log(arr);
+        arr.push(obj(item.store, item.product, item.price, item.date));
+    })
     return arr;
 };
 
@@ -44,13 +43,17 @@ async function getProducts(product){
 exports.handler = async (event) => {
     if (event.body !== null && event.body !== undefined) 
     {
-        let products_data = JSON.parse(event.body); 
-        console.log(products_data)
+        let products_data = JSON.parse(event.body)
         try 
         {
             const data = await getProducts(products_data.products[0])
             const response = {
                 statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Methods": "POST"
+                },
                 body: JSON.stringify(data),
             };
             return response

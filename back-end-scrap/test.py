@@ -23,7 +23,5 @@ for i in response['Items']:
     #dictKeys[i]=(i['name'])
     dictStores = i['stores']
     
-print(arr)
-
-
 products_formatted = json.dumps(stores, indent=2)
+print(products_formatted)

@@ -36,8 +36,11 @@ let getChar = {
     }
 }
 
+
 // Formatea a total de cada Store
 let arr = Object.entries(getChar)
+console.log(arr)
+
 let totalChSuper = []
 let sumaObjeto = (objeto) => Object.values(objeto).reduce((a, b) => a + b);
 arr.forEach(e => {

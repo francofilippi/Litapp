@@ -6,8 +6,9 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
-export default function OneProductInfo({ searchValue, oneProductPrices }) {
+export default function OneProductInfo({ searchValue, oneProductPrices, setHistoricalMode }) {
 
     return (
         <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px', height: '100%', maxWidth: '750px' }}>
@@ -27,6 +28,7 @@ export default function OneProductInfo({ searchValue, oneProductPrices }) {
                         MÁS ECONÓMICO EN: {oneProductPrices[0].market.toUpperCase()} 🏆
                     </Typography>
                 }
+                <Button onClick={() => setHistoricalMode(true)}>Ver historico</Button>
                 <Divider sx={{ width: '80%' }} />
 
             </Stack>

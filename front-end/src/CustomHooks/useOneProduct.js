@@ -8,6 +8,7 @@ export default function useOneProduct({ searchValue }) {
   const [oneProductPrices, setOneProductPrices] = React.useState([]);
   const [errorOneProductPrices, setErrorOneProductPrices] = React.useState(false);
   const [loadingOneProductPrices, setLoadingOneProductPrices] = React.useState(false);
+  const [historicalPrice, setHistoricalPrice] = React.useState([]);
   //const loadingOneProductPrices = searchValue || oneProductPrices.length === 0;
 
   // Effect para loading de OneProductPrices(LitApp)
@@ -50,6 +51,33 @@ export default function useOneProduct({ searchValue }) {
       setLoadingOneProductPrices(false)
     })();
 
+    // API -> historico para searched product
+    (async () => {
+
+      setHistoricalPrice([])
+      // let precioABuscar = Array.from([searchValue.name]) // Armo un array con la propiedad name del objeto de searchValue
+      let historicoABuscarObj = { products: searchValue.productName, date: "2022-06" } // Convierto a un objeto con clave products el array anterior (OK para enviarlo como body del request)
+
+      try {
+        var requestOptions = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: JSON.stringify(historicoABuscarObj),
+          redirect: 'follow'
+        };
+
+        const fetchHistorical = await fetch(API_LITA_BASE + 'getHistoricalPrice', requestOptions)
+          .then(response => response.json())
+          .then(data => data)
+          .catch(error => console.log('error: ', error));
+        console.log(fetchHistorical)
+        setHistoricalPrice([...fetchHistorical])
+      } catch (error) {
+        console.log(error)
+      }
+    })();
 
   }, [searchValue]);
 
@@ -58,6 +86,7 @@ export default function useOneProduct({ searchValue }) {
       oneProductPrices,
       errorOneProductPrices,
       loadingOneProductPrices,
+      historicalPrice,
     }
   );
 }

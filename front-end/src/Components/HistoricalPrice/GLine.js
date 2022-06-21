@@ -2,10 +2,10 @@
 import React from 'react';
 import { Line } from 'recharts';
 
-const items = []
-const colors_lines = ["black", "red", "blue", "orange", "green", "black"]
 
 function line(data) {
+    const colors_lines = ["black", "red", "blue", "orange", "green", "black"]
+    const items = []
     for (var index in data) {
         if (data[index] === 'date') {
             continue

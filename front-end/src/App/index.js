@@ -30,6 +30,7 @@ function App() {
     storeOptions
   } = useGetInitialInfo();
 
+  console.log('holaaaaaa')
   return (
     <ThemePaletteComponentsToggle>
 
@@ -57,7 +58,6 @@ function App() {
             </Grid>
 
             <Grid item xs={1}>
-
               <AdsenseBox />
             </Grid>
 

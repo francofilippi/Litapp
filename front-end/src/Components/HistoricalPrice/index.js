@@ -11,8 +11,9 @@ import Button from '@mui/material/Button';
 
 export default function HistoricalPrice({ searchValue, setHistoricalMode, historicalPrice }) {
 
-    if (!!historicalPrice.length) {
-        var keys = Object.keys(historicalPrice[0]);
+    let keys = []
+    if (historicalPrice.length > 0) {
+        keys = Object.keys(historicalPrice[0]);
     }
 
     console.log('hola')

@@ -72,12 +72,15 @@ export default function useOneProduct({ searchValue }) {
           .then(response => response.json())
           .then(data => data)
           .catch(error => console.log('error: ', error));
-        console.log(fetchHistorical)
         setHistoricalPrice([...fetchHistorical])
       } catch (error) {
         console.log(error)
       }
     })();
+
+    return () => {
+      setHistoricalPrice([])
+    }
 
   }, [searchValue]);
 

@@ -9,7 +9,7 @@ export default function LitaHeader({ productMode }) {
             component='h1'
             textAlign='center'
         >
-            {productMode === 'OneProduct' ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}
+            {productMode === 'OneProduct' ? 'NAVEGUE SEÑORA, NAVEGUE' : 'BUSQUEN PRECIO!!'}
         </Typography>
     )
 }

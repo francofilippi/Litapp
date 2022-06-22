@@ -43,7 +43,6 @@ export default function Navbar({ setProductMode, token, saveToken }) {
 
     const toggleChanguito = () => {
         setProductMode((prevMode) => (prevMode === 'OneProduct' ? 'Changuito' : 'OneProduct'))
-        console.log('Modo Changuito Activado')
     }
 
     const handleOpenUserMenu = (event) => {

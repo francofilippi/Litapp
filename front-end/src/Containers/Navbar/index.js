@@ -26,19 +26,20 @@ import { ColorModeContext } from '../../App/litaTheme.js';
 
 export default function Navbar({ setProductMode, token, saveToken }) {
 
-    let settings = ['Login', 'Register'];
-    if (!!token) {
-        settings = ['Logout'];
-    }
+    const [settings, setSettings] = React.useState([])
+
+    React.useEffect(() => {
+        if (token !== null) {
+            setSettings(['Logout']);
+        } else {
+            setSettings(['Login', 'Register']);
+        }
+    }, [token])
 
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
-    // const [anchorElNav, setAnchorElNav] = React.useState(null); 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    // const handleOpenNavMenu = (event) => {
-    //     setAnchorElNav(event.currentTarget);
-    // };
 
     const toggleChanguito = () => {
         setProductMode((prevMode) => (prevMode === 'OneProduct' ? 'Changuito' : 'OneProduct'))
@@ -49,18 +50,17 @@ export default function Navbar({ setProductMode, token, saveToken }) {
         setAnchorElUser(event.currentTarget);
     };
 
-    // const handleCloseNavMenu = () => {
-    //     setAnchorElNav(null);
-    // };
-
-    const handleCloseUserMenu = (setting) => {
-        setAnchorElUser(null);
-        if (setting === 'Logout') {
+    const handleClickMenu = () => {
+        if (settings.length === 1) {
             saveToken('')
+            window.location.replace('https://litapp.cuneo.com.ar/')
         } else {
             window.location.replace('https://litappauth.auth.us-east-1.amazoncognito.com/login?client_id=19oabdksr3r7dn0vt98nibbohi&response_type=token&scope=email+openid+profile&redirect_uri=https://main.dnzursjwk9y9b.amplifyapp.com/')
         }
+    };
 
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
     };
 
     const trigger = useScrollTrigger();
@@ -112,7 +112,7 @@ export default function Navbar({ setProductMode, token, saveToken }) {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
+                                        <MenuItem key={setting} onClick={() => handleClickMenu()}>
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     ))}

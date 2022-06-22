@@ -1,6 +1,7 @@
+import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
-export default function () {
+export default function useLogin() {
 
     const {
         item: token,
@@ -8,21 +9,25 @@ export default function () {
         //sincronizeItem: sincronizeChanguito,
         //loading: loadingChanguito,
         //error: errorChanguito,
-    } = useLocalStorage('ACCESS_TOKEN', '');
+    } = useLocalStorage('ACCESS_TOKEN', null);
 
     const hashString = window.location.hash
     const urlParams = new URLSearchParams(hashString)
-    const access_token = urlParams.get('#id_token');
+    const access_token = urlParams.get('access_token');
 
-    if (!!access_token) {
-        saveToken(access_token)
-    }
+    React.useEffect(() => {
+        if (!!access_token) {
+            saveToken(access_token)
+        }
+    }, [access_token])
 
-    console.log(access_token)
+    console.log('hola')
 
     return (
-        token,
-        saveToken
+        {
+            token,
+            saveToken
+        }
     )
 }
 

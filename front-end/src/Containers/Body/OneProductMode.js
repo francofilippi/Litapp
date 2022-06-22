@@ -73,7 +73,7 @@ export default function OneProductMode({ searchOptions, storeOptions }) {
                             </Grid>
                         </>
                     ) : (
-                        <Grid item xs={12} sm={12} lg={12}>
+                        <Grid item xs={12} sm={12} lg={12} sx={{ justifyContent: 'center', display: 'flex' }}>
                             <HistoricalPrice
                                 searchValue={searchValue}
                                 historicalPrice={historicalPrice}

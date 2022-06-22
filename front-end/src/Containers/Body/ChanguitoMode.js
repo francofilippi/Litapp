@@ -34,8 +34,7 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
         setSelectedCh,
         setLoadingChPrices,
         deleteProducto,
-        saveChanguito,
-        sincronizeChanguito,
+        saveChanguito
     } = useChanguito();
 
     return (

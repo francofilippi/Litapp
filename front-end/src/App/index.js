@@ -1,8 +1,9 @@
 import React from 'react';
+
+// MUI
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 
 // Provider para theme
 import ThemePaletteComponentsToggle from './litaTheme';
@@ -38,7 +39,7 @@ function App() {
     <ThemePaletteComponentsToggle>
 
       <Box className='main-container' height='100%' minHeight='100vh' sx={{ backgroundColor: 'background.default' }}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px', mb: '10px' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px' }}>
           <Navbar
             setProductMode={setProductMode}
             token={token}
@@ -59,9 +60,10 @@ function App() {
               />
             </Grid>
 
+            {/* 
             <Grid item xs={1}>
               <AdsenseBox />
-            </Grid>
+            </Grid> */}
 
             <Grid item xs alignSelf='flex-end'>
               <Footer />

@@ -22,6 +22,7 @@ export default function Footer() {
             <img
                 style={{ 'width': '80%', 'height': '80%' }}
                 src={LsLogo}
+                alt='logo LS Technologies'
             />
         </Button>
     );

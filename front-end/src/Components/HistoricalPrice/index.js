@@ -39,7 +39,7 @@ export default function HistoricalPrice({ searchValue, setHistoricalMode, histor
     }
 
     return (
-        <Paper variant='borderBlackElevatedPaper' sx={{ py: '24px', px: '10%', height: '100%', width: '100%', maxWidth: '1000px', placeContent: 'center' }}>
+        <Paper variant='borderBlackElevatedPaper' sx={{ py: '24px', height: '100%', width: '100%', placeContent: 'center' }}>
             <Stack spacing={2} height='100%' width='100%' justifyContent='space-around' alignItems='center'>
 
                 <Stack flexDirection='row' sx={{ placeContent: 'center', placeItems: 'center' }}>
@@ -53,7 +53,7 @@ export default function HistoricalPrice({ searchValue, setHistoricalMode, histor
                 </Stack>
 
                 {!!historicalPrice.length && (
-                    <Stack component={Paper} sx={{ py: '12px', flexDirection: 'column', backgroundColor: 'background.storeCard', width: '100%', height: "100%", placeItems: 'center' }} >
+                    <Stack component={Paper} sx={{ py: '12px', flexDirection: 'column', backgroundColor: 'background.storeCard', width: '100%', height: "100%", maxWidth: '800px', placeItems: 'center' }} >
                         <div>
                             <Typography variant='body' color='primary.contrastText'>Periodo: 06-2022</Typography>
                         </div>

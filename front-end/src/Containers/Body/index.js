@@ -7,7 +7,7 @@ export default function Body(props) {
 
     return (
         <>
-            <Header />
+            <Header productMode={props.productMode} />
             {props.productMode === 'OneProduct' ? props.oneProductMode() : props.changuitoMode()}
         </>
     )

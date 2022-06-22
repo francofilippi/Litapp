@@ -1,7 +1,7 @@
 import React from "react"
 import { Typography } from "@mui/material"
 
-export default function LitaHeader({ searchValue }) {
+export default function LitaHeader({ productMode }) {
 
     return (
         <Typography
@@ -9,7 +9,7 @@ export default function LitaHeader({ searchValue }) {
             component='h1'
             textAlign='center'
         >
-            {!searchValue ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}
+            {productMode === 'OneProduct' ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}
         </Typography>
     )
 }

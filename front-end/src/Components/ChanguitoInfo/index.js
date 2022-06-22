@@ -15,10 +15,27 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-//Lógica
+// Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ChanguitoInfo(props) {
 
+    const handleFullFillChPrices = () => {
+        if (props.changuito.length > 0) {
+            props.setLoadingChPrices(true)
+        } else {
+            toast.error('😅Llena el changuito!!', {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
+    }
     return (
         <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px', width: '100%', maxWidth: '750px', minHeight: '500px' }}>
 
@@ -59,12 +76,13 @@ export default function ChanguitoInfo(props) {
                 </Grid>
 
                 <Grid item >
-                    <Button onClick={() => { props.setLoadingChPrices(true) }} sx={{ width: '100%' }} >Armar Changuito</Button>
+                    <Button onClick={handleFullFillChPrices} sx={{ width: '100%' }} >Armar Changuito</Button>
                 </Grid>
 
                 <Grid item >
                     <Divider width='100%' />
                 </Grid>
+                <ToastContainer />
 
             </Grid>
         </Paper>

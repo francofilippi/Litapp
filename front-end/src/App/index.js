@@ -37,8 +37,8 @@ function App() {
   return (
     <ThemePaletteComponentsToggle>
 
-      <Box className='main-container' height='100%' minHeight='100vh' paddingTop='100px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', paddingLeft: '0px' }}>
+      <Box className='main-container' height='100%' minHeight='100vh' sx={{ backgroundColor: 'background.default' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px', mb: '10px' }}>
           <Navbar
             setProductMode={setProductMode}
             token={token}
@@ -48,20 +48,15 @@ function App() {
             container
             direction='column'
             flexWrap='nowrap'
-            alignItems="center"
-            justifyContent='center'
-            height='100%'
-            width='100%'
+            alignItems='center'
             spacing={3}
           >
-            <Grid item xs={10.5} sx={{ width: '100%', placeItems: 'center', height: '100%' }}>
-              <Stack height='100%' alignItems='center' spacing={2}>
-                <Body
-                  productMode={productMode}
-                  oneProductMode={() => <OneProductMode searchOptions={searchOptions} storeOptions={storeOptions} />}
-                  changuitoMode={() => <ChanguitoMode searchOptions={searchOptions} storeOptions={storeOptions} />}
-                />
-              </Stack>
+            <Grid container direction='column' item xs={10.5} alignItems='center' rowGap={2} >
+              <Body
+                productMode={productMode}
+                oneProductMode={() => <OneProductMode searchOptions={searchOptions} storeOptions={storeOptions} />}
+                changuitoMode={() => <ChanguitoMode searchOptions={searchOptions} storeOptions={storeOptions} />}
+              />
             </Grid>
 
             <Grid item xs={1}>

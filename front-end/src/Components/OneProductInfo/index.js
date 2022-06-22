@@ -19,7 +19,7 @@ export default function OneProductInfo({ searchValue, oneProductPrices, setHisto
                 <img
                     loading='lazy'
                     src={searchValue.image}
-                    style={{ maxWidth: '250px', aspectRatio: '1/1', borderRadius: '10%' }}
+                    style={{ width: '250px', maxWidth: '100%', aspectRatio: '1/1', borderRadius: '10%' }}
                     alt=''
                 />
 

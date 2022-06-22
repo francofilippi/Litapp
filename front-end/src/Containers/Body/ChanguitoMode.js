@@ -21,8 +21,6 @@ import ErrorChanguitoPrices from '../../Components/ChanguitoPrices/ErrorChanguit
 import LoadingChanguitoPrices from '../../Components/ChanguitoPrices/LoadingChanguitoPrices'
 import FullFilledChanguitoPrices from '../../Components/ChanguitoPrices/FullFilledChanguitoPrices'
 
-import { ChangeAlertWithStorageListener } from '../../Components/ChangeAlert';
-
 export default function ChanguitoMode({ searchOptions, storeOptions }) {
 
     const {
@@ -46,12 +44,13 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                 multiple={true}
                 limitTags={2}
                 filterSelectedOptions={true}
+                disableCloseOnSelect={true}
                 value={changuito}
                 setValue={saveChanguito}
                 searchOptions={searchOptions}
             />
 
-            <Grid container spacing={2} sx={{ minWidth: '80%' }}>
+            <Grid container spacing={2} >
 
                 <Grid item xs={12} sm={12} lg={(chPrices.length || !!loadingChPrices) ? 8 : 12} sx={{ justifyContent: 'center', display: 'flex' }}>
 
@@ -106,8 +105,6 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                 </Grid>
 
             </Grid>
-
-            <ChangeAlertWithStorageListener sincronize={sincronizeChanguito} />
         </>
     )
 }

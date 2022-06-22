@@ -52,7 +52,7 @@ export default function Navbar({ setProductMode, token, saveToken }) {
 
     const handleClickMenu = () => {
         if (settings.length === 1) {
-            saveToken('')
+            saveToken(null)
             window.location.replace('https://litapp.cuneo.com.ar/')
         } else {
             window.location.replace('https://litappauth.auth.us-east-1.amazoncognito.com/login?client_id=19oabdksr3r7dn0vt98nibbohi&response_type=token&scope=email+openid+profile&redirect_uri=https://main.dnzursjwk9y9b.amplifyapp.com/')

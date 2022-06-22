@@ -19,9 +19,8 @@ export default function Footer() {
 
     return (
         <Button sx={{ display: 'flex', padding: 0, border: 'none', background: 'none' }}>
-
             <img
-                style={{ 'width': '100%', 'height': '100%' }}
+                style={{ 'width': '80%', 'height': '80%' }}
                 src={LsLogo}
             />
         </Button>

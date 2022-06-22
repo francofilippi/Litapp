@@ -3,7 +3,6 @@ import React from 'react';
 function useLocalStorage(itemName, initialValue) {
     const [state, dispatch] = React.useReducer(reducer, initialState({ initialValue }));
     const {
-        sincronizedItem,
         error,
         loading,
         item
@@ -13,7 +12,6 @@ function useLocalStorage(itemName, initialValue) {
     const onError = (error) => dispatch({ type: actionTypes.error, payload: error });
     const onSuccess = (parsedItem) => dispatch({ type: actionTypes.success, payload: parsedItem });
     const onSave = (newItem) => dispatch({ type: actionTypes.save, payload: newItem });
-    const onSincronize = () => dispatch({ type: actionTypes.sincronize });
 
     React.useEffect(() => {
         try {
@@ -30,7 +28,7 @@ function useLocalStorage(itemName, initialValue) {
         } catch (error) {
             onError(error)
         }
-    }, [sincronizedItem]);
+    }, []);
 
     const saveItem = (newItem) => {
 
@@ -43,23 +41,17 @@ function useLocalStorage(itemName, initialValue) {
         }
     };
 
-    const sincronizeItem = () => {
-        onSincronize()
-    };
-
     return {
         item,
         loading,
         error,
         saveItem,
-        sincronizeItem,
     };
 }
 
 export { useLocalStorage };
 
-const initialState = ({ initialValue }) => ({ //si agrego los parentesis, le digo que es un return implícito
-    sincronizedItem: true,
+const initialState = ({ initialValue }) => ({
     error: false,
     loading: true,
     item: initialValue,
@@ -68,8 +60,7 @@ const initialState = ({ initialValue }) => ({ //si agrego los parentesis, le dig
 const actionTypes = {
     error: 'ERROR',
     success: 'SUCCESS',
-    save: 'SAVE',
-    sincronize: 'SINCRONIZE'
+    save: 'SAVE'
 }
 
 const reducerObject = (state, payload) => ({
@@ -87,12 +78,7 @@ const reducerObject = (state, payload) => ({
     [actionTypes.save]: {
         ...state,
         item: payload,
-    },
-    [actionTypes.sincronize]: {
-        ...state,
-        loading: true,
-        sincronizedItem: false,
-    },
+    }
 })
 
 const reducer = (state, action) => {

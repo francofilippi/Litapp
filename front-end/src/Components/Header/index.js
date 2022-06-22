@@ -7,6 +7,7 @@ export default function LitaHeader({ searchValue }) {
         <Typography
             variant='h3'
             component='h1'
+            textAlign='center'
         >
             {!searchValue ? 'BUSQUEN PRECIO!!' : 'CAMINE SEÑORA, CAMINE'}
         </Typography>

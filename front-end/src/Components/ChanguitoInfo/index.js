@@ -36,7 +36,7 @@ export default function ChanguitoInfo(props) {
 
                 <Grid item xs={7} overflow="hidden" >
                     <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%" }}>
-                        <Table aria-label="a dense table">
+                        <Table size="small" aria-label="a dense table">
                             <TableHead >
                                 <TableRow>
                                     <TableCell>Productos</TableCell>
@@ -46,7 +46,7 @@ export default function ChanguitoInfo(props) {
                                             <TableCell align="center">💲 Menor Precio</TableCell>
                                         </>
                                     }
-                                    <TableCell align="center">Eliminar</TableCell>
+                                    <TableCell align="center"> </TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody >

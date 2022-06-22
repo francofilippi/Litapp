@@ -25,9 +25,15 @@ import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from '../../App/litaTheme.js';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login', 'Register', 'Logout'];
 
-export default function Navbar({ setProductMode }) {
+export default function Navbar({ setProductMode, token, saveToken }) {
+
+    let settings = ['Login', 'Register'];
+    if (!!token) {
+        settings = ['Logout'];
+    }
+
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
@@ -50,8 +56,14 @@ export default function Navbar({ setProductMode }) {
     //     setAnchorElNav(null);
     // };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (setting) => {
         setAnchorElUser(null);
+        if (setting === 'Logout') {
+            saveToken('')
+        } else {
+            window.location.replace('https://litappauth.auth.us-east-1.amazoncognito.com/login?client_id=19oabdksr3r7dn0vt98nibbohi&response_type=token&scope=email+openid+profile&redirect_uri=https://main.dnzursjwk9y9b.amplifyapp.com/')
+        }
+
     };
 
     const trigger = useScrollTrigger();
@@ -103,7 +115,7 @@ export default function Navbar({ setProductMode }) {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     ))}

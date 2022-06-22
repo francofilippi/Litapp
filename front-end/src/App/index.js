@@ -15,7 +15,9 @@ import AdsenseBox from '../Components/AdsenseBox';
 import ChanguitoMode from '../Containers/Body/ChanguitoMode';
 import OneProductMode from '../Containers/Body/OneProductMode';
 
+// Custom Hooks
 import useGetInitialInfo from '../CustomHooks//useGetInitialInfo';
+import useLogin from '../CustomHooks/useLogin';
 
 // CSS
 import './App.css';
@@ -25,18 +27,23 @@ function App() {
   // Estado de MODO DE PRODUCTO
   const [productMode, setProductMode] = React.useState('OneProduct');
 
+  const { token, saveToken } = useLogin();
+
   const {
     searchOptions,
     storeOptions
   } = useGetInitialInfo();
 
-  console.log('holaaaaaa')
   return (
     <ThemePaletteComponentsToggle>
 
       <Box className='main-container' height='100%' minHeight='100vh' paddingTop='100px' justifyContent='center' sx={{ backgroundColor: 'background.default' }}>
         <Container sx={{ display: 'flex', justifyContent: 'center', paddingLeft: '0px' }}>
-          <Navbar setProductMode={setProductMode} />
+          <Navbar
+            setProductMode={setProductMode}
+            token={token}
+            saveToken={saveToken}
+          />
           <Grid
             container
             direction='column'

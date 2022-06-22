@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
-
 import './winnercard.css';
 
 export default function ErrorOneProductPrices() {

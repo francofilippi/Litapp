@@ -24,9 +24,6 @@ import Slide from '@mui/material/Slide';
 import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from '../../App/litaTheme.js';
 
-// const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Login', 'Register', 'Logout'];
-
 export default function Navbar({ setProductMode, token, saveToken }) {
 
     let settings = ['Login', 'Register'];

@@ -20,7 +20,7 @@ import TableRow from '@mui/material/TableRow';
 export default function ChanguitoInfo(props) {
 
     return (
-        <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px', width: '100%', maxWidth: '750px' }}>
+        <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px', width: '100%', maxWidth: '750px', minHeight: '500px' }}>
 
             <Grid container direction="column" justifyContent="space-around" height="100%">
 

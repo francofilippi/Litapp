@@ -8,7 +8,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 export default function FullFillChanguito({ producto, deleteProducto, chPrices, selectedCh }) {
 
-    console.log(chPrices);
     let mejorPrecio = null
     let precioSelectedCh = null
     if (!!chPrices.length) {

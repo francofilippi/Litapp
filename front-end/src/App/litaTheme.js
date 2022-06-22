@@ -302,7 +302,7 @@ export default function ThemePaletteComponentsToggle(props) {
                         listbox: {
                             background: litaThemePalette.palette.secondary.main,
                             padding: 0,
-                            maxHeight: '25vh'
+                            maxHeight: '30vh'
                         },
 
                     },

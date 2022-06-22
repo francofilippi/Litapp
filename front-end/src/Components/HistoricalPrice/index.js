@@ -16,7 +16,6 @@ export default function HistoricalPrice({ searchValue, setHistoricalMode, histor
         keys = Object.keys(historicalPrice[0]);
     }
 
-    console.log('hola')
     return (
         <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px', height: '100%', width: '100%', maxWidth: '1000px', placeContent: 'center' }}>
             <Stack spacing={2} height='100%' width='100%' justifyContent='space-around' alignItems='center'>

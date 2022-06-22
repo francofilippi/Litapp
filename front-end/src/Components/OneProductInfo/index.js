@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 export default function OneProductInfo({ searchValue, oneProductPrices, setHistoricalMode }) {
 
     return (
-        <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px', height: '100%', maxWidth: '750px' }}>
+        <Paper variant='borderBlackElevatedPaper' sx={{ padding: '24px', height: '100%' }}>
             <Stack spacing={2} height='100%' width='100%' justifyContent='space-around' alignItems='center'>
 
                 <Typography variant='h7'>{searchValue.productName}</Typography>

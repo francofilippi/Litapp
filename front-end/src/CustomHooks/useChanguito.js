@@ -32,10 +32,7 @@ export default function useChanguito() {
     React.useEffect(() => {
 
         if (!loadingChPrices) {
-            return () => {
-                setChPrices([])
-                setStoreTotals([])
-            }; // cleanup chPrices
+            return undefined
         }
 
         let preciosABuscar = [];
@@ -110,9 +107,14 @@ export default function useChanguito() {
         }
         fetchPreciosChanguito()
 
-    }, [loadingChPrices, changuito]);
+    }, [loadingChPrices]);
 
-
+    React.useEffect(() => { // cleanup chPrices
+        if (chPrices.length > 0) {
+            setChPrices([])
+            setStoreTotals([])
+        }
+    }, [changuito])
 
     return (
         {

@@ -296,15 +296,17 @@ export default function ThemePaletteComponentsToggle(props) {
                             boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
                             borderRadius: '20px',
                             '.MuiAutocomplete-clearIndicator, .MuiAutocomplete-popupIndicator': {
-                                color: 'white'
-                            },
+                                color: 'white',
+                            }
                         },
                         listbox: {
                             background: litaThemePalette.palette.secondary.main,
                             padding: 0,
+                            maxHeight: '25vh'
                         },
 
                     },
+
                 },
                 MuiButton: {
                     variants: [

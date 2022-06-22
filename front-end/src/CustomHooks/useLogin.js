@@ -12,8 +12,7 @@ export default function () {
 
     const hashString = window.location.hash
     const urlParams = new URLSearchParams(hashString)
-    const access_token = undefined;
-    urlParams.get('#id_token')
+    const access_token = urlParams.get('#id_token');
 
     if (!!access_token) {
         saveToken(access_token)

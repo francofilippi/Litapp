@@ -65,7 +65,7 @@ export default function ChanguitoInfo(props) {
                 </Grid>
 
                 <Grid item xs={7}>
-                    <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%", width: '100%' }}>
+                    <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%", width: '100%', maxHeight: '300px' }}>
                         <Table size="small" aria-label="a dense table" className="container">
                             <TableHead >
                                 <TableRow>

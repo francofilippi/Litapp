@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import './historic.css'
+
 export default function HistoricalPrice({ searchValue, setHistoricalMode, historicalPrice }) {
 
     let keys = []

@@ -3,9 +3,8 @@ import React from "react";
 // Table
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-import Button from "@mui/material/Button";
 import ClearIcon from '@mui/icons-material/Clear';
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 import './table.css'
 

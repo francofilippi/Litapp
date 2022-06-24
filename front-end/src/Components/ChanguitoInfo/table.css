@@ -1,0 +1,29 @@
+@media (max-width: 500px) {
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 50px;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    th {
+        max-width: 125px;
+        padding: 0 !important;
+        overflow-x: auto;
+        text-align: center !important;
+        font-size: 10px !important;
+    }
+
+    td {
+        padding: 5px !important;
+        text-align: center !important;
+        font-size: 10px !important;
+    }
+
+
+    .btn {
+        min-width: none !important;
+        font-size: 15px !important;
+    }
+}

@@ -28,7 +28,7 @@ export default function FullFillChanguito({ producto, deleteProducto, chPrices, 
                     <TableCell align="center"> $ {mejorPrecio.precio} - {mejorPrecio.store.toUpperCase()}</TableCell>
                 </>
             }
-            <TableCell align="center"><Button onClick={deleteProducto}><ClearIcon /></Button></TableCell>
+            <TableCell align="center"><Button onClick={() => deleteProducto(producto.productName)}><ClearIcon /></Button></TableCell>
         </TableRow>
     )
 }

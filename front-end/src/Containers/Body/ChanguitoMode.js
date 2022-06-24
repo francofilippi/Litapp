@@ -69,7 +69,7 @@ export default function ChanguitoMode({ searchOptions, storeOptions }) {
                                 producto={producto}
                                 chPrices={chPrices}
                                 selectedCh={selectedCh}
-                                deleteProducto={() => deleteProducto(producto.name)}
+                                deleteProducto={deleteProducto}
                             />
                         )}
                     </ChanguitoInfo>

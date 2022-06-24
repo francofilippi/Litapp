@@ -14,7 +14,7 @@ export default function useChanguito() {
     } = useLocalStorage('CHANGUITO_V1', []);
 
     const deleteProducto = (name) => {
-        const productoIndex = changuito.findIndex(producto => producto.name === name);
+        const productoIndex = changuito.findIndex(producto => producto.productName === name);
         const newChanguito = [...changuito];
         newChanguito.splice(productoIndex, 1);
         saveChanguito(newChanguito);

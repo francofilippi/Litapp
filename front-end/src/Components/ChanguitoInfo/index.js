@@ -21,11 +21,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function ChanguitoInfo(props) {
 
+    console.log(props.changuito)
     const handleFullFillChPrices = () => {
-        if (props.changuito.length > 0) {
-            props.setLoadingChPrices(true)
-        } else {
-            toast.error('😅Llena el changuito!!', {
+        if (props.changuito.length === 0) {
+            toast.error('Llena el changuito 🤦‍♀️', {
                 position: "bottom-left",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -34,8 +33,21 @@ export default function ChanguitoInfo(props) {
                 draggable: true,
                 progress: undefined,
             })
+        } else if (props.changuito.length > 5) {
+            toast.info('Max. 5 productos, lita se enoja 👎', {
+                position: "bottom-left",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            props.setLoadingChPrices(true)
         }
     }
+
     return (
         <Paper variant="borderBlackElevatedPaper" sx={{ padding: '24px', width: '100%', maxWidth: '750px', minHeight: '500px' }}>
 

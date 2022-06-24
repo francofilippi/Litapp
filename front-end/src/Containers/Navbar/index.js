@@ -24,7 +24,7 @@ import Slide from '@mui/material/Slide';
 import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from '../../App/litaTheme.js';
 
-export default function Navbar({ setProductMode, token, saveToken }) {
+export default function Navbar({ setProductMode, token, avatar, saveToken }) {
 
     const [settings, setSettings] = React.useState([])
 
@@ -90,7 +90,7 @@ export default function Navbar({ setProductMode, token, saveToken }) {
                                     </IconButton>
                                     <Tooltip title="Open settings">
                                         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                            <Avatar alt="Remy Sharp" src={avatar || "/static/images/avatar/2.jpg"} />
                                         </IconButton>
                                     </Tooltip>
                                 </Box>

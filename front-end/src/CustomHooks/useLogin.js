@@ -6,6 +6,7 @@ export default function useLogin() {
     const hashString = window.location.hash;
     const urlParams = new URLSearchParams(hashString);
     const access_token = urlParams.get('access_token') || urlParams.get('#access_token');
+    const id_token = urlParams.get('id_token') || urlParams.get('#id_token');
 
     const {
         item: token,
@@ -20,7 +21,8 @@ export default function useLogin() {
     React.useEffect(() => {
         if (!!access_token) {
             saveToken(access_token)
-
+        }
+        if (!!id_token) {
             function parseJwt(token) {
                 var base64Url = token.split('.')[1];
                 var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -30,11 +32,7 @@ export default function useLogin() {
 
                 return JSON.parse(jsonPayload);
             };
-            const parsedAvatar = parseJwt(access_token)
-
-            // const base64Url_data = access_token.split('.')[1];
-            // const parsedAvatar = (JSON.parse(atob(base64Url_data)));
-            console.log(parsedAvatar);
+            const parsedAvatar = parseJwt(id_token).picture
             saveAvatar(parsedAvatar);
         }
     }, [access_token])

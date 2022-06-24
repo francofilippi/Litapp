@@ -28,7 +28,7 @@ function App() {
   // Estado de MODO DE PRODUCTO
   const [productMode, setProductMode] = React.useState('OneProduct');
 
-  const { token, saveToken } = useLogin();
+  const { token, avatar, saveToken } = useLogin();
 
   const {
     searchOptions,
@@ -39,10 +39,11 @@ function App() {
     <ThemePaletteComponentsToggle>
 
       <Box className='main-container' height='100%' minHeight='100vh' sx={{ backgroundColor: 'background.default' }}>
-        <Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px' }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', mt: '80px', mb: '20px' }}>
           <Navbar
             setProductMode={setProductMode}
             token={token}
+            avatar={avatar}
             saveToken={saveToken}
           />
 

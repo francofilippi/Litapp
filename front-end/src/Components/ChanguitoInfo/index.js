@@ -19,6 +19,7 @@ import TableRow from '@mui/material/TableRow';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import './table.css'
 export default function ChanguitoInfo(props) {
 
     console.log(props.changuito)
@@ -63,9 +64,9 @@ export default function ChanguitoInfo(props) {
                     <Typography variant="body1" >Tienes {props.changuito.length} productos en tu changuito</Typography>
                 </Grid>
 
-                <Grid item xs={7} overflow="hidden" >
-                    <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%" }}>
-                        <Table size="small" aria-label="a dense table">
+                <Grid item xs={7}>
+                    <TableContainer component={Paper} sx={{ backgroundColor: 'background.secondaryPaper', height: "100%", width: '100%' }}>
+                        <Table size="small" aria-label="a dense table" className="container">
                             <TableHead >
                                 <TableRow>
                                     <TableCell>Productos</TableCell>
@@ -88,7 +89,7 @@ export default function ChanguitoInfo(props) {
                 </Grid>
 
                 <Grid item >
-                    <Button onClick={handleFullFillChPrices} sx={{ width: '100%' }} >Armar Changuito</Button>
+                    <Button onClick={handleFullFillChPrices} sx={{ width: '100%', maxWidth: '100%' }} >Armar Changuito</Button>
                 </Grid>
 
                 <Grid item >
@@ -97,7 +98,7 @@ export default function ChanguitoInfo(props) {
                 <ToastContainer />
 
             </Grid>
-        </Paper>
+        </Paper >
     )
 }
 

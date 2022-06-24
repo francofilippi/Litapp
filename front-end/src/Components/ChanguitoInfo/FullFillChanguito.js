@@ -5,6 +5,9 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Button from "@mui/material/Button";
 import ClearIcon from '@mui/icons-material/Clear';
+import { IconButton } from "@mui/material";
+
+import './table.css'
 
 export default function FullFillChanguito({ producto, deleteProducto, chPrices, selectedCh }) {
 
@@ -28,7 +31,7 @@ export default function FullFillChanguito({ producto, deleteProducto, chPrices, 
                     <TableCell align="center"> $ {mejorPrecio.precio} - {mejorPrecio.store.toUpperCase()}</TableCell>
                 </>
             }
-            <TableCell align="center"><Button onClick={() => deleteProducto(producto.productName)}><ClearIcon /></Button></TableCell>
+            <TableCell align="center" ><IconButton className="btnCont" onClick={() => deleteProducto(producto.productName)}><ClearIcon className="btn" /></IconButton></TableCell>
         </TableRow>
     )
 }

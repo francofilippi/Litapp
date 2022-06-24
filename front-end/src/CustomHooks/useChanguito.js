@@ -8,9 +8,7 @@ export default function useChanguito() {
     const {
         item: changuito,
         saveItem: saveChanguito,
-        sincronizeItem: sincronizeChanguito,
         loading: loadingChanguito,
-        //error: errorChanguito,
     } = useLocalStorage('CHANGUITO_V1', []);
 
     const deleteProducto = (name) => {
@@ -129,7 +127,6 @@ export default function useChanguito() {
             setSelectedCh,
             saveChanguito,
             deleteProducto,
-            sincronizeChanguito,
             setLoadingChPrices,
         }
     );

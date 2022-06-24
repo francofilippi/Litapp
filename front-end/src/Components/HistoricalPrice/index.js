@@ -39,8 +39,8 @@ export default function HistoricalPrice({ searchValue, setHistoricalMode, histor
 
     if (!!detectMob()) {
         toast.info('📱 Volteá el celu !', {
-            position: "top-center",
-            autoClose: 2000,
+            position: "bottom-left",
+            autoClose: 4000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,

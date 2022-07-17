@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
-const API_LITA_BASE = 'https://o5jypc5bx0.execute-api.us-east-1.amazonaws.com/default/'
+const API_LITA_BASE = 'https://x3emzth7b7.execute-api.us-east-1.amazonaws.com/default'
 
 export default function useChanguito() {
 
